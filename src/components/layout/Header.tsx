@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, User, ShoppingBag, Heart, Menu, ChevronDown } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
-import { categories } from '@/data/products';
+import { collections } from '@/data/products';
 
 interface HeaderProps {
   onMenuOpen: () => void;
@@ -11,8 +11,7 @@ interface HeaderProps {
 
 const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
   const { totalItems } = useCart();
-  const [showMenDropdown, setShowMenDropdown] = useState(false);
-  const [showWomenDropdown, setShowWomenDropdown] = useState(false);
+  const [showCollectionsDropdown, setShowCollectionsDropdown] = useState(false);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -41,63 +40,93 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
               HOME
             </Link>
             
-            {/* Men's Dropdown */}
+            {/* Collections Dropdown */}
             <div 
               className="relative"
-              onMouseEnter={() => setShowMenDropdown(true)}
-              onMouseLeave={() => setShowMenDropdown(false)}
+              onMouseEnter={() => setShowCollectionsDropdown(true)}
+              onMouseLeave={() => setShowCollectionsDropdown(false)}
             >
               <button className="flex items-center gap-1 font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors">
-                MEN
+                COLLECTIONS
                 <ChevronDown className="w-4 h-4" />
               </button>
               
-              {showMenDropdown && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border shadow-lg animate-fade-in z-50">
-                  {categories.men.map(cat => (
+              {showCollectionsDropdown && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-card border border-border shadow-lg animate-fade-in z-50 p-6">
+                  <div className="grid grid-cols-3 gap-8">
+                    {/* Seasonal */}
+                    <div>
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">SEASONAL</h4>
+                      {collections.seasonal.map(col => (
+                        <Link
+                          key={col.slug}
+                          to={`/collections/men/${col.slug}`}
+                          className="block py-2 text-sm hover:text-primary transition-colors"
+                        >
+                          {col.name}
+                        </Link>
+                      ))}
+                    </div>
+                    
+                    {/* Categories */}
+                    <div>
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">CATEGORIES</h4>
+                      {collections.categories.map(col => (
+                        <Link
+                          key={col.slug}
+                          to={`/collections/men/${col.slug}`}
+                          className="block py-2 text-sm hover:text-primary transition-colors"
+                        >
+                          {col.name}
+                        </Link>
+                      ))}
+                    </div>
+                    
+                    {/* Styles */}
+                    <div>
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">STYLES</h4>
+                      {collections.styles.map(col => (
+                        <Link
+                          key={col.slug}
+                          to={`/collections/men/${col.slug}`}
+                          className="block py-2 text-sm hover:text-primary transition-colors"
+                        >
+                          {col.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Featured Links */}
+                  <div className="mt-6 pt-6 border-t border-border flex gap-8">
                     <Link
-                      key={cat.slug}
-                      to={`/collections/men/${cat.slug}`}
-                      className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
+                      to="/collections/men/all"
+                      className="font-heading text-xs font-bold tracking-wider hover:text-primary transition-colors"
                     >
-                      {cat.name}
+                      SHOP MEN →
                     </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Women's Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setShowWomenDropdown(true)}
-              onMouseLeave={() => setShowWomenDropdown(false)}
-            >
-              <button className="flex items-center gap-1 font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors">
-                WOMEN
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              
-              {showWomenDropdown && (
-                <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border shadow-lg animate-fade-in z-50">
-                  {categories.women.map(cat => (
                     <Link
-                      key={cat.slug}
-                      to={`/collections/women/${cat.slug}`}
-                      className="block px-4 py-3 text-sm hover:bg-secondary transition-colors"
+                      to="/collections/women/all"
+                      className="font-heading text-xs font-bold tracking-wider hover:text-primary transition-colors"
                     >
-                      {cat.name}
+                      SHOP WOMEN →
                     </Link>
-                  ))}
+                    <Link
+                      to="/collections/limited"
+                      className="font-heading text-xs font-bold tracking-wider text-gold hover:text-gold/80 transition-colors"
+                    >
+                      LIMITED EDITION →
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
 
             <Link 
-              to="/collections/limited" 
+              to="/our-story" 
               className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors"
             >
-              LIMITED EDITION
+              OUR STORY
             </Link>
             
             <Link 
