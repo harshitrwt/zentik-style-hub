@@ -12,6 +12,11 @@ interface HeaderProps {
 const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
   const { totalItems } = useCart();
   const [showCollectionsDropdown, setShowCollectionsDropdown] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // Track search bar visibility
+
+  const handleSearchClick = () => {
+    setIsSearchOpen(prev => !prev); // Toggle search bar visibility
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -139,7 +144,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
 
           {/* Icons */}
           <div className="flex items-center gap-2 md:gap-4">
-            <button className="p-2 hover:bg-secondary transition-colors" aria-label="Search">
+            <button onClick={handleSearchClick} className="p-2 hover:bg-secondary transition-colors" aria-label="Search">
               <Search className="w-5 h-5" />
             </button>
             <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Account">
@@ -162,6 +167,17 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
             </button>
           </div>
         </div>
+
+        {/* Search Bar */}
+        {isSearchOpen && (
+          <div className="absolute top-16 left-0 right-0 bg-black border-t border-border shadow-lg z-40 p-4 flex justify-center">
+            <input 
+              type="text"
+              className="w-full max-w-lg px-4 py-2 bg-gray-100 text-black placeholder-gray-500 transition-500"
+              placeholder="Search products..."
+            />
+          </div>
+        )}
       </div>
     </header>
   );

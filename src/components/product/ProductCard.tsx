@@ -48,8 +48,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
         {/* Quick View on Hover */}
         <div className="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <span className="px-6 py-3 bg-background text-foreground font-heading text-sm tracking-wide">
-            QUICK VIEW
+          <span className="px-6 py-3 bg-transparent border-2 border-white p-1 text-foreground font-heading text-sm tracking-wide">
+            VIEW
           </span>
         </div>
       </div>

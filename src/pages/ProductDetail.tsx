@@ -158,7 +158,7 @@ const ProductDetail = () => {
                     <button
                       key={color.name}
                       onClick={() => setSelectedColor(color.name)}
-                      className={`w-10 h-10 rounded-full border-2 transition-colors ${
+                      className={`w-10 h-10 rounded-full border-2 border-white transition-colors ${
                         selectedColor === color.name ? 'border-primary' : 'border-transparent'
                       }`}
                       style={{ backgroundColor: color.hex }}
