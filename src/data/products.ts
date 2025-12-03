@@ -13,6 +13,8 @@ export interface Product {
   inStock: boolean;
   isNew?: boolean;
   isLimited?: boolean;
+  isBestSeller?: boolean;
+  isMustBuy?: boolean;
 }
 
 export const products: Product[] = [
@@ -23,7 +25,9 @@ export const products: Product[] = [
     price: 3699,
     images: [
       "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80",
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80"
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80",
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80",
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80"
     ],
     category: "men",
     subcategory: "hoodies",
@@ -31,7 +35,8 @@ export const products: Product[] = [
     colors: [{ name: "Black", hex: "#000000" }],
     description: "Premium black hoodie featuring an intricate dragon print on the back. Made from 100% cotton with a soft fleece interior.",
     inStock: true,
-    isNew: true
+    isNew: true,
+    isBestSeller: true
   },
   {
     id: "2",
@@ -40,7 +45,8 @@ export const products: Product[] = [
     price: 4549,
     images: [
       "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80",
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80"
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80",
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80"
     ],
     category: "men",
     subcategory: "hoodies",
@@ -48,7 +54,8 @@ export const products: Product[] = [
     colors: [{ name: "Brown", hex: "#5C4033" }],
     description: "Urban streetwear balaclava hoodie with full zip closure. Features integrated face covering and premium quality fabric.",
     inStock: true,
-    isLimited: true
+    isLimited: true,
+    isMustBuy: true
   },
   {
     id: "3",
@@ -57,14 +64,16 @@ export const products: Product[] = [
     price: 4549,
     images: [
       "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80",
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80"
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80",
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80"
     ],
     category: "men",
     subcategory: "hoodies",
     sizes: ["S", "M", "L", "XL", "XXL", "3XL"],
     colors: [{ name: "Black", hex: "#000000" }],
     description: "Stealth mode activated. This all-black balaclava hoodie combines style with functionality.",
-    inStock: true
+    inStock: true,
+    isBestSeller: true
   },
   {
     id: "4",
@@ -73,7 +82,8 @@ export const products: Product[] = [
     price: 2399,
     images: [
       "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
+      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80"
     ],
     category: "men",
     subcategory: "pants",
@@ -81,7 +91,8 @@ export const products: Product[] = [
     colors: [{ name: "Black", hex: "#000000" }],
     description: "Extreme baggy sweatpants with angelic wings print. Perfect for streetwear enthusiasts.",
     inStock: true,
-    isNew: true
+    isNew: true,
+    isMustBuy: true
   },
   {
     id: "5",
@@ -90,7 +101,8 @@ export const products: Product[] = [
     price: 4799,
     images: [
       "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=600&q=80",
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80"
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80",
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80"
     ],
     category: "men",
     subcategory: "hoodies",
@@ -98,7 +110,8 @@ export const products: Product[] = [
     colors: [{ name: "Brown", hex: "#8B4513" }, { name: "Light Brown", hex: "#D2B48C" }],
     description: "Two-tone buckle hoodie with tactical styling. Premium heavyweight cotton construction.",
     inStock: true,
-    isLimited: true
+    isLimited: true,
+    isBestSeller: true
   },
   {
     id: "6",
@@ -107,7 +120,8 @@ export const products: Product[] = [
     price: 1899,
     images: [
       "https://images.unsplash.com/photo-1625910513413-5fc420e11bec?w=600&q=80",
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80"
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80",
+      "https://images.unsplash.com/photo-1625910513413-5fc420e11bec?w=600&q=80"
     ],
     category: "men",
     subcategory: "shirts",
@@ -123,7 +137,8 @@ export const products: Product[] = [
     price: 1599,
     images: [
       "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80",
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80"
+      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80"
     ],
     category: "men",
     subcategory: "tshirts",
@@ -131,7 +146,8 @@ export const products: Product[] = [
     colors: [{ name: "Black", hex: "#000000" }],
     description: "Oversized fit graphic tee with bold front print. 100% organic cotton.",
     inStock: true,
-    isNew: true
+    isNew: true,
+    isMustBuy: true
   },
   {
     id: "8",
@@ -140,7 +156,8 @@ export const products: Product[] = [
     price: 2899,
     images: [
       "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
+      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80"
     ],
     category: "men",
     subcategory: "pants",
@@ -157,7 +174,8 @@ export const products: Product[] = [
     price: 2999,
     images: [
       "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
-      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80"
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80"
     ],
     category: "women",
     subcategory: "hoodies",
@@ -165,7 +183,8 @@ export const products: Product[] = [
     colors: [{ name: "Black", hex: "#000000" }],
     description: "Trendy cropped hoodie for women. Soft fleece interior with raw hem finish.",
     inStock: true,
-    isNew: true
+    isNew: true,
+    isBestSeller: true
   },
   {
     id: "10",
@@ -174,14 +193,16 @@ export const products: Product[] = [
     price: 3299,
     images: [
       "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80"
+      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
     ],
     category: "women",
     subcategory: "pants",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [{ name: "Black", hex: "#000000" }, { name: "Khaki", hex: "#C3B091" }],
     description: "High-waisted cargo pants with adjustable waist. Street style essential.",
-    inStock: true
+    inStock: true,
+    isMustBuy: true
   },
   {
     id: "11",
@@ -190,14 +211,16 @@ export const products: Product[] = [
     price: 1499,
     images: [
       "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80"
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80"
     ],
     category: "women",
     subcategory: "tshirts",
     sizes: ["XS", "S", "M", "L", "XL"],
     colors: [{ name: "White", hex: "#FFFFFF" }],
     description: "Boyfriend fit graphic tee. Soft cotton with vintage wash effect.",
-    inStock: true
+    inStock: true,
+    isBestSeller: true
   },
   {
     id: "12",
@@ -206,7 +229,8 @@ export const products: Product[] = [
     price: 3599,
     images: [
       "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80"
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80"
     ],
     category: "women",
     subcategory: "jackets",
@@ -214,7 +238,8 @@ export const products: Product[] = [
     colors: [{ name: "Black", hex: "#000000" }],
     description: "Sleek fitted track jacket with contrast piping. Perfect for athleisure looks.",
     inStock: true,
-    isLimited: true
+    isLimited: true,
+    isMustBuy: true
   }
 ];
 
@@ -241,6 +266,46 @@ export const categories = {
   ]
 };
 
+export const collections = {
+  seasonal: [
+    { name: "Winter Collection", slug: "winter" },
+    { name: "Summer Essentials", slug: "summer" },
+    { name: "Spring Looks", slug: "spring" },
+    { name: "Autumn Vibes", slug: "autumn" },
+    { name: "Holiday Special", slug: "holiday" }
+  ],
+  categories: [
+    { name: "All Products", slug: "all" },
+    { name: "Hoodies & Sweaters", slug: "hoodies" },
+    { name: "T-Shirts & Tops", slug: "tshirts" },
+    { name: "Shirts", slug: "shirts" },
+    { name: "Pants & Joggers", slug: "pants" },
+    { name: "Jackets & Outerwear", slug: "jackets" },
+    { name: "Shorts", slug: "shorts" },
+    { name: "Denims", slug: "denims" },
+    { name: "Accessories", slug: "accessories" }
+  ],
+  styles: [
+    { name: "Streetwear", slug: "streetwear" },
+    { name: "Casual", slug: "casual" },
+    { name: "Athleisure", slug: "athleisure" },
+    { name: "Oversized", slug: "oversized" },
+    { name: "Vintage", slug: "vintage" },
+    { name: "Minimalist", slug: "minimalist" },
+    { name: "Urban", slug: "urban" },
+    { name: "Limited Edition", slug: "limited" }
+  ]
+};
+
+export const shopByCategory = [
+  { name: "Hoodies", slug: "hoodies", image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80" },
+  { name: "T-Shirts", slug: "tshirts", image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80" },
+  { name: "Pants", slug: "pants", image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80" },
+  { name: "Jackets", slug: "jackets", image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" },
+  { name: "Shirts", slug: "shirts", image: "https://images.unsplash.com/photo-1625910513413-5fc420e11bec?w=600&q=80" },
+  { name: "Denims", slug: "denims", image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80" }
+];
+
 export const getProductBySlug = (slug: string): Product | undefined => {
   return products.find(p => p.slug === slug);
 };
@@ -251,4 +316,16 @@ export const getProductsByCategory = (category: 'men' | 'women', subcategory?: s
     if (subcategory && subcategory !== 'all' && p.subcategory !== subcategory) return false;
     return true;
   });
+};
+
+export const getBestSellers = (): Product[] => {
+  return products.filter(p => p.isBestSeller);
+};
+
+export const getMustBuy = (): Product[] => {
+  return products.filter(p => p.isMustBuy);
+};
+
+export const getWomensEssentials = (): Product[] => {
+  return products.filter(p => p.category === 'women').slice(0, 4);
 };

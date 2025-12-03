@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { X, ChevronDown, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { categories } from '@/data/products';
+import { collections } from '@/data/products';
 
 interface MenuSidebarProps {
   isOpen: boolean;
@@ -9,10 +9,10 @@ interface MenuSidebarProps {
 }
 
 const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
-  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
-  const toggleCategory = (category: string) => {
-    setExpandedCategory(prev => prev === category ? null : category);
+  const toggleSection = (section: string) => {
+    setExpandedSection(prev => prev === section ? null : section);
   };
 
   return (
@@ -60,70 +60,100 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
               HOME
             </Link>
 
-            {/* Men's Category */}
+            {/* Collections */}
             <div className="border-b border-border">
               <button 
-                onClick={() => toggleCategory('men')}
+                onClick={() => toggleSection('collections')}
                 className="flex items-center justify-between w-full py-4 font-heading text-lg font-medium tracking-wide"
               >
-                MEN
-                {expandedCategory === 'men' ? (
+                COLLECTIONS
+                {expandedSection === 'collections' ? (
                   <ChevronDown className="w-5 h-5" />
                 ) : (
                   <ChevronRight className="w-5 h-5" />
                 )}
               </button>
               
-              {expandedCategory === 'men' && (
-                <div className="pb-4 pl-4 space-y-3 animate-fade-in">
-                  {categories.men.map(cat => (
+              {expandedSection === 'collections' && (
+                <div className="pb-4 space-y-4 animate-fade-in">
+                  {/* Seasonal */}
+                  <div className="pl-4">
+                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">SEASONAL</h4>
+                    {collections.seasonal.map(col => (
+                      <Link
+                        key={col.slug}
+                        to={`/collections/men/${col.slug}`}
+                        onClick={onClose}
+                        className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {col.name}
+                      </Link>
+                    ))}
+                  </div>
+                  
+                  {/* Categories */}
+                  <div className="pl-4">
+                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">CATEGORIES</h4>
+                    {collections.categories.map(col => (
+                      <Link
+                        key={col.slug}
+                        to={`/collections/men/${col.slug}`}
+                        onClick={onClose}
+                        className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {col.name}
+                      </Link>
+                    ))}
+                  </div>
+                  
+                  {/* Styles */}
+                  <div className="pl-4">
+                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">STYLES</h4>
+                    {collections.styles.map(col => (
+                      <Link
+                        key={col.slug}
+                        to={`/collections/men/${col.slug}`}
+                        onClick={onClose}
+                        className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {col.name}
+                      </Link>
+                    ))}
+                  </div>
+                  
+                  {/* Shop Links */}
+                  <div className="pl-4 pt-4 border-t border-border space-y-2">
                     <Link
-                      key={cat.slug}
-                      to={`/collections/men/${cat.slug}`}
+                      to="/collections/men/all"
                       onClick={onClose}
-                      className="block text-muted-foreground hover:text-foreground transition-colors"
+                      className="block font-heading text-sm font-bold tracking-wide hover:text-primary transition-colors"
                     >
-                      {cat.name}
+                      SHOP MEN →
                     </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Women's Category */}
-            <div className="border-b border-border">
-              <button 
-                onClick={() => toggleCategory('women')}
-                className="flex items-center justify-between w-full py-4 font-heading text-lg font-medium tracking-wide"
-              >
-                WOMEN
-                {expandedCategory === 'women' ? (
-                  <ChevronDown className="w-5 h-5" />
-                ) : (
-                  <ChevronRight className="w-5 h-5" />
-                )}
-              </button>
-              
-              {expandedCategory === 'women' && (
-                <div className="pb-4 pl-4 space-y-3 animate-fade-in">
-                  {categories.women.map(cat => (
                     <Link
-                      key={cat.slug}
-                      to={`/collections/women/${cat.slug}`}
+                      to="/collections/women/all"
                       onClick={onClose}
-                      className="block text-muted-foreground hover:text-foreground transition-colors"
+                      className="block font-heading text-sm font-bold tracking-wide hover:text-primary transition-colors"
                     >
-                      {cat.name}
+                      SHOP WOMEN →
                     </Link>
-                  ))}
+                  </div>
                 </div>
               )}
             </div>
 
             <Link 
-              to="/collections/limited"
+              to="/our-story"
               onClick={onClose}
               className="block py-4 font-heading text-lg font-medium tracking-wide border-b border-border"
+            >
+              OUR STORY
+            </Link>
+
+            <Link 
+              to="/collections/limited"
+              onClick={onClose}
+              className="block py-4 font-heading text-lg font-medium tracking-wide border-b border-border text-gold"
             >
               LIMITED EDITION
             </Link>
