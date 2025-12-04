@@ -601,6 +601,226 @@ export const products: Product[] = [
     description: "Cozy oversized knit sweater. Soft and warm for cooler days.",
     inStock: true,
     isNew: true
+  },
+  // Additional Denims
+  {
+    id: "33",
+    name: "Baggy Denim Jeans",
+    slug: "baggy-denim-jeans",
+    price: 3499,
+    images: [
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80",
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80"
+    ],
+    category: "men",
+    subcategory: "pants",
+    sizes: ["28", "30", "32", "34", "36"],
+    colors: [{ name: "Light Blue", hex: "#ADD8E6" }],
+    description: "Retro baggy jeans with classic wash. Streetwear essential.",
+    inStock: true,
+    isDenim: true,
+    isPants: true,
+    isBestSeller: true
+  },
+  {
+    id: "34",
+    name: "Distressed Denim Shorts",
+    slug: "distressed-denim-shorts",
+    price: 1999,
+    images: [
+      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&q=80",
+      "https://images.unsplash.com/photo-1565084888279-aca607ecce0c?w=600&q=80"
+    ],
+    category: "men",
+    subcategory: "shorts",
+    sizes: ["28", "30", "32", "34"],
+    colors: [{ name: "Washed Blue", hex: "#6495ED" }],
+    description: "Trendy distressed denim shorts. Perfect for summer days.",
+    inStock: true,
+    isDenim: true,
+    isSummer: true
+  },
+  {
+    id: "35",
+    name: "Black Denim Jacket",
+    slug: "black-denim-jacket",
+    price: 4299,
+    images: [
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",
+      "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&q=80"
+    ],
+    category: "men",
+    subcategory: "jackets",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Black", hex: "#000000" }],
+    description: "Classic black denim jacket. Timeless style for any outfit.",
+    inStock: true,
+    isDenim: true,
+    isMustBuy: true
+  },
+  {
+    id: "36",
+    name: "Straight Leg Jeans",
+    slug: "straight-leg-jeans",
+    price: 2899,
+    images: [
+      "https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=600&q=80",
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80"
+    ],
+    category: "men",
+    subcategory: "pants",
+    sizes: ["28", "30", "32", "34", "36"],
+    colors: [{ name: "Indigo", hex: "#4B0082" }],
+    description: "Classic straight leg jeans. Premium denim quality.",
+    inStock: true,
+    isDenim: true,
+    isPants: true
+  },
+  {
+    id: "37",
+    name: "Wide Leg Denim",
+    slug: "wide-leg-denim",
+    price: 3199,
+    images: [
+      "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=600&q=80",
+      "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=600&q=80"
+    ],
+    category: "women",
+    subcategory: "pants",
+    sizes: ["24", "26", "28", "30", "32"],
+    colors: [{ name: "Medium Blue", hex: "#0000CD" }],
+    description: "Trendy wide leg denim jeans. Modern silhouette.",
+    inStock: true,
+    isDenim: true,
+    isPants: true,
+    isNew: true
+  },
+  {
+    id: "38",
+    name: "Cropped Denim Jacket",
+    slug: "cropped-denim-jacket",
+    price: 3599,
+    images: [
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
+      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80"
+    ],
+    category: "women",
+    subcategory: "jackets",
+    sizes: ["XS", "S", "M", "L"],
+    colors: [{ name: "Light Blue", hex: "#ADD8E6" }],
+    description: "Cropped denim jacket with vintage wash. Festival ready.",
+    inStock: true,
+    isDenim: true,
+    isMustBuy: true
+  },
+  // Additional Must Buy Products
+  {
+    id: "39",
+    name: "Premium Graphic Hoodie",
+    slug: "premium-graphic-hoodie",
+    price: 3899,
+    images: [
+      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80",
+      "https://images.unsplash.com/photo-1614975059251-992f11792b9f?w=600&q=80"
+    ],
+    category: "men",
+    subcategory: "hoodies",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Black", hex: "#000000" }],
+    description: "Premium heavyweight hoodie with exclusive graphic. Limited stock.",
+    inStock: true,
+    isMustBuy: true,
+    isLimited: true
+  },
+  {
+    id: "40",
+    name: "Tactical Cargo Pants",
+    slug: "tactical-cargo-pants",
+    price: 3699,
+    images: [
+      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
+    ],
+    category: "men",
+    subcategory: "pants",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Black", hex: "#000000" }],
+    description: "Military-inspired tactical cargo pants. Maximum utility.",
+    inStock: true,
+    isMustBuy: true,
+    isPants: true
+  },
+  {
+    id: "41",
+    name: "Oversized Band Tee",
+    slug: "oversized-band-tee",
+    price: 1899,
+    images: [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80",
+      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80"
+    ],
+    category: "men",
+    subcategory: "tshirts",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Black", hex: "#000000" }],
+    description: "Vintage-style oversized band tee. Rock your style.",
+    inStock: true,
+    isMustBuy: true,
+    isSummer: true
+  },
+  {
+    id: "42",
+    name: "Structured Crop Top",
+    slug: "structured-crop-top",
+    price: 1599,
+    images: [
+      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80",
+      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80"
+    ],
+    category: "women",
+    subcategory: "tops",
+    sizes: ["XS", "S", "M", "L"],
+    colors: [{ name: "White", hex: "#FFFFFF" }],
+    description: "Structured crop top with clean lines. Versatile staple.",
+    inStock: true,
+    isMustBuy: true,
+    isSummer: true
+  },
+  {
+    id: "43",
+    name: "Cargo Mini Skirt",
+    slug: "cargo-mini-skirt",
+    price: 2199,
+    images: [
+      "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600&q=80",
+      "https://images.unsplash.com/photo-1582142306909-195724d33ffc?w=600&q=80"
+    ],
+    category: "women",
+    subcategory: "skirts",
+    sizes: ["XS", "S", "M", "L"],
+    colors: [{ name: "Khaki", hex: "#C3B091" }],
+    description: "Trendy cargo mini skirt with utility pockets. Street style essential.",
+    inStock: true,
+    isMustBuy: true
+  },
+  {
+    id: "44",
+    name: "Relaxed Fit Denim",
+    slug: "relaxed-fit-denim",
+    price: 3299,
+    images: [
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80",
+      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80"
+    ],
+    category: "men",
+    subcategory: "pants",
+    sizes: ["28", "30", "32", "34", "36"],
+    colors: [{ name: "Vintage Blue", hex: "#4682B4" }],
+    description: "Relaxed fit jeans with vintage wash. Comfort meets style.",
+    inStock: true,
+    isDenim: true,
+    isPants: true,
+    isBestSeller: true
   }
 ];
 

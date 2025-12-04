@@ -79,22 +79,18 @@ const Index = () => {
           className="absolute inset-0"
         >
           {heroImages.map((img, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ 
-                opacity: idx === currentIndex ? 1 : 0,
-                scale: idx === currentIndex ? 1 : 1.1
-              }}
-              transition={{ duration: 1.5, ease: "easeOut" }}
-              className="absolute inset-0"
+              className={`absolute inset-0 transition-opacity duration-1000 ${
+                idx === currentIndex ? 'opacity-100' : 'opacity-0'
+              }`}
             >
               <img
                 src={img}
                 alt={`Hero slide ${idx + 1}`}
                 className="h-full w-full object-cover"
               />
-            </motion.div>
+            </div>
           ))}
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
@@ -194,22 +190,6 @@ const Index = () => {
           ))}
         </div>
 
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 right-8 hidden md:flex flex-col items-center gap-2"
-        >
-          <span className="text-xs tracking-widest text-foreground/50 rotate-90 origin-center translate-y-8">
-            SCROLL
-          </span>
-          <motion.div 
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-px h-12 bg-gradient-to-b from-foreground/50 to-transparent"
-          />
-        </motion.div>
       </section>
 
       {/* Featured Products */}
@@ -287,10 +267,10 @@ const Index = () => {
               className={`flex gap-4 overflow-x-auto scrollbar-hide pb-4 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
               style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
             >
-              {[...bestSellers, ...bestSellers].map((product, i) => (
+            {[...bestSellers, ...bestSellers].map((product, i) => (
                 <div
                   key={`${product.id}-${i}`}
-                  className="min-w-[200px] md:min-w-[280px] flex-shrink-0"
+                  className="min-w-[160px] md:min-w-[220px] flex-shrink-0"
                 >
                   <ProductCard product={product} />
                 </div>
@@ -360,12 +340,9 @@ const Index = () => {
       <ScrollReveal>
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
-            <div className="flex items-center gap-4 mb-8">
-              <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide">
-                SUMMER ESSENTIALS
-              </h2>
-              <span className="text-sm text-foreground/50">☀️</span>
-            </div>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide mb-8">
+              SUMMER ESSENTIALS
+            </h2>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {summerEssentials.slice(0, 8).map((product, idx) => (
@@ -443,13 +420,67 @@ const Index = () => {
         </section>
       </ScrollReveal>
 
-      {/* Women's Wear */}
+      {/* Men's Collection */}
+      <ScrollReveal>
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-4">
+            <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide mb-8">
+              MEN'S COLLECTION
+            </h2>
+
+            {/* Header Image */}
+            <div className="relative h-[200px] md:h-[300px] mb-8 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=1200&q=80"
+                alt="Men's Collection"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+              <div className="absolute bottom-6 left-6">
+                <span className="font-heading text-2xl md:text-4xl font-bold tracking-wider">EXPLORE MEN'S</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {menProducts.map((product, idx) => (
+                <ScrollReveal key={product.id} delay={idx * 0.05}>
+                  <ProductCard product={product} />
+                </ScrollReveal>
+              ))}
+            </div>
+
+            <div className="flex justify-center mt-10">
+              <Link
+                to="/collections/men/all"
+                className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors"
+              >
+                Shop Men
+              </Link>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Women's Collection */}
       <ScrollReveal>
         <section className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4">
             <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide mb-8">
               WOMEN'S COLLECTION
             </h2>
+
+            {/* Header Image */}
+            <div className="relative h-[200px] md:h-[300px] mb-8 overflow-hidden">
+              <img
+                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80"
+                alt="Women's Collection"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+              <div className="absolute bottom-6 left-6">
+                <span className="font-heading text-2xl md:text-4xl font-bold tracking-wider">EXPLORE WOMEN'S</span>
+              </div>
+            </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {womensWear.slice(0, 8).map((product, idx) => (
