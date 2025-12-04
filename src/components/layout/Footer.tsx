@@ -8,9 +8,16 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="bg-card border-t border-border relative overflow-hidden">
+      {/* Big ZENTIK Background Text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <span className="font-heading text-[20vw] md:text-[25vw] font-black text-foreground/[0.03] tracking-[0.1em] select-none whitespace-nowrap">
+          ZENTIK
+        </span>
+      </div>
+
       {/* Infinite Scroll Brand Text */}
-      <div className="py-6 overflow-hidden border-b border-border">
+      <div className="py-6 overflow-hidden border-b border-border relative z-10">
         <div className="flex animate-scroll-left">
           {brandTexts.map((text, i) => (
             <span 
@@ -31,7 +38,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
@@ -40,13 +47,13 @@ const Footer = () => {
               Premium streetwear for the modern individual. Quality craftsmanship meets urban style.
             </p>
             <div className="flex gap-4 mt-6">
-              <a href="#" className="p-2 border border-border hover:bg-secondary transition-colors">
+              <a href="#" className="p-2 border border-border hover:bg-secondary hover:border-foreground/20 transition-all duration-300">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2 border border-border hover:bg-secondary transition-colors">
+              <a href="#" className="p-2 border border-border hover:bg-secondary hover:border-foreground/20 transition-all duration-300">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="p-2 border border-border hover:bg-secondary transition-colors">
+              <a href="#" className="p-2 border border-border hover:bg-secondary hover:border-foreground/20 transition-all duration-300">
                 <Twitter className="w-5 h-5" />
               </a>
             </div>
@@ -69,6 +76,11 @@ const Footer = () => {
               <li>
                 <Link to="/collections/limited" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
                   Limited Edition
+                </Link>
+              </li>
+              <li>
+                <Link to="/our-story" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  Our Story
                 </Link>
               </li>
               <li>
