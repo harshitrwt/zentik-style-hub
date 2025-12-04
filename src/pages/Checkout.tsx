@@ -277,7 +277,7 @@ const Checkout = () => {
                   />
                   <CreditCard className="w-5 h-5" />
                   <div>
-                    <span className="font-medium">Razorpay</span>
+                    <span className="font-medium">Online</span>
                     <p className="text-sm text-muted-foreground">Cards, UPI, Netbanking, Wallets</p>
                   </div>
                 </label>
