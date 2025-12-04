@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, User, ShoppingBag, Heart, Menu, ChevronDown } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
@@ -13,6 +13,20 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
   const { totalItems } = useCart();
   const [showCollectionsDropdown, setShowCollectionsDropdown] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false); // Track search bar visibility
+  const dropdownRef = useRef(null);
+
+  // Close when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowCollectionsDropdown(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
 
   const handleSearchClick = () => {
     setIsSearchOpen(prev => !prev); // Toggle search bar visibility
@@ -23,7 +37,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={onMenuOpen}
             className="lg:hidden p-2 hover:bg-secondary transition-colors"
             aria-label="Open menu"
@@ -38,27 +52,27 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors"
             >
               HOME
             </Link>
-            
-            {/* Collections Dropdown */}
-            <div 
+
+            <div
               className="relative"
-              onMouseEnter={() => setShowCollectionsDropdown(true)}
-              onMouseLeave={() => setShowCollectionsDropdown(false)}
+              ref={dropdownRef}
+              onClick={() => setShowCollectionsDropdown(prev => !prev)}
             >
               <button className="flex items-center gap-1 font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors">
                 COLLECTIONS
                 <ChevronDown className="w-4 h-4" />
               </button>
-              
+
               {showCollectionsDropdown && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-card border border-border shadow-lg animate-fade-in z-50 p-6">
                   <div className="grid grid-cols-3 gap-8">
+
                     {/* Seasonal */}
                     <div>
                       <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">SEASONAL</h4>
@@ -72,7 +86,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                         </Link>
                       ))}
                     </div>
-                    
+
                     {/* Categories */}
                     <div>
                       <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">CATEGORIES</h4>
@@ -86,7 +100,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                         </Link>
                       ))}
                     </div>
-                    
+
                     {/* Styles */}
                     <div>
                       <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">STYLES</h4>
@@ -100,8 +114,9 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                         </Link>
                       ))}
                     </div>
+
                   </div>
-                  
+
                   {/* Featured Links */}
                   <div className="mt-6 pt-6 border-t border-border flex gap-8">
                     <Link
@@ -127,15 +142,16 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
               )}
             </div>
 
-            <Link 
-              to="/our-story" 
+
+            <Link
+              to="/our-story"
               className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors"
             >
               OUR STORY
             </Link>
-            
-            <Link 
-              to="/contact" 
+
+            <Link
+              to="/contact"
               className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors"
             >
               CONTACT US
@@ -153,7 +169,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
             <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Wishlist">
               <Heart className="w-5 h-5" />
             </button>
-            <button 
+            <button
               onClick={onCartOpen}
               className="relative p-2 hover:bg-secondary transition-colors"
               aria-label="Cart"
@@ -171,7 +187,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
         {/* Search Bar */}
         {isSearchOpen && (
           <div className="absolute top-16 left-0 right-0 bg-black border-t border-border shadow-lg z-40 p-4 flex justify-center">
-            <input 
+            <input
               type="text"
               className="w-full max-w-lg px-4 py-2 bg-gray-100 text-black placeholder-gray-500 transition-500"
               placeholder="Search products..."

@@ -31,7 +31,7 @@ const Index = () => {
   const heroImages = [
     'https://images.unsplash.com/photo-1558171813-4c088753af8f?w=1920&q=80',
     'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1920&q=80',
-    'https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?w=1920&q=80',
+    'https://images.pexels.com/photos/1884584/pexels-photo-1884584.jpeg',
     'https://images.unsplash.com/photo-1529720317453-c8da503f2051?w=1920&q=80'
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -162,16 +162,16 @@ const Index = () => {
           </div>
 
           {/* Floating Brand Text */}
-          <motion.div 
+          {/* <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1 }}
             className="absolute bottom-20 right-8 hidden lg:block"
           >
             <span className="font-heading text-[8rem] font-black text-foreground/5 tracking-wider">
-              Z
+              Z<span className="text-[3rem] font-black text-foreground/5 tracking-wider">entik</span>
             </span>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         {/* Indicators */}
@@ -254,7 +254,7 @@ const Index = () => {
               <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide">
                 BEST SELLERS
               </h2>
-              <span className="text-sm text-muted-foreground">← Drag to scroll →</span>
+              <span className="text-sm text-muted-foreground">← Drag →</span>
             </div>
 
             {/* Draggable Scroll Container */}
@@ -319,7 +319,7 @@ const Index = () => {
 
       {/* New Arrivals */}
       <ScrollReveal>
-        <section className="py-16 md:py-24 bg-card">
+        <section className="py-16 md:py-24 bg-card/50">
           <div className="container mx-auto px-4">
             <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide text-center mb-4 underline underline-offset-8">
               NEW ARRIVALS
@@ -428,18 +428,6 @@ const Index = () => {
               MEN'S COLLECTION
             </h2>
 
-            {/* Header Image */}
-            <div className="relative h-[200px] md:h-[300px] mb-8 overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=1200&q=80"
-                alt="Men's Collection"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-              <div className="absolute bottom-6 left-6">
-                <span className="font-heading text-2xl md:text-4xl font-bold tracking-wider">EXPLORE MEN'S</span>
-              </div>
-            </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {menProducts.map((product, idx) => (
@@ -468,19 +456,6 @@ const Index = () => {
             <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide mb-8">
               WOMEN'S COLLECTION
             </h2>
-
-            {/* Header Image */}
-            <div className="relative h-[200px] md:h-[300px] mb-8 overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80"
-                alt="Women's Collection"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
-              <div className="absolute bottom-6 left-6">
-                <span className="font-heading text-2xl md:text-4xl font-bold tracking-wider">EXPLORE WOMEN'S</span>
-              </div>
-            </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {womensWear.slice(0, 8).map((product, idx) => (

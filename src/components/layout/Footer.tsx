@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className="bg-card border-t border-border relative overflow-hidden">
       {/* Big ZENTIK Background Text - Bottom positioned */}
       <div className="absolute bottom-4 md:bottom-8 left-0 right-0 flex justify-center pointer-events-none overflow-hidden">
-        <span className="font-heading text-[12vw] md:text-[10vw] font-black text-foreground/[0.04] tracking-[0.2em] select-none whitespace-nowrap">
+        <span className="hidden md:block font-heading md:mb-[-25px] text-[16vw] md:text-[16vw] font-black text-foreground/[0.07] tracking-[0.2em] select-none whitespace-nowrap">
           ZENTIK
         </span>
       </div>
@@ -20,7 +20,7 @@ const Footer = () => {
       <div className="py-6 overflow-hidden border-b border-border relative z-10">
         <div className="flex animate-scroll-left">
           {brandTexts.map((text, i) => (
-            <span 
+            <span
               key={i}
               className="font-heading text-4xl md:text-6xl font-bold text-muted-foreground/30 whitespace-nowrap mx-8"
             >
@@ -28,7 +28,7 @@ const Footer = () => {
             </span>
           ))}
           {brandTexts.map((text, i) => (
-            <span 
+            <span
               key={`dup-${i}`}
               className="font-heading text-4xl md:text-6xl font-bold text-muted-foreground/30 whitespace-nowrap mx-8"
             >
@@ -129,23 +129,43 @@ const Footer = () => {
           </div>
         </div>
 
+        <div className="flex items-center gap-3 mt-5">
+              <span className="md:text-sm text-[13px] mt-2 md:mt-0 text-muted-foreground">We Accept:</span>
+              <div className="flex items-center gap-2">
+
+                {/* VISA */}
+                <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#1A1F71" }}>
+                  VISA
+                </div>
+
+                {/* MasterCard */}
+                <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#EB001B" }}>
+                  MasterCard
+                </div>
+
+                {/* UPI */}
+                <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#4C9A2A" }}>
+                  UPI
+                </div>
+
+                {/* RuPay */}
+                <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#1B4CA1" }}>
+                  RuPay
+                </div>
+
+                
+
+              </div>
+            </div>
+
         {/* Payment Methods */}
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2024 ZENTIK. All rights reserved.
+              © 2025 ZENTIK. All rights reserved.
             </p>
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground">We Accept:</span>
-              <div className="flex items-center gap-2">
-                <div className="px-3 py-1 bg-secondary text-xs font-medium">VISA</div>
-                <div className="px-3 py-1 bg-secondary text-xs font-medium">MC</div>
-                <div className="px-3 py-1 bg-secondary text-xs font-medium">AMEX</div>
-                <div className="px-3 py-1 bg-secondary text-xs font-medium">UPI</div>
-                <div className="px-3 py-1 bg-secondary text-xs font-medium">RuPay</div>
-                <div className="px-3 py-1 bg-secondary text-xs font-medium">COD</div>
-              </div>
-            </div>
+            
+
           </div>
         </div>
       </div>
