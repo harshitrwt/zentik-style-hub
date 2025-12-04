@@ -9,9 +9,9 @@ const Footer = () => {
 
   return (
     <footer className="bg-card border-t border-border relative overflow-hidden">
-      {/* Big ZENTIK Background Text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <span className="font-heading text-[20vw] md:text-[25vw] font-black text-foreground/[0.03] tracking-[0.1em] select-none whitespace-nowrap">
+      {/* Big ZENTIK Background Text - Bottom positioned */}
+      <div className="absolute bottom-4 md:bottom-8 left-0 right-0 flex justify-center pointer-events-none overflow-hidden">
+        <span className="font-heading text-[12vw] md:text-[10vw] font-black text-foreground/[0.04] tracking-[0.2em] select-none whitespace-nowrap">
           ZENTIK
         </span>
       </div>
