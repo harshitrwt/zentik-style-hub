@@ -175,7 +175,7 @@ const Index = () => {
         </div>
 
         {/* Indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3">
+        {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3">
           {heroImages.map((_, idx) => (
             <button
               key={idx}
@@ -188,7 +188,7 @@ const Index = () => {
               aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
-        </div>
+        </div> */}
 
       </section>
 
@@ -270,7 +270,7 @@ const Index = () => {
             {[...bestSellers, ...bestSellers].map((product, i) => (
                 <div
                   key={`${product.id}-${i}`}
-                  className="min-w-[160px] md:min-w-[220px] flex-shrink-0"
+                  className="w-[160px] md:w-[420px] flex-shrink-0"
                 >
                   <ProductCard product={product} />
                 </div>
@@ -425,7 +425,7 @@ const Index = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-4">
             <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide mb-8">
-              MEN'S COLLECTION
+              MEN&#39;S COLLECTION
             </h2>
 
 
@@ -454,8 +454,9 @@ const Index = () => {
         <section className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-4">
             <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide mb-8">
-              WOMEN'S COLLECTION
+              WOMEN&#39;S COLLECTION
             </h2>
+
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {womensWear.slice(0, 8).map((product, idx) => (
@@ -497,7 +498,7 @@ const Index = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8">
-                  <h3 className="font-heading text-3xl md:text-4xl font-bold tracking-wide mb-4">MEN'S</h3>
+                  <h3 className="font-heading text-3xl md:text-4xl font-bold tracking-wide mb-4">MEN&#39;S</h3>
                   <span className="inline-flex items-center gap-2 font-heading text-sm tracking-wide group-hover:gap-4 transition-all">
                     SHOP NOW <ArrowRight className="w-4 h-4" />
                   </span>
@@ -516,7 +517,7 @@ const Index = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
                 <div className="absolute bottom-8 left-8 right-8">
-                  <h3 className="font-heading text-3xl md:text-4xl font-bold tracking-wide mb-4">WOMEN'S</h3>
+                  <h3 className="font-heading text-3xl md:text-4xl font-bold tracking-wide mb-4">WOMEN&#39;S</h3>
                   <span className="inline-flex items-center gap-2 font-heading text-sm tracking-wide group-hover:gap-4 transition-all">
                     SHOP NOW <ArrowRight className="w-4 h-4" />
                   </span>

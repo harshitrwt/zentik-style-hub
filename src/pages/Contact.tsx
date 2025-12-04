@@ -66,7 +66,7 @@ const Contact = () => {
             CONTACT US
           </h1>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Have a question or need assistance? We're here to help. Reach out to us and we'll respond as soon as possible.
+            Have a question or need assistance? We&#39;re here to help. Reach out to us and we&#39;ll respond as soon as possible.
           </p>
         </div>
 

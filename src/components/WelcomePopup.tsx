@@ -54,7 +54,7 @@ const WelcomePopup = () => {
                 {/* Image Section */}
                 <div className="relative h-48 md:h-64 overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80"
+                    src="https://images.pexels.com/photos/30970302/pexels-photo-30970302.jpeg"
                     alt="Zentik Fashion"
                     className="w-full h-full object-cover"
                   />

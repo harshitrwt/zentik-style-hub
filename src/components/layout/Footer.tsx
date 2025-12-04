@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className="bg-card border-t border-border relative overflow-hidden">
       {/* Big ZENTIK Background Text - Bottom positioned */}
       <div className="absolute bottom-4 md:bottom-8 left-0 right-0 flex justify-center pointer-events-none overflow-hidden">
-        <span className="hidden md:block font-heading md:mb-[-25px] text-[16vw] md:text-[16vw] font-black text-foreground/[0.07] tracking-[0.2em] select-none whitespace-nowrap">
+        <span className="hidden md:block font-heading md:mb-[-28px] text-[16vw] md:text-[16vw] font-black text-foreground/[0.07] tracking-[0.2em] select-none whitespace-nowrap">
           ZENTIK
         </span>
       </div>
@@ -65,12 +65,12 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link to="/collections/men/all" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Men's Collection
+                  Men&#39;s Collection
                 </Link>
               </li>
               <li>
                 <Link to="/collections/women/all" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Women's Collection
+                  Women&#39;s Collection
                 </Link>
               </li>
               <li>

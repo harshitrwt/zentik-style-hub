@@ -35,17 +35,17 @@ const OurStory = () => {
                 THE BEGINNING
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                ZENTIK was born from a simple idea: to create streetwear that doesn't compromise on quality or style. 
+                ZENTIK was born from a simple idea: to create streetwear that doesn&#39;t compromise on quality or style. 
                 Founded in 2020, we started as a small passion project, designing clothes that we ourselves wanted to wear.
               </p>
               <p className="text-muted-foreground leading-relaxed">
                 What began in a small studio has grown into a movement. Today, ZENTIK represents a community of 
-                individuals who believe in expressing themselves through fashion that's both bold and timeless.
+                individuals who believe in expressing themselves through fashion that&#39;s both bold and timeless.
               </p>
             </div>
             <div className="relative h-[400px] md:h-[500px]">
               <img 
-                src="https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80"
+                src="https://images.pexels.com/photos/9775846/pexels-photo-9775846.jpeg"
                 alt="ZENTIK Studio"
                 className="w-full h-full object-cover"
               />
@@ -90,7 +90,7 @@ const OurStory = () => {
               </div>
               <h3 className="font-heading text-xl font-bold mb-4">COMMUNITY</h3>
               <p className="text-muted-foreground">
-                ZENTIK is more than a brand—it's a community. We celebrate individuality 
+                ZENTIK is more than a brand, It&#39;s a community. We celebrate individuality 
                 and the unique stories of everyone who wears our clothes.
               </p>
             </div>
@@ -138,7 +138,7 @@ const OurStory = () => {
       <section className="py-24 md:py-32 bg-card">
         <div className="container mx-auto px-4 text-center">
           <p className="font-heading text-2xl md:text-4xl font-light tracking-wide leading-relaxed max-w-4xl mx-auto">
-            "We don't just make clothes. We create <span className="font-bold">statements</span>. 
+            "We don&#39;t just make clothes. We create <span className="font-bold">statements</span>. 
             Every thread, every stitch, every design tells the story of who you are."
           </p>
           <p className="mt-8 text-muted-foreground font-heading tracking-wide">
