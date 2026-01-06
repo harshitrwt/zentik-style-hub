@@ -412,12 +412,12 @@ export const products: Product[] = [
 
 // Jersey categories for the shop
 export const jerseyCategories = [
-  { name: "Embroidery", slug: "embroidery", image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&q=80" },
-  { name: "Full Sleeve", slug: "full-sleeve", image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80" },
-  { name: "Five Sleeve", slug: "five-sleeve", image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80" },
-  { name: "Retro", slug: "retro", image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&q=80" },
-  { name: "New Arrival", slug: "new-arrival", image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80" },
-  { name: "Best Seller", slug: "best-seller", image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80" }
+  { name: "Embroidery", slug: "embroidery", image: "/images/categories/embroidery.jpg" },
+  { name: "Full Sleeve", slug: "full-sleeve", image: "/images/categories/full-sleeve.jpg" },
+  { name: "Five Sleeve", slug: "five-sleeve", image: "/images/categories/five-sleeve.jpg" },
+  { name: "Retro", slug: "retro", image: "/images/categories/retro.jpg" },
+  { name: "New Arrival", slug: "new-arrival", image: "/images/categories/new-arrival.jpg" },
+  { name: "Best Seller", slug: "best-seller", image: "/images/categories/best-seller.jpg" }
 ];
 
 // Collections for navbar dropdown
