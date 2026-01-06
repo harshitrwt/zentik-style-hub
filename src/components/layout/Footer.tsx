@@ -10,9 +10,9 @@ const Footer = () => {
   return (
     <footer className="bg-card border-t border-border relative overflow-hidden">
       {/* Big ZERC Background Text - Bottom positioned */}
-      <div className="absolute bottom-4 md:bottom-6 left-0 right-0 flex justify-center pointer-events-none overflow-hidden">
-        <span className="hidden md:block font-heading text-[10vw] font-black text-foreground/[0.04] tracking-[0.2em] select-none whitespace-nowrap">
-          Zerć India
+      <div className="absolute bottom-4 md:bottom-6 right-12 flex justify-center pointer-events-none overflow-hidden md:mb-[-13px]">
+        <span className="hidden md:block font-heading text-[15vw] font-black text-foreground/[0.04] tracking-[0.01em] select-none whitespace-nowrap ">
+          Zerć
         </span>
       </div>
 
@@ -151,7 +151,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2025 Zerć India. All rights reserved.
+              © 2026 Zerć India. All rights reserved.
             </p>
           </div>
         </div>

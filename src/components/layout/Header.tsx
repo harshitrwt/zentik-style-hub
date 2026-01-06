@@ -13,7 +13,6 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
   const navigate = useNavigate();
   const { totalItems } = useCart();
   const [showCollectionsDropdown, setShowCollectionsDropdown] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -24,19 +23,15 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleSearchClick = () => {
-    setIsSearchOpen(prev => !prev);
-  };
-
-  const handleSearchSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/collections/jersey/all?search=${encodeURIComponent(searchQuery.trim())}`);
-      setIsSearchOpen(false);
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      navigate(
+        `/collections/jersey/all?search=${encodeURIComponent(searchQuery.trim())}`
+      );
       setSearchQuery('');
     }
   };
@@ -45,6 +40,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
+
           {/* Mobile Menu Button */}
           <button
             onClick={onMenuOpen}
@@ -61,10 +57,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
-            <Link
-              to="/"
-              className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors"
-            >
+            <Link to="/" className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors">
               HOME
             </Link>
 
@@ -82,9 +75,10 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-background border border-border shadow-lg animate-fade-in z-50 p-6">
                   <div className="grid grid-cols-3 gap-8">
 
-                    {/* Clubs */}
                     <div>
-                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">CLUB JERSEYS</h4>
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">
+                        CLUB JERSEYS
+                      </h4>
                       {collections.clubs.map(col => (
                         <Link
                           key={col.slug}
@@ -96,9 +90,10 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                       ))}
                     </div>
 
-                    {/* National - Coming Soon */}
                     <div>
-                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">NATIONAL TEAMS</h4>
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">
+                        NATIONAL TEAMS
+                      </h4>
                       {collections.national.map(col => (
                         <Link
                           key={col.slug}
@@ -110,9 +105,10 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                       ))}
                     </div>
 
-                    {/* Types */}
                     <div>
-                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">JERSEY TYPES</h4>
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">
+                        JERSEY TYPES
+                      </h4>
                       {collections.types.map(col => (
                         <Link
                           key={col.slug}
@@ -126,24 +122,14 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
 
                   </div>
 
-                  {/* Featured Links */}
                   <div className="mt-6 pt-6 border-t border-border flex gap-8">
-                    <Link
-                      to="/collections/jersey/all"
-                      className="font-heading text-xs font-bold tracking-wider hover:text-muted-foreground transition-colors"
-                    >
+                    <Link to="/collections/jersey/all" className="font-heading text-xs font-bold tracking-wider hover:text-muted-foreground transition-colors">
                       ALL JERSEYS →
                     </Link>
-                    <Link
-                      to="/collections/jersey/new-arrival"
-                      className="font-heading text-xs font-bold tracking-wider hover:text-muted-foreground transition-colors"
-                    >
+                    <Link to="/collections/jersey/new-arrival" className="font-heading text-xs font-bold tracking-wider hover:text-muted-foreground transition-colors">
                       NEW ARRIVALS →
                     </Link>
-                    <Link
-                      to="/collections/jersey/best-seller"
-                      className="font-heading text-xs font-bold tracking-wider text-success hover:text-success/80 transition-colors"
-                    >
+                    <Link to="/collections/jersey/best-seller" className="font-heading text-xs font-bold tracking-wider text-success hover:text-success/80 transition-colors">
                       BEST SELLERS →
                     </Link>
                   </div>
@@ -151,32 +137,40 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
               )}
             </div>
 
-            <Link
-              to="/our-story"
-              className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors"
-            >
+            <Link to="/our-story" className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors">
               OUR STORY
             </Link>
 
-            <Link
-              to="/contact"
-              className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors"
-            >
+            <Link to="/contact" className="font-heading text-sm font-medium tracking-wide hover:text-muted-foreground transition-colors">
               CONTACT US
             </Link>
           </nav>
 
-          {/* Icons */}
+          {/* Right Icons */}
           <div className="flex items-center gap-2 md:gap-4">
-            <button onClick={handleSearchClick} className="p-2 hover:bg-secondary transition-colors" aria-label="Search">
-              <Search className="w-5 h-5" />
-            </button>
+
+            {/* Search Box */}
+            <div className="relative hidden md:block">
+              
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleSearchKeyDown}
+                placeholder="Am looking for..."
+                className="w-40 lg:w-52 pl-9 pr-4 py-2 text-sm bg-secondary rounded-full border border-border focus:outline-none focus:ring-2 focus:ring-foreground/20"
+              />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            </div>
+
             <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Account">
               <User className="w-5 h-5" />
             </button>
+
             <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Wishlist">
               <Heart className="w-5 h-5" />
             </button>
+
             <button
               onClick={onCartOpen}
               className="relative p-2 hover:bg-secondary transition-colors"
@@ -189,27 +183,9 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                 </span>
               )}
             </button>
+
           </div>
         </div>
-
-        {/* Search Bar */}
-        {isSearchOpen && (
-          <div className="absolute top-16 md:top-20 left-0 right-0 bg-background border-b border-border shadow-lg z-40 p-4">
-            <form onSubmit={handleSearchSubmit} className="max-w-lg mx-auto flex">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 px-4 py-2 bg-secondary text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-foreground/20"
-                placeholder="Search jerseys..."
-                autoFocus
-              />
-              <button type="submit" className="px-4 py-2 bg-foreground text-background font-heading text-sm">
-                Search
-              </button>
-            </form>
-          </div>
-        )}
       </div>
     </header>
   );

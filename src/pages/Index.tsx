@@ -202,13 +202,13 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 ">
             {featuredProducts.slice(currentSlide * 4, currentSlide * 4 + 4).map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} product={product}/>
             ))}
           </div>
 
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-10 ">
             <Link
               to="/collections/jersey/all"
               className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"

@@ -19,7 +19,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       to={`/products/${product.slug}`}
       className="group block"
     >
-      <div className="relative product-image-zoom bg-secondary aspect-[3/4] mb-4 overflow-hidden">
+      <div className="relative product-image-zoom bg-secondary aspect-[3/4] mb-4 overflow-hidden ">
         <img 
           src={product.images[0]} 
           alt={product.name}
