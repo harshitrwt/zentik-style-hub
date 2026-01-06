@@ -91,13 +91,13 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
                     ))}
                   </div>
                   
-                  {/* National */}
+                  {/* National - Coming Soon */}
                   <div className="pl-4">
                     <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">NATIONAL TEAMS</h4>
                     {collections.national.map(col => (
                       <Link
                         key={col.slug}
-                        to={`/collections/jersey/${col.slug}`}
+                        to="/coming-soon"
                         onClick={onClose}
                         className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                       >

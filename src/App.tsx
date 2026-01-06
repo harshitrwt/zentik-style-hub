@@ -5,12 +5,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { CartProvider } from "@/context/CartContext";
 import Layout from "@/components/layout/Layout";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Collections from "./pages/Collections";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
 import Contact from "./pages/Contact";
 import OurStory from "./pages/OurStory";
+import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +24,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Layout>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -31,6 +34,7 @@ const App = () => (
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/our-story" element={<OurStory />} />
+              <Route path="/coming-soon" element={<ComingSoon />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>

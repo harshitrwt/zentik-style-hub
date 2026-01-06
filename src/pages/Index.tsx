@@ -1,20 +1,17 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import ProductCard from '@/components/product/ProductCard';
-import { products, jerseyCategories, getBestSellers, getMustBuy, getNewArrivals } from '@/data/products';
+import { products, jerseyCategories, getBestSellers, getNewArrivals } from '@/data/products';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import WelcomePopup from '@/components/WelcomePopup';
 
 const Index = () => {
-  const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
   const featuredProducts = products.filter(p => p.isNew || p.isLimited).slice(0, 8);
   const totalSlides = Math.ceil(featuredProducts.length / 4);
   
   const bestSellers = getBestSellers();
-  const mustBuys = getMustBuy();
   const newArrivals = getNewArrivals();
 
   const bestSellerRef = useRef<HTMLDivElement>(null);
@@ -23,9 +20,9 @@ const Index = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const heroImages = [
-    'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80',
-    'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1920&q=80',
-    'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1920&q=80'
+    '/images/hero-1.jpg',
+    '/images/hero-2.jpg',
+    '/images/hero-3.jpg'
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -59,13 +56,6 @@ const Index = () => {
 
   const handleMouseUp = () => setIsDragging(false);
   const handleMouseLeave = () => setIsDragging(false);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/collections/jersey/all?search=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
 
   return (
     <div className="overflow-hidden">
@@ -151,29 +141,6 @@ const Index = () => {
               </Link>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Search Section */}
-      <section className="py-12 md:py-16 bg-card">
-        <div className="container mx-auto px-4">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide text-center mb-6">
-            Search Our Site
-          </h2>
-          <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
-            <div className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search jerseys..."
-                className="w-full px-6 py-4 bg-background border border-border text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20"
-              />
-              <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2">
-                <Search className="w-5 h-5 text-muted-foreground" />
-              </button>
-            </div>
-          </form>
         </div>
       </section>
 
@@ -287,30 +254,6 @@ const Index = () => {
               className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
             >
               View all Best Sellers
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* MUST BUY */}
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto px-4">
-          <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide mb-8">
-            MUST BUY
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {mustBuys.slice(0, 8).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
-          <div className="flex justify-center mt-10">
-            <Link
-              to="/collections/jersey/all"
-              className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
-            >
-              View all
             </Link>
           </div>
         </div>

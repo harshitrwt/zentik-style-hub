@@ -96,13 +96,13 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                       ))}
                     </div>
 
-                    {/* National */}
+                    {/* National - Coming Soon */}
                     <div>
                       <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">NATIONAL TEAMS</h4>
                       {collections.national.map(col => (
                         <Link
                           key={col.slug}
-                          to={`/collections/jersey/${col.slug}`}
+                          to="/coming-soon"
                           className="block py-2 text-sm hover:text-muted-foreground transition-colors"
                         >
                           {col.name}

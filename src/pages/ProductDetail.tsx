@@ -13,7 +13,6 @@ const ProductDetail = () => {
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState('');
-  const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [showDescription, setShowDescription] = useState(true);
 
@@ -42,15 +41,8 @@ const ProductDetail = () => {
       });
       return;
     }
-    if (!selectedColor && product.colors.length > 0) {
-      toast({
-        title: "Please select a color",
-        variant: "destructive"
-      });
-      return;
-    }
 
-    addToCart(product, selectedSize, selectedColor || product.colors[0]?.name, quantity);
+    addToCart(product, selectedSize, product.colors[0]?.name || 'Default', quantity);
     toast({
       title: "Added to cart",
       description: `${product.name} has been added to your cart.`
@@ -148,26 +140,6 @@ const ProductDetail = () => {
                 ))}
               </div>
             </div>
-
-            {/* Color Selection */}
-            {product.colors.length > 0 && (
-              <div className="mb-6">
-                <span className="font-heading text-sm font-medium mb-3 block">COLORS</span>
-                <div className="flex gap-3">
-                  {product.colors.map(color => (
-                    <button
-                      key={color.name}
-                      onClick={() => setSelectedColor(color.name)}
-                      className={`w-10 h-10 rounded-full border-2 border-white transition-colors ${
-                        selectedColor === color.name ? 'border-primary' : 'border-transparent'
-                      }`}
-                      style={{ backgroundColor: color.hex }}
-                      title={color.name}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
 
             {/* Quantity */}
             <div className="mb-6">
