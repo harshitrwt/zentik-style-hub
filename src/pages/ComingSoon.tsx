@@ -22,11 +22,11 @@ const ComingSoon = () => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img 
-          src="/images/coming-soon-bg.jpg"
+          src="https://images.immediate.co.uk/production/volatile/sites/3/2023/02/FNB-Stadium-e608dd7.jpg"
           alt="Coming Soon"
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full opacity-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-background/30" />
       </div>
 
       {/* Content */}
@@ -34,10 +34,10 @@ const ComingSoon = () => {
         <h1 className="font-heading text-5xl md:text-7xl font-black tracking-tight mb-6">
           COMING
           <br />
-          <span className="text-muted-foreground">SOON</span>
+          <span className="text-black">SOON</span>
         </h1>
         
-        <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-md mx-auto">
+        <p className="text-lg md:text-xl text-gray-950 mb-8 max-w-md mx-auto">
           We're working hard to bring you this collection. Be the first to know when it drops!
         </p>
 
@@ -63,9 +63,9 @@ const ComingSoon = () => {
         {/* Back Link */}
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-heading text-sm tracking-wide"
+          className="inline-flex items-center gap-2 text-gray-950 hover:text-foreground transition-colors font-heading text-sm tracking-wide"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ArrowLeft className="w-4 h-4 text-gray-950" />
           Back to Home
         </Link>
       </div>

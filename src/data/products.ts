@@ -27,8 +27,9 @@ export const products: Product[] = [
     originalPrice: 1299,
     discount: 54,
     images: [
-      "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://campeonsports.com/cdn/shop/files/5ED39552-C2F0-49A0-9171-BA143CECF5B0.jpg?v=1765471368",
+      "https://jerseywala.in/cdn/shop/files/WhatsApp_Image_2025-02-01_at_2.40.25_PM.jpg?v=1755723149&width=2048",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFP3oJ3qeNKrVpaYFkyLTl4V0gNqwbWCGOCA&s"
     ],
     category: "jersey",
     subcategory: "full-sleeve",
@@ -47,8 +48,8 @@ export const products: Product[] = [
     originalPrice: 1299,
     discount: 54,
     images: [
-      "https://images.unsplash.com/photo-1551854838-212c50b4c184?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://i.ebayimg.com/images/g/0w0AAOSwu0hnaUVu/s-l400.jpg",
+      "https://media-assets.grailed.com/prd/listing/temp/f47146ca03b541dd8d0d8957cbd8f58e"
     ],
     category: "jersey",
     subcategory: "full-sleeve",
@@ -67,8 +68,8 @@ export const products: Product[] = [
     originalPrice: 1299,
     discount: 54,
     images: [
-      "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://jerseywala.in/cdn/shop/files/WhatsApp_Image_2025-01-11_at_9.33.07_PM_2.jpg?crop=center&height=1200&v=1755029687&width=1200",
+      "https://jerseywala.in/cdn/shop/files/WhatsApp_Image_2025-01-11_at_9.33.09_PM.jpg?v=1755029687&width=1200"
     ],
     category: "jersey",
     subcategory: "embroidery",
@@ -87,8 +88,8 @@ export const products: Product[] = [
     originalPrice: 1099,
     discount: 59,
     images: [
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://campeonsports.com/cdn/shop/files/IMG-1514.png?v=1767517229",
+      "https://apsportswear.in/images/7362_image1.jpg"
     ],
     category: "jersey",
     subcategory: "embroidery",
@@ -107,8 +108,8 @@ export const products: Product[] = [
     originalPrice: 1199,
     discount: 62,
     images: [
-      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://thefootballheritage.com/wp-content/uploads/2024/03/Artboard1_1800x1800.webp",
+      "https://campeonsports.com/cdn/shop/files/WhatsAppImage2024-10-30at18.46.14_2.jpg?v=1765537230"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -127,8 +128,8 @@ export const products: Product[] = [
     originalPrice: 1199,
     discount: 62,
     images: [
-      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://www.retrosoccer.co.uk/cdn/shop/files/Untitled_design_-_2025-03-02T082224.553_1080x.png?v=1740908132",
+      "https://footballmonk.in/wp-content/uploads/2024/12/FC-Barcelona-Home-2015-16-Messi-Retro-Jersey-1.jpg"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -146,8 +147,8 @@ export const products: Product[] = [
     originalPrice: 1299,
     discount: 62,
     images: [
-      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://jerseywala.in/cdn/shop/files/WhatsApp_Image_2024-11-28_at_1.59.25_PM_1.jpg?v=1755723388&width=2048",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKtmWSyqhv1LS48IhGFiLDGLW9X94w2i5kGA&s"
     ],
     category: "jersey",
     subcategory: "embroidery",
@@ -159,14 +160,14 @@ export const products: Product[] = [
   },
   {
     id: "8",
-    name: "Manchester United Beckham 2002-03 Home Jersey",
-    slug: "manchester-united-beckham-2002",
+    name: "Manchester United 2022",
+    slug: "manchester-united-2022",
     price: 399,
     originalPrice: 899,
     discount: 43,
     images: [
-      "https://images.unsplash.com/photo-1508098682722-e99c643e7f76?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://www.copycatz.in/wp-content/uploads/2022/06/man-united-home-2022-23.jpeg",
+      "https://i.ebayimg.com/images/g/5AYAAOSwUphi6Hp0/s-l1200.jpg"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -179,14 +180,14 @@ export const products: Product[] = [
   },
   {
     id: "9",
-    name: "1998 England World Cup Jersey - Beckham Retro Edition",
-    slug: "england-beckham-1998",
+    name: "2022 England World Cup Jersey",
+    slug: "england-2022",
     price: 550,
     originalPrice: 1099,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://redravenstore.in/cdn/shop/files/Home1.jpg?v=1729337095",
+      "https://topfootball.in/wp-content/uploads/2023/02/IMG-20221021-WA0002.jpg.webp"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -204,8 +205,8 @@ export const products: Product[] = [
     originalPrice: 1199,
     discount: 46,
     images: [
-      "https://images.unsplash.com/photo-1518091043644-c1d4457f78b2?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://jerseywala.in/cdn/shop/files/WhatsApp_Image_2025-01-25_at_8.01.05_PM.png?v=1755723869&width=2048",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3HpZwYMooWZKqVqCaZLDdckjqeYV5o1LcSQ&s"
     ],
     category: "jersey",
     subcategory: "full-sleeve",
@@ -223,8 +224,8 @@ export const products: Product[] = [
     originalPrice: 1099,
     discount: 59,
     images: [
-      "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://sansirosports.in/wp-content/uploads/2024/11/1000125932.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5pfQZfj2U4mJ4P4HJmIvgIy7BQXuGoZft2izbXgk1Sfu2aVSzHhUlVUCmHmLbBZ8z2II&usqp=CAU"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -236,14 +237,14 @@ export const products: Product[] = [
   },
   {
     id: "12",
-    name: "Germany 1990 World Cup Retro Jersey",
-    slug: "germany-1990-retro",
+    name: "Germany Jersey 2022 worldcup Edition",
+    slug: "germany",
     price: 499,
     originalPrice: 999,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1552667466-07770ae110d0?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4kQh8oZWH5EfosprSZNFo-eWajsXAC_qsKw&s",
+      "https://media.karousell.com/media/photos/products/2023/3/8/original_germany_national_team_1678253353_614c26a1_progressive.jpg"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -261,8 +262,8 @@ export const products: Product[] = [
     originalPrice: 1399,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://assets.adidas.com/images/w_600,f_auto,q_auto/cb5aa62fe3ac490eb46221986fc2ee30_9366/Inter_Miami_CF_24-25_Messi_Home_Jersey_Pink_JE9741_01_laydown.jpg",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpzXEH7RZXBOPCWvsLr3blhlg0q4twqglQJQ&s"
     ],
     category: "jersey",
     subcategory: "embroidery",
@@ -282,8 +283,8 @@ export const products: Product[] = [
     originalPrice: 1199,
     discount: 54,
     images: [
-      "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTko4FKC8HBpDBYwZPihZRA17L_yK76nz3aVA&s",
+      "https://media-assets.grailed.com/prd/listing/temp/0acc34a41832431c871df9130ceaa18c"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -301,8 +302,8 @@ export const products: Product[] = [
     originalPrice: 1199,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgcY1qOkm6i1Z3Tkvwzxzd6dyzCnsI9Tud3g&s",
+      "https://i.ebayimg.com/images/g/59IAAOSwWxdg-7PM/s-l400.jpg"
     ],
     category: "jersey",
     subcategory: "embroidery",
@@ -314,14 +315,14 @@ export const products: Product[] = [
   },
   {
     id: "16",
-    name: "Brazil 2002 World Cup Jersey - Ronaldinho Edition",
+    name: "Brazil World Cup Jersey",
     slug: "brazil-ronaldinho-2002",
     price: 499,
     originalPrice: 999,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80",
-      "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80"
+      "https://media-assets.grailed.com/prd/listing/temp/ea302bab1c8247979d67fa407337a967",
+      "https://i.ebayimg.com/images/g/kasAAOSwtytmbUYv/s-l400.jpg"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -340,8 +341,8 @@ export const products: Product[] = [
     originalPrice: 1099,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyv0h9FBFm25Wf9jHgqjDyzxIKZ-YtSYKDwQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZiChnjo3vr0SJ5W6TXte9GdXUIOV2pU1nrg&s"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -353,14 +354,14 @@ export const products: Product[] = [
   },
   {
     id: "18",
-    name: "PSG 2022-23 Home Jersey - Messi Neymar Mbappe",
+    name: "PSG 2022-23 Jersey",
     slug: "psg-messi-2022",
     price: 649,
     originalPrice: 1299,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://i.ebayimg.com/images/g/63sAAOSwb69lBaKo/s-l1200.jpg",
+      "https://i.ebayimg.com/images/g/1toAAOSwZ~pkVen5/s-l1200.jpg"
     ],
     category: "jersey",
     subcategory: "embroidery",
@@ -378,8 +379,8 @@ export const products: Product[] = [
     originalPrice: 999,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgP_oTDqUmz5CxhJgvs-BVvtfOrzmtB9w46A&s",
+      "https://i.ebayimg.com/images/g/K7QAAOSw6RVnY1iQ/s-l1200.jpg"
     ],
     category: "jersey",
     subcategory: "retro",
@@ -397,8 +398,8 @@ export const products: Product[] = [
     originalPrice: 1099,
     discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80",
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+      "https://i.ebayimg.com/images/g/eTcAAOSwU5xmvEJa/s-l1200.jpg",
+      "https://i.ebayimg.com/images/g/kH8AAOSw4ztjJ5wL/s-l1200.jpg"
     ],
     category: "jersey",
     subcategory: "embroidery",
@@ -412,12 +413,12 @@ export const products: Product[] = [
 
 // Jersey categories for the shop
 export const jerseyCategories = [
-  { name: "Embroidery", slug: "embroidery", image: "/images/categories/embroidery.jpg" },
-  { name: "Full Sleeve", slug: "full-sleeve", image: "/images/categories/full-sleeve.jpg" },
-  { name: "Five Sleeve", slug: "five-sleeve", image: "/images/categories/five-sleeve.jpg" },
-  { name: "Retro", slug: "retro", image: "/images/categories/retro.jpg" },
-  { name: "New Arrival", slug: "new-arrival", image: "/images/categories/new-arrival.jpg" },
-  { name: "Best Seller", slug: "best-seller", image: "/images/categories/best-seller.jpg" }
+  { name: "Embroidery", slug: "embroidery", image: "/images/categories/embroidery.png" },
+  { name: "Full Sleeve", slug: "full-sleeve", image: "/images/categories/full-sleeve.png" },
+  { name: "Retro", slug: "retro", image: "/images/categories/retro.png" },
+  { name: "Fan Edition", slug: "fan-edition", image: "/images/categories/fan.png"},
+  { name: "New Arrival", slug: "new-arrival", image: "/images/categories/new-arrival.png" },
+  { name: "Best Seller", slug: "best-seller", image: "/images/categories/best-seller.png" }
 ];
 
 // Collections for navbar dropdown

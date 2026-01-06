@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight} from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import ProductCard from '@/components/product/ProductCard';
 import { products, jerseyCategories, getBestSellers, getNewArrivals } from '@/data/products';
@@ -20,7 +20,7 @@ const Index = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const heroImages = [
-    '/images/hero-1.jpg',
+    '/images/hero1.png',
     '/images/hero-2.jpg',
     '/images/hero-3.jpg'
   ];
@@ -306,7 +306,15 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <p className="font-heading text-3xl md:text-5xl font-light tracking-wide leading-tight max-w-4xl mx-auto">
             "Premium quality <span className="font-bold">football jerseys</span>.
-            Celebrating the <span className="font-bold">legends</span> of the beautiful game."
+            Celebrating the 
+            
+            <img
+        src="https://png.pngtree.com/png-vector/20221015/ourmid/pngtree-brazil-soccer-team-home-jersey-png-image_6332687.png"
+        alt="Brazil Jersey"
+        className="w-6 h-6 md:w-8 md:h-8 object-contain inline-block"
+      />
+            
+            <span className="font-bold">legends</span> of the beautiful game."
           </p>
         </div>
       </section>
