@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, User, ShoppingBag, Heart, Menu, ChevronDown } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { collections } from '@/data/products';
@@ -10,15 +10,16 @@ interface HeaderProps {
 }
 
 const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
+  const navigate = useNavigate();
   const { totalItems } = useCart();
   const [showCollectionsDropdown, setShowCollectionsDropdown] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // Track search bar visibility
-  const dropdownRef = useRef(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close when clicking outside
   useEffect(() => {
-    function handleClickOutside(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setShowCollectionsDropdown(false);
       }
     }
@@ -27,9 +28,17 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
   const handleSearchClick = () => {
-    setIsSearchOpen(prev => !prev); // Toggle search bar visibility
+    setIsSearchOpen(prev => !prev);
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/collections/jersey/all?search=${encodeURIComponent(searchQuery.trim())}`);
+      setIsSearchOpen(false);
+      setSearchQuery('');
+    }
   };
 
   return (
@@ -46,8 +55,8 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
           </button>
 
           {/* Logo */}
-          <Link to="/" className="font-heading text-2xl md:text-3xl font-bold tracking-wider">
-            ZENTIK
+          <Link to="/" className="font-heading text-xl md:text-2xl font-bold tracking-wider">
+            Zerć India
           </Link>
 
           {/* Desktop Navigation */}
@@ -70,45 +79,45 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
               </button>
 
               {showCollectionsDropdown && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-card border border-border shadow-lg animate-fade-in z-50 p-6">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-background border border-border shadow-lg animate-fade-in z-50 p-6">
                   <div className="grid grid-cols-3 gap-8">
 
-                    {/* Seasonal */}
+                    {/* Clubs */}
                     <div>
-                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">SEASONAL</h4>
-                      {collections.seasonal.map(col => (
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">CLUB JERSEYS</h4>
+                      {collections.clubs.map(col => (
                         <Link
                           key={col.slug}
-                          to={`/collections/men/${col.slug}`}
-                          className="block py-2 text-sm hover:text-primary transition-colors"
+                          to={`/collections/jersey/${col.slug}`}
+                          className="block py-2 text-sm hover:text-muted-foreground transition-colors"
                         >
                           {col.name}
                         </Link>
                       ))}
                     </div>
 
-                    {/* Categories */}
+                    {/* National */}
                     <div>
-                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">CATEGORIES</h4>
-                      {collections.categories.map(col => (
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">NATIONAL TEAMS</h4>
+                      {collections.national.map(col => (
                         <Link
                           key={col.slug}
-                          to={`/collections/men/${col.slug}`}
-                          className="block py-2 text-sm hover:text-primary transition-colors"
+                          to={`/collections/jersey/${col.slug}`}
+                          className="block py-2 text-sm hover:text-muted-foreground transition-colors"
                         >
                           {col.name}
                         </Link>
                       ))}
                     </div>
 
-                    {/* Styles */}
+                    {/* Types */}
                     <div>
-                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">STYLES</h4>
-                      {collections.styles.map(col => (
+                      <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-3">JERSEY TYPES</h4>
+                      {collections.types.map(col => (
                         <Link
                           key={col.slug}
-                          to={`/collections/men/${col.slug}`}
-                          className="block py-2 text-sm hover:text-primary transition-colors"
+                          to={`/collections/jersey/${col.slug}`}
+                          className="block py-2 text-sm hover:text-muted-foreground transition-colors"
                         >
                           {col.name}
                         </Link>
@@ -120,28 +129,27 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                   {/* Featured Links */}
                   <div className="mt-6 pt-6 border-t border-border flex gap-8">
                     <Link
-                      to="/collections/men/all"
-                      className="font-heading text-xs font-bold tracking-wider hover:text-primary transition-colors"
+                      to="/collections/jersey/all"
+                      className="font-heading text-xs font-bold tracking-wider hover:text-muted-foreground transition-colors"
                     >
-                      SHOP MEN →
+                      ALL JERSEYS →
                     </Link>
                     <Link
-                      to="/collections/women/all"
-                      className="font-heading text-xs font-bold tracking-wider hover:text-primary transition-colors"
+                      to="/collections/jersey/new-arrival"
+                      className="font-heading text-xs font-bold tracking-wider hover:text-muted-foreground transition-colors"
                     >
-                      SHOP WOMEN →
+                      NEW ARRIVALS →
                     </Link>
                     <Link
-                      to="/collections/limited"
-                      className="font-heading text-xs font-bold tracking-wider text-gold hover:text-gold/80 transition-colors"
+                      to="/collections/jersey/best-seller"
+                      className="font-heading text-xs font-bold tracking-wider text-success hover:text-success/80 transition-colors"
                     >
-                      LIMITED EDITION →
+                      BEST SELLERS →
                     </Link>
                   </div>
                 </div>
               )}
             </div>
-
 
             <Link
               to="/our-story"
@@ -176,7 +184,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
             >
               <ShoppingBag className="w-5 h-5" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 w-5 h-5 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-foreground text-background text-xs font-bold rounded-full flex items-center justify-center">
                   {totalItems}
                 </span>
               )}
@@ -186,12 +194,20 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
 
         {/* Search Bar */}
         {isSearchOpen && (
-          <div className="absolute top-16 left-0 right-0 bg-black border-t border-border shadow-lg z-40 p-4 flex justify-center">
-            <input
-              type="text"
-              className="w-full max-w-lg px-4 py-2 bg-gray-100 text-black placeholder-gray-500 transition-500"
-              placeholder="Search products..."
-            />
+          <div className="absolute top-16 md:top-20 left-0 right-0 bg-background border-b border-border shadow-lg z-40 p-4">
+            <form onSubmit={handleSearchSubmit} className="max-w-lg mx-auto flex">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="flex-1 px-4 py-2 bg-secondary text-foreground placeholder-muted-foreground border border-border focus:outline-none focus:ring-2 focus:ring-foreground/20"
+                placeholder="Search jerseys..."
+                autoFocus
+              />
+              <button type="submit" className="px-4 py-2 bg-foreground text-background font-heading text-sm">
+                Search
+              </button>
+            </form>
           </div>
         )}
       </div>

@@ -20,7 +20,7 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
       {/* Backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 animate-fade-in"
+          className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-50 animate-fade-in"
           onClick={onClose}
         />
       )}
@@ -37,9 +37,9 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
             <Link 
               to="/" 
               onClick={onClose}
-              className="font-heading text-2xl font-bold tracking-wider"
+              className="font-heading text-xl font-bold tracking-wider"
             >
-              ZENTIK
+              Zerć India
             </Link>
             <button 
               onClick={onClose}
@@ -76,13 +76,13 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
               
               {expandedSection === 'collections' && (
                 <div className="pb-4 space-y-4 animate-fade-in">
-                  {/* Seasonal */}
+                  {/* Clubs */}
                   <div className="pl-4">
-                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">SEASONAL</h4>
-                    {collections.seasonal.map(col => (
+                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">CLUB JERSEYS</h4>
+                    {collections.clubs.map(col => (
                       <Link
                         key={col.slug}
-                        to={`/collections/men/${col.slug}`}
+                        to={`/collections/jersey/${col.slug}`}
                         onClick={onClose}
                         className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                       >
@@ -91,13 +91,13 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
                     ))}
                   </div>
                   
-                  {/* Categories */}
+                  {/* National */}
                   <div className="pl-4">
-                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">CATEGORIES</h4>
-                    {collections.categories.map(col => (
+                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">NATIONAL TEAMS</h4>
+                    {collections.national.map(col => (
                       <Link
                         key={col.slug}
-                        to={`/collections/men/${col.slug}`}
+                        to={`/collections/jersey/${col.slug}`}
                         onClick={onClose}
                         className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                       >
@@ -106,13 +106,13 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
                     ))}
                   </div>
                   
-                  {/* Styles */}
+                  {/* Types */}
                   <div className="pl-4">
-                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">STYLES</h4>
-                    {collections.styles.map(col => (
+                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">JERSEY TYPES</h4>
+                    {collections.types.map(col => (
                       <Link
                         key={col.slug}
-                        to={`/collections/men/${col.slug}`}
+                        to={`/collections/jersey/${col.slug}`}
                         onClick={onClose}
                         className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                       >
@@ -124,18 +124,18 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
                   {/* Shop Links */}
                   <div className="pl-4 pt-4 border-t border-border space-y-2">
                     <Link
-                      to="/collections/men/all"
+                      to="/collections/jersey/all"
                       onClick={onClose}
-                      className="block font-heading text-sm font-bold tracking-wide hover:text-primary transition-colors"
+                      className="block font-heading text-sm font-bold tracking-wide hover:text-muted-foreground transition-colors"
                     >
-                      SHOP MEN →
+                      ALL JERSEYS →
                     </Link>
                     <Link
-                      to="/collections/women/all"
+                      to="/collections/jersey/best-seller"
                       onClick={onClose}
-                      className="block font-heading text-sm font-bold tracking-wide hover:text-primary transition-colors"
+                      className="block font-heading text-sm font-bold tracking-wide text-success hover:text-success/80 transition-colors"
                     >
-                      SHOP WOMEN →
+                      BEST SELLERS →
                     </Link>
                   </div>
                 </div>
@@ -148,14 +148,6 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
               className="block py-4 font-heading text-lg font-medium tracking-wide border-b border-border"
             >
               OUR STORY
-            </Link>
-
-            <Link 
-              to="/collections/limited"
-              onClick={onClose}
-              className="block py-4 font-heading text-lg font-medium tracking-wide border-b border-border text-gold"
-            >
-              LIMITED EDITION
             </Link>
 
             <Link 

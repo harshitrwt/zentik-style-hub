@@ -6,7 +6,7 @@ const WelcomePopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const hasVisited = localStorage.getItem('zentik_visited');
+    const hasVisited = localStorage.getItem('zerc_visited');
     if (!hasVisited) {
       const timer = setTimeout(() => {
         setIsOpen(true);
@@ -17,7 +17,7 @@ const WelcomePopup = () => {
 
   const handleClose = () => {
     setIsOpen(false);
-    localStorage.setItem('zentik_visited', 'true');
+    localStorage.setItem('zerc_visited', 'true');
   };
 
   return (
@@ -29,7 +29,7 @@ const WelcomePopup = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-foreground/60 backdrop-blur-sm z-[100]"
             onClick={handleClose}
           />
           
@@ -42,7 +42,7 @@ const WelcomePopup = () => {
             className="fixed inset-0 z-[101] flex items-center justify-center p-4"
           >
             <div className="w-full max-w-lg">
-              <div className="relative bg-card border border-border overflow-hidden">
+              <div className="relative bg-background border border-border overflow-hidden shadow-2xl">
                 {/* Close Button */}
                 <button
                   onClick={handleClose}
@@ -54,11 +54,11 @@ const WelcomePopup = () => {
                 {/* Image Section */}
                 <div className="relative h-48 md:h-64 overflow-hidden">
                   <img
-                    src="https://images.pexels.com/photos/30970302/pexels-photo-30970302.jpeg"
-                    alt="Zentik Fashion"
+                    src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80"
+                    alt="Football Jersey"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
                   
                   {/* Brand Name */}
                   <motion.div 
@@ -67,8 +67,8 @@ const WelcomePopup = () => {
                     transition={{ delay: 0.3 }}
                     className="absolute bottom-4 left-0 right-0 text-center"
                   >
-                    <h2 className="font-heading text-5xl md:text-6xl font-bold tracking-[0.3em] text-foreground">
-                      ZENTIK
+                    <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-[0.2em] text-foreground">
+                      Zerć India
                     </h2>
                   </motion.div>
                 </div>
@@ -81,7 +81,7 @@ const WelcomePopup = () => {
                     transition={{ delay: 0.4 }}
                     className="text-lg md:text-xl text-muted-foreground mb-2"
                   >
-                    Welcome to the future of streetwear
+                    Premium Football Jerseys
                   </motion.p>
                   
                   <motion.p
@@ -90,7 +90,7 @@ const WelcomePopup = () => {
                     transition={{ delay: 0.5 }}
                     className="text-sm text-muted-foreground mb-6"
                   >
-                    Get 10% OFF on your first order with code <span className="text-foreground font-semibold">ZENTIK10</span>
+                    Get 10% OFF on your first order with code <span className="text-foreground font-semibold">ZERC10</span>
                   </motion.p>
 
                   <motion.button
@@ -109,7 +109,7 @@ const WelcomePopup = () => {
                     transition={{ delay: 0.7 }}
                     className="mt-4 text-xs text-muted-foreground"
                   >
-                    Free shipping on orders above ₹2000
+                    Free shipping on orders above ₹999
                   </motion.p>
                 </div>
 

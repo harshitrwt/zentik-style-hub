@@ -5,7 +5,7 @@ export interface Product {
   price: number;
   originalPrice?: number;
   images: string[];
-  category: 'men' | 'women';
+  category: 'jersey';
   subcategory: string;
   sizes: string[];
   colors: { name: string; hex: string }[];
@@ -15,910 +15,452 @@ export interface Product {
   isLimited?: boolean;
   isBestSeller?: boolean;
   isMustBuy?: boolean;
-  isSummer?: boolean;
-  isDenim?: boolean;
-  isPants?: boolean;
+  discount?: number;
 }
 
 export const products: Product[] = [
   {
     id: "1",
-    name: "Black Venom Dragon Hoodie",
-    slug: "black-venom-dragon-hoodie",
-    price: 3699,
+    name: "2006-07 AC Milan Home Jersey - Kaka Full Sleeve Embroidery Edition",
+    slug: "ac-milan-home-jersey-kaka",
+    price: 599,
+    originalPrice: 1299,
+    discount: 54,
     images: [
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80",
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80",
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80",
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80"
+      "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "hoodies",
+    category: "jersey",
+    subcategory: "full-sleeve",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Premium black hoodie featuring an intricate dragon print on the back. Made from 100% cotton with a soft fleece interior.",
+    colors: [{ name: "Red/Black", hex: "#C41E3A" }],
+    description: "Classic AC Milan home jersey featuring Kaka's legendary era. Premium embroidery edition with full sleeves.",
     inStock: true,
     isNew: true,
     isBestSeller: true
   },
   {
     id: "2",
-    name: "Brown Balaclava Zipper Hoodie",
-    slug: "brown-balaclava-zipper-hoodie",
-    price: 4549,
+    name: "Juventus 2018-19 Home Kit Full Sleeve Edition",
+    slug: "juventus-home-kit-2018",
+    price: 599,
+    originalPrice: 1299,
+    discount: 54,
     images: [
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80",
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80",
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80"
+      "https://images.unsplash.com/photo-1551854838-212c50b4c184?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "hoodies",
-    sizes: ["S", "M", "L", "XL", "XXL", "3XL"],
-    colors: [{ name: "Brown", hex: "#5C4033" }],
-    description: "Urban streetwear balaclava hoodie with full zip closure. Features integrated face covering and premium quality fabric.",
+    category: "jersey",
+    subcategory: "full-sleeve",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Black/White", hex: "#000000" }],
+    description: "Iconic Juventus black and white stripes from the 2018-19 season. Full sleeve with premium finish.",
     inStock: true,
-    isLimited: true,
+    isBestSeller: true,
     isMustBuy: true
   },
   {
     id: "3",
-    name: "Black Balaclava Zipper Hoodie",
-    slug: "black-balaclava-zipper-hoodie",
-    price: 4549,
+    name: "Barcelona 2008-09 Home Jersey - Messi Full Sleeve Embroidery",
+    slug: "barcelona-messi-jersey-2008",
+    price: 599,
+    originalPrice: 1299,
+    discount: 54,
     images: [
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80",
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80",
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80"
+      "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "hoodies",
-    sizes: ["S", "M", "L", "XL", "XXL", "3XL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Stealth mode activated. This all-black balaclava hoodie combines style with functionality.",
+    category: "jersey",
+    subcategory: "embroidery",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Blue/Red", hex: "#A50044" }],
+    description: "Barcelona's iconic treble-winning season jersey. Premium embroidery with Messi's legendary number.",
     inStock: true,
+    isNew: true,
     isBestSeller: true
   },
   {
     id: "4",
-    name: "Angelic Wings Printed Sweatpants",
-    slug: "angelic-wings-printed-sweatpants",
-    price: 2399,
+    name: "Argentina Special Edition - Messi Tribute Jersey",
+    slug: "argentina-messi-tribute",
+    price: 450,
+    originalPrice: 1099,
+    discount: 59,
     images: [
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
+      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "pants",
-    sizes: ["S", "M", "L", "XL", "XXL", "3XL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Extreme baggy sweatpants with angelic wings print. Perfect for streetwear enthusiasts.",
+    category: "jersey",
+    subcategory: "embroidery",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Sky Blue/White", hex: "#74ACDF" }],
+    description: "Tribute to the Greatest - Argentina special edition celebrating Messi's legendary career.",
     inStock: true,
     isNew: true,
-    isMustBuy: true,
-    isPants: true
+    isMustBuy: true
   },
   {
     id: "5",
-    name: "Brown & Light Brown Buckle Hoodie",
-    slug: "brown-light-brown-buckle-hoodie",
-    price: 4799,
+    name: "Japan 2024 Joro Special Edition Jersey",
+    slug: "japan-joro-special-edition",
+    price: 450,
+    originalPrice: 1199,
+    discount: 62,
     images: [
-      "https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=600&q=80",
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80",
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80"
+      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "hoodies",
+    category: "jersey",
+    subcategory: "retro",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Brown", hex: "#8B4513" }, { name: "Light Brown", hex: "#D2B48C" }],
-    description: "Two-tone buckle hoodie with tactical styling. Premium heavyweight cotton construction.",
+    colors: [{ name: "Blue/White", hex: "#002366" }],
+    description: "Limited edition Japanese jersey inspired by tradition. Unique artistic design.",
     inStock: true,
     isLimited: true,
     isBestSeller: true
   },
   {
     id: "6",
-    name: "Classic White Polo Shirt",
-    slug: "classic-white-polo-shirt",
-    price: 1899,
+    name: "Barcelona 2015-16 Messi #10 Jersey Edition",
+    slug: "barcelona-messi-2015",
+    price: 450,
+    originalPrice: 1199,
+    discount: 62,
     images: [
-      "https://images.unsplash.com/photo-1625910513413-5fc420e11bec?w=600&q=80",
-      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&q=80"
+      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "shirts",
+    category: "jersey",
+    subcategory: "retro",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "White", hex: "#FFFFFF" }, { name: "Black", hex: "#000000" }],
-    description: "Timeless polo shirt crafted from premium pique cotton. Essential wardrobe staple.",
+    colors: [{ name: "Blue/Red", hex: "#A50044" }],
+    description: "Celebrating the legendary MSN era. Barcelona home jersey from the 2015-16 season.",
     inStock: true,
-    isSummer: true
+    isMustBuy: true
   },
   {
     id: "7",
-    name: "Oversized Black Graphic Tee",
-    slug: "oversized-black-graphic-tee",
-    price: 1599,
+    name: "Manchester United 2007 Away Kit - Ronaldo Embroidery",
+    slug: "manchester-united-ronaldo-2007",
+    price: 499,
+    originalPrice: 1299,
+    discount: 62,
     images: [
-      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80",
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80"
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "tshirts",
-    sizes: ["S", "M", "L", "XL", "XXL", "3XL"],
+    category: "jersey",
+    subcategory: "embroidery",
+    sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [{ name: "Black", hex: "#000000" }],
-    description: "Oversized fit graphic tee with bold front print. 100% organic cotton.",
+    description: "Classic Manchester United away kit from Ronaldo's breakout era. Premium embroidery edition.",
     inStock: true,
-    isNew: true,
-    isMustBuy: true,
-    isSummer: true
+    isBestSeller: true
   },
   {
     id: "8",
-    name: "Cargo Joggers Olive",
-    slug: "cargo-joggers-olive",
-    price: 2899,
+    name: "Manchester United Beckham 2002-03 Home Jersey",
+    slug: "manchester-united-beckham-2002",
+    price: 399,
+    originalPrice: 899,
+    discount: 43,
     images: [
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
+      "https://images.unsplash.com/photo-1508098682722-e99c643e7f76?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "pants",
+    category: "jersey",
+    subcategory: "retro",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Olive", hex: "#556B2F" }],
-    description: "Utility cargo joggers with multiple pockets. Perfect for streetwear looks.",
-    inStock: true,
-    isPants: true
-  },
-  // Women's Products
-  {
-    id: "9",
-    name: "Women's Cropped Hoodie Black",
-    slug: "womens-cropped-hoodie-black",
-    price: 2999,
-    images: [
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80",
-      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "hoodies",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Trendy cropped hoodie for women. Soft fleece interior with raw hem finish.",
+    colors: [{ name: "Red", hex: "#DA291C" }],
+    description: "Iconic Manchester United home jersey from Beckham's glory days. Vodafone sponsor era.",
     inStock: true,
     isNew: true,
+    isMustBuy: true
+  },
+  {
+    id: "9",
+    name: "1998 England World Cup Jersey - Beckham Retro Edition",
+    slug: "england-beckham-1998",
+    price: 550,
+    originalPrice: 1099,
+    discount: 50,
+    images: [
+      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
+    ],
+    category: "jersey",
+    subcategory: "retro",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "White", hex: "#FFFFFF" }],
+    description: "Historic England World Cup jersey. Beckham retro edition with classic design.",
+    inStock: true,
     isBestSeller: true
   },
   {
     id: "10",
-    name: "High Waist Cargo Pants",
-    slug: "high-waist-cargo-pants",
-    price: 3299,
+    name: "AC Milan 2006-07 Away Jersey - Full Sleeve Kaka Edition",
+    slug: "ac-milan-away-kaka-2006",
+    price: 650,
+    originalPrice: 1199,
+    discount: 46,
     images: [
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80"
+      "https://images.unsplash.com/photo-1518091043644-c1d4457f78b2?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "women",
-    subcategory: "pants",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: [{ name: "Black", hex: "#000000" }, { name: "Khaki", hex: "#C3B091" }],
-    description: "High-waisted cargo pants with adjustable waist. Street style essential.",
+    category: "jersey",
+    subcategory: "full-sleeve",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Yellow/Black", hex: "#FFD700" }],
+    description: "AC Milan's stunning away kit from the Champions League winning season. Full sleeve embroidery.",
     inStock: true,
-    isMustBuy: true,
-    isPants: true
+    isMustBuy: true
   },
   {
     id: "11",
-    name: "Oversized Graphic Tee Women",
-    slug: "oversized-graphic-tee-women",
-    price: 1499,
+    name: "Sporting Lisbon 2002-03 Home Kit - Ronaldo Version",
+    slug: "sporting-lisbon-ronaldo-2002",
+    price: 450,
+    originalPrice: 1099,
+    discount: 59,
     images: [
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80"
+      "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "women",
-    subcategory: "tshirts",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: [{ name: "White", hex: "#FFFFFF" }],
-    description: "Boyfriend fit graphic tee. Soft cotton with vintage wash effect.",
+    category: "jersey",
+    subcategory: "retro",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Green/White", hex: "#006B3F" }],
+    description: "Where legends begin - Sporting Lisbon's classic green and white stripes from Ronaldo's youth era.",
     inStock: true,
-    isBestSeller: true,
-    isSummer: true
+    isNew: true
   },
   {
     id: "12",
-    name: "Fitted Zip-Up Track Jacket",
-    slug: "fitted-zip-up-track-jacket",
-    price: 3599,
+    name: "Germany 1990 World Cup Retro Jersey",
+    slug: "germany-1990-retro",
+    price: 499,
+    originalPrice: 999,
+    discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80"
+      "https://images.unsplash.com/photo-1552667466-07770ae110d0?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "women",
-    subcategory: "jackets",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Sleek fitted track jacket with contrast piping. Perfect for athleisure looks.",
+    category: "jersey",
+    subcategory: "retro",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "White/Black/Red/Yellow", hex: "#FFFFFF" }],
+    description: "Iconic German design from the 1990 World Cup winning team. Classic Adidas stripes.",
     inStock: true,
-    isLimited: true,
-    isMustBuy: true
+    isBestSeller: true
   },
-  // Summer Essentials
   {
     id: "13",
-    name: "Linen Beach Shirt",
-    slug: "linen-beach-shirt",
-    price: 2199,
+    name: "Inter Miami 2024 Home Jersey - Messi Edition",
+    slug: "inter-miami-messi-2024",
+    price: 699,
+    originalPrice: 1399,
+    discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80",
-      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80"
+      "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "shirts",
+    category: "jersey",
+    subcategory: "embroidery",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "White", hex: "#FFFFFF" }, { name: "Beige", hex: "#F5F5DC" }],
-    description: "Breathable linen shirt perfect for summer days. Relaxed fit with coconut buttons.",
+    colors: [{ name: "Pink/Black", hex: "#F5B6CD" }],
+    description: "The new era of Messi. Inter Miami's iconic pink jersey with premium embroidery.",
     inStock: true,
-    isSummer: true,
-    isNew: true
+    isNew: true,
+    isBestSeller: true,
+    isMustBuy: true
   },
   {
     id: "14",
-    name: "Cotton Shorts Khaki",
-    slug: "cotton-shorts-khaki",
-    price: 1799,
+    name: "Real Madrid 2013-14 Home Jersey - Ronaldo Edition",
+    slug: "real-madrid-ronaldo-2013",
+    price: 549,
+    originalPrice: 1199,
+    discount: 54,
     images: [
-      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&q=80",
-      "https://images.unsplash.com/photo-1565084888279-aca607ecce0c?w=600&q=80"
+      "https://images.unsplash.com/photo-1511886929837-354d827aae26?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "shorts",
+    category: "jersey",
+    subcategory: "retro",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Khaki", hex: "#C3B091" }],
-    description: "Classic cotton shorts with elastic waistband. Perfect for casual summer outings.",
+    colors: [{ name: "White", hex: "#FFFFFF" }],
+    description: "Los Blancos classic all-white home jersey from Ronaldo's peak years at Real Madrid.",
     inStock: true,
-    isSummer: true
+    isBestSeller: true
   },
   {
     id: "15",
-    name: "Summer Graphic Tank Top",
-    slug: "summer-graphic-tank-top",
-    price: 1299,
+    name: "Liverpool 2019-20 UCL Winning Jersey",
+    slug: "liverpool-ucl-2019",
+    price: 599,
+    originalPrice: 1199,
+    discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=600&q=80",
-      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80"
+      "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "tshirts",
-    sizes: ["S", "M", "L", "XL"],
-    colors: [{ name: "Black", hex: "#000000" }, { name: "White", hex: "#FFFFFF" }],
-    description: "Lightweight tank top with bold graphic print. Stay cool in style.",
+    category: "jersey",
+    subcategory: "embroidery",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Red", hex: "#C8102E" }],
+    description: "Celebrating Liverpool's Champions League triumph. Premium embroidery edition.",
     inStock: true,
-    isSummer: true,
-    isBestSeller: true
+    isMustBuy: true
   },
   {
     id: "16",
-    name: "Floral Summer Dress",
-    slug: "floral-summer-dress",
-    price: 2799,
+    name: "Brazil 2002 World Cup Jersey - Ronaldinho Edition",
+    slug: "brazil-ronaldinho-2002",
+    price: 499,
+    originalPrice: 999,
+    discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80",
-      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80"
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80",
+      "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80"
     ],
-    category: "women",
-    subcategory: "dresses",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [{ name: "Floral", hex: "#FFB6C1" }],
-    description: "Elegant floral summer dress with flowing silhouette. Perfect for beach days.",
+    category: "jersey",
+    subcategory: "retro",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Yellow/Green", hex: "#FFDF00" }],
+    description: "The samba magic! Brazil's World Cup winning jersey celebrating Ronaldinho and the golden era.",
     inStock: true,
-    isSummer: true,
-    isNew: true
+    isNew: true,
+    isBestSeller: true
   },
-  // Denims
   {
     id: "17",
-    name: "Classic Blue Denim Jacket",
-    slug: "classic-blue-denim-jacket",
-    price: 3999,
+    name: "Chelsea 2011-12 UCL Home Jersey",
+    slug: "chelsea-ucl-2011",
+    price: 549,
+    originalPrice: 1099,
+    discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&q=80",
-      "https://images.unsplash.com/photo-1601333144130-8cbb312386b6?w=600&q=80"
+      "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "jackets",
+    category: "jersey",
+    subcategory: "retro",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Blue", hex: "#4169E1" }],
-    description: "Timeless denim jacket with vintage wash. A wardrobe essential for any season.",
+    colors: [{ name: "Blue", hex: "#034694" }],
+    description: "Chelsea's miracle Champions League winning season. The iconic blue home kit.",
     inStock: true,
-    isDenim: true,
-    isBestSeller: true
+    isMustBuy: true
   },
   {
     id: "18",
-    name: "Slim Fit Dark Wash Jeans",
-    slug: "slim-fit-dark-wash-jeans",
-    price: 2999,
+    name: "PSG 2022-23 Home Jersey - Messi Neymar Mbappe",
+    slug: "psg-messi-2022",
+    price: 649,
+    originalPrice: 1299,
+    discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80",
-      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80"
+      "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "men",
-    subcategory: "pants",
-    sizes: ["28", "30", "32", "34", "36"],
-    colors: [{ name: "Dark Blue", hex: "#00008B" }],
-    description: "Premium slim fit jeans with stretch denim. Dark wash for a sophisticated look.",
+    category: "jersey",
+    subcategory: "embroidery",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Blue/Red", hex: "#004170" }],
+    description: "Paris Saint-Germain's star-studded lineup era. Premium home jersey with embroidery.",
     inStock: true,
-    isDenim: true,
-    isPants: true
+    isNew: true
   },
   {
     id: "19",
-    name: "Ripped Boyfriend Jeans",
-    slug: "ripped-boyfriend-jeans",
-    price: 3299,
+    name: "Borussia Dortmund 2012 Jersey - Lewandowski Edition",
+    slug: "dortmund-lewandowski-2012",
+    price: 499,
+    originalPrice: 999,
+    discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=600&q=80",
-      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80"
+      "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "women",
-    subcategory: "pants",
-    sizes: ["24", "26", "28", "30", "32"],
-    colors: [{ name: "Light Blue", hex: "#ADD8E6" }],
-    description: "Trendy ripped boyfriend jeans with relaxed fit. Vintage distressed details.",
+    category: "jersey",
+    subcategory: "retro",
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [{ name: "Yellow/Black", hex: "#FDE100" }],
+    description: "The Yellow Wall era! Dortmund's iconic yellow jersey from their Bundesliga domination.",
     inStock: true,
-    isDenim: true,
-    isPants: true,
-    isNew: true
+    isBestSeller: true
   },
   {
     id: "20",
-    name: "High Rise Skinny Jeans",
-    slug: "high-rise-skinny-jeans",
-    price: 2799,
+    name: "Portugal 2016 Euro Jersey - Ronaldo Champions",
+    slug: "portugal-ronaldo-2016",
+    price: 549,
+    originalPrice: 1099,
+    discount: 50,
     images: [
-      "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=600&q=80",
-      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80"
+      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80",
+      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80"
     ],
-    category: "women",
-    subcategory: "pants",
-    sizes: ["24", "26", "28", "30", "32"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Figure-flattering high rise skinny jeans. Super stretch for all-day comfort.",
-    inStock: true,
-    isDenim: true,
-    isPants: true,
-    isBestSeller: true
-  },
-  // More Pants
-  {
-    id: "21",
-    name: "Relaxed Fit Chinos",
-    slug: "relaxed-fit-chinos",
-    price: 2499,
-    images: [
-      "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&q=80",
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "pants",
-    sizes: ["28", "30", "32", "34", "36"],
-    colors: [{ name: "Tan", hex: "#D2B48C" }, { name: "Navy", hex: "#000080" }],
-    description: "Comfortable relaxed fit chinos. Perfect for smart casual occasions.",
-    inStock: true,
-    isPants: true
-  },
-  {
-    id: "22",
-    name: "Tech Cargo Pants",
-    slug: "tech-cargo-pants",
-    price: 3499,
-    images: [
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "pants",
+    category: "jersey",
+    subcategory: "embroidery",
     sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Technical cargo pants with water-resistant fabric. Multiple utility pockets.",
-    inStock: true,
-    isPants: true,
-    isNew: true,
-    isMustBuy: true
-  },
-  {
-    id: "23",
-    name: "Wide Leg Trousers",
-    slug: "wide-leg-trousers",
-    price: 2899,
-    images: [
-      "https://images.unsplash.com/photo-1509551388413-e18d0ac5d495?w=600&q=80",
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "pants",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: [{ name: "Black", hex: "#000000" }, { name: "Cream", hex: "#FFFDD0" }],
-    description: "Elegant wide leg trousers with high waist. Flowy and comfortable.",
-    inStock: true,
-    isPants: true
-  },
-  // More Women's Essentials
-  {
-    id: "24",
-    name: "Ribbed Crop Top",
-    slug: "ribbed-crop-top",
-    price: 999,
-    images: [
-      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80",
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "tops",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [{ name: "White", hex: "#FFFFFF" }, { name: "Black", hex: "#000000" }],
-    description: "Form-fitting ribbed crop top. Essential layering piece for any outfit.",
-    inStock: true,
-    isSummer: true
-  },
-  {
-    id: "25",
-    name: "Oversized Blazer",
-    slug: "oversized-blazer",
-    price: 4499,
-    images: [
-      "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80",
-      "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "jackets",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Structured oversized blazer with padded shoulders. Power dressing essential.",
-    inStock: true,
-    isNew: true,
-    isBestSeller: true
-  },
-  {
-    id: "26",
-    name: "Satin Midi Skirt",
-    slug: "satin-midi-skirt",
-    price: 2199,
-    images: [
-      "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600&q=80",
-      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "skirts",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [{ name: "Champagne", hex: "#F7E7CE" }],
-    description: "Luxurious satin midi skirt with bias cut. Elegant and versatile.",
-    inStock: true,
-    isNew: true
-  },
-  {
-    id: "27",
-    name: "Athletic Leggings",
-    slug: "athletic-leggings",
-    price: 1899,
-    images: [
-      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&q=80",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "pants",
-    sizes: ["XS", "S", "M", "L", "XL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "High-performance athletic leggings. Squat-proof with hidden pocket.",
-    inStock: true,
-    isPants: true,
-    isBestSeller: true
-  },
-  {
-    id: "28",
-    name: "Denim Mini Skirt",
-    slug: "denim-mini-skirt",
-    price: 1799,
-    images: [
-      "https://images.unsplash.com/photo-1582142306909-195724d33ffc?w=600&q=80",
-      "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "skirts",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [{ name: "Blue", hex: "#4169E1" }],
-    description: "Classic denim mini skirt with raw hem. Y2K vibes for modern styling.",
-    inStock: true,
-    isDenim: true,
-    isSummer: true
-  },
-  // More products for variety
-  {
-    id: "29",
-    name: "Vintage Wash Hoodie",
-    slug: "vintage-wash-hoodie",
-    price: 3299,
-    images: [
-      "https://images.unsplash.com/photo-1614975059251-992f11792b9f?w=600&q=80",
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "hoodies",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Washed Black", hex: "#36454F" }],
-    description: "Vintage acid wash hoodie with distressed details. Retro streetwear vibes.",
-    inStock: true,
-    isBestSeller: true
-  },
-  {
-    id: "30",
-    name: "Striped Summer Shirt",
-    slug: "striped-summer-shirt",
-    price: 1999,
-    images: [
-      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&q=80",
-      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "shirts",
-    sizes: ["S", "M", "L", "XL"],
-    colors: [{ name: "Blue/White", hex: "#87CEEB" }],
-    description: "Classic striped button-down shirt. Perfect for summer casual looks.",
-    inStock: true,
-    isSummer: true
-  },
-  {
-    id: "31",
-    name: "Puffer Jacket",
-    slug: "puffer-jacket",
-    price: 5999,
-    images: [
-      "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&q=80",
-      "https://images.unsplash.com/photo-1544923246-77307dd628b6?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "jackets",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Warm puffer jacket with premium down filling. Stay warm in style.",
-    inStock: true,
-    isNew: true,
-    isMustBuy: true
-  },
-  {
-    id: "32",
-    name: "Knit Sweater Cream",
-    slug: "knit-sweater-cream",
-    price: 2799,
-    images: [
-      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&q=80",
-      "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "sweaters",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [{ name: "Cream", hex: "#FFFDD0" }],
-    description: "Cozy oversized knit sweater. Soft and warm for cooler days.",
-    inStock: true,
-    isNew: true
-  },
-  // Additional Denims
-  {
-    id: "33",
-    name: "Baggy Denim Jeans",
-    slug: "baggy-denim-jeans",
-    price: 3499,
-    images: [
-      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80",
-      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "pants",
-    sizes: ["28", "30", "32", "34", "36"],
-    colors: [{ name: "Light Blue", hex: "#ADD8E6" }],
-    description: "Retro baggy jeans with classic wash. Streetwear essential.",
-    inStock: true,
-    isDenim: true,
-    isPants: true,
-    isBestSeller: true
-  },
-  {
-    id: "34",
-    name: "Distressed Denim Shorts",
-    slug: "distressed-denim-shorts",
-    price: 1999,
-    images: [
-      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&q=80",
-      "https://images.unsplash.com/photo-1565084888279-aca607ecce0c?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "shorts",
-    sizes: ["28", "30", "32", "34"],
-    colors: [{ name: "Washed Blue", hex: "#6495ED" }],
-    description: "Trendy distressed denim shorts. Perfect for summer days.",
-    inStock: true,
-    isDenim: true,
-    isSummer: true
-  },
-  {
-    id: "35",
-    name: "Black Denim Jacket",
-    slug: "black-denim-jacket",
-    price: 4299,
-    images: [
-      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",
-      "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "jackets",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Classic black denim jacket. Timeless style for any outfit.",
-    inStock: true,
-    isDenim: true,
-    isMustBuy: true
-  },
-  {
-    id: "36",
-    name: "Straight Leg Jeans",
-    slug: "straight-leg-jeans",
-    price: 2899,
-    images: [
-      "https://images.unsplash.com/photo-1582552938357-32b906df40cb?w=600&q=80",
-      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "pants",
-    sizes: ["28", "30", "32", "34", "36"],
-    colors: [{ name: "Indigo", hex: "#4B0082" }],
-    description: "Classic straight leg jeans. Premium denim quality.",
-    inStock: true,
-    isDenim: true,
-    isPants: true
-  },
-  {
-    id: "37",
-    name: "Wide Leg Denim",
-    slug: "wide-leg-denim",
-    price: 3199,
-    images: [
-      "https://images.unsplash.com/photo-1604176354204-9268737828e4?w=600&q=80",
-      "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "pants",
-    sizes: ["24", "26", "28", "30", "32"],
-    colors: [{ name: "Medium Blue", hex: "#0000CD" }],
-    description: "Trendy wide leg denim jeans. Modern silhouette.",
-    inStock: true,
-    isDenim: true,
-    isPants: true,
-    isNew: true
-  },
-  {
-    id: "38",
-    name: "Cropped Denim Jacket",
-    slug: "cropped-denim-jacket",
-    price: 3599,
-    images: [
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
-      "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "jackets",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [{ name: "Light Blue", hex: "#ADD8E6" }],
-    description: "Cropped denim jacket with vintage wash. Festival ready.",
-    inStock: true,
-    isDenim: true,
-    isMustBuy: true
-  },
-  // Additional Must Buy Products
-  {
-    id: "39",
-    name: "Premium Graphic Hoodie",
-    slug: "premium-graphic-hoodie",
-    price: 3899,
-    images: [
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80",
-      "https://images.unsplash.com/photo-1614975059251-992f11792b9f?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "hoodies",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Premium heavyweight hoodie with exclusive graphic. Limited stock.",
-    inStock: true,
-    isMustBuy: true,
-    isLimited: true
-  },
-  {
-    id: "40",
-    name: "Tactical Cargo Pants",
-    slug: "tactical-cargo-pants",
-    price: 3699,
-    images: [
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80",
-      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "pants",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Military-inspired tactical cargo pants. Maximum utility.",
-    inStock: true,
-    isMustBuy: true,
-    isPants: true
-  },
-  {
-    id: "41",
-    name: "Oversized Band Tee",
-    slug: "oversized-band-tee",
-    price: 1899,
-    images: [
-      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80",
-      "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "tshirts",
-    sizes: ["S", "M", "L", "XL", "XXL"],
-    colors: [{ name: "Black", hex: "#000000" }],
-    description: "Vintage-style oversized band tee. Rock your style.",
-    inStock: true,
-    isMustBuy: true,
-    isSummer: true
-  },
-  {
-    id: "42",
-    name: "Structured Crop Top",
-    slug: "structured-crop-top",
-    price: 1599,
-    images: [
-      "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80",
-      "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "tops",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [{ name: "White", hex: "#FFFFFF" }],
-    description: "Structured crop top with clean lines. Versatile staple.",
-    inStock: true,
-    isMustBuy: true,
-    isSummer: true
-  },
-  {
-    id: "43",
-    name: "Cargo Mini Skirt",
-    slug: "cargo-mini-skirt",
-    price: 2199,
-    images: [
-      "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600&q=80",
-      "https://images.unsplash.com/photo-1582142306909-195724d33ffc?w=600&q=80"
-    ],
-    category: "women",
-    subcategory: "skirts",
-    sizes: ["XS", "S", "M", "L"],
-    colors: [{ name: "Khaki", hex: "#C3B091" }],
-    description: "Trendy cargo mini skirt with utility pockets. Street style essential.",
+    colors: [{ name: "Red/Green", hex: "#FF0000" }],
+    description: "Portugal's historic Euro 2016 winning jersey. Celebrating Ronaldo's international triumph.",
     inStock: true,
     isMustBuy: true
-  },
-  {
-    id: "44",
-    name: "Relaxed Fit Denim",
-    slug: "relaxed-fit-denim",
-    price: 3299,
-    images: [
-      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&q=80",
-      "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80"
-    ],
-    category: "men",
-    subcategory: "pants",
-    sizes: ["28", "30", "32", "34", "36"],
-    colors: [{ name: "Vintage Blue", hex: "#4682B4" }],
-    description: "Relaxed fit jeans with vintage wash. Comfort meets style.",
-    inStock: true,
-    isDenim: true,
-    isPants: true,
-    isBestSeller: true
   }
 ];
 
-export const categories = {
-  men: [
-    { name: "All", slug: "all" },
-    { name: "Hoodies", slug: "hoodies" },
-    { name: "T-Shirts", slug: "tshirts" },
-    { name: "Shirts", slug: "shirts" },
-    { name: "Pants", slug: "pants" },
-    { name: "Jackets", slug: "jackets" },
-    { name: "Shorts", slug: "shorts" },
-    { name: "Sweaters", slug: "sweaters" }
-  ],
-  women: [
-    { name: "All", slug: "all" },
-    { name: "Hoodies", slug: "hoodies" },
-    { name: "T-Shirts", slug: "tshirts" },
-    { name: "Tops", slug: "tops" },
-    { name: "Pants", slug: "pants" },
-    { name: "Jackets", slug: "jackets" },
-    { name: "Dresses", slug: "dresses" },
-    { name: "Skirts", slug: "skirts" }
-  ]
-};
-
-export const collections = {
-  seasonal: [
-    { name: "Winter Collection", slug: "winter" },
-    { name: "Summer Essentials", slug: "summer" },
-    { name: "Spring Looks", slug: "spring" },
-    { name: "Autumn Vibes", slug: "autumn" },
-    { name: "Holiday Special", slug: "holiday" }
-  ],
-  categories: [
-    { name: "All Products", slug: "all" },
-    { name: "Hoodies & Sweaters", slug: "hoodies" },
-    { name: "T-Shirts & Tops", slug: "tshirts" },
-    { name: "Shirts", slug: "shirts" },
-    { name: "Pants & Joggers", slug: "pants" },
-    { name: "Jackets & Outerwear", slug: "jackets" },
-    { name: "Shorts", slug: "shorts" },
-    { name: "Denims", slug: "denims" },
-    { name: "Accessories", slug: "accessories" }
-  ],
-  styles: [
-    { name: "Streetwear", slug: "streetwear" },
-    { name: "Casual", slug: "casual" },
-    { name: "Athleisure", slug: "athleisure" },
-    { name: "Oversized", slug: "oversized" },
-    { name: "Vintage", slug: "vintage" },
-    { name: "Minimalist", slug: "minimalist" },
-    { name: "Urban", slug: "urban" },
-    { name: "Limited Edition", slug: "limited" }
-  ]
-};
-
-export const shopByCategory = [
-  { name: "Hoodies", slug: "hoodies", image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80" },
-  { name: "T-Shirts", slug: "tshirts", image: "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=600&q=80" },
-  { name: "Pants", slug: "pants", image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80" },
-  { name: "Jackets", slug: "jackets", image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" },
-  { name: "Shirts", slug: "shirts", image: "https://images.unsplash.com/photo-1625910513413-5fc420e11bec?w=600&q=80" },
-  { name: "Denims", slug: "denims", image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80" }
+// Jersey categories for the shop
+export const jerseyCategories = [
+  { name: "Embroidery", slug: "embroidery", image: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&q=80" },
+  { name: "Full Sleeve", slug: "full-sleeve", image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=800&q=80" },
+  { name: "Five Sleeve", slug: "five-sleeve", image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80" },
+  { name: "Retro", slug: "retro", image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&q=80" },
+  { name: "New Arrival", slug: "new-arrival", image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80" },
+  { name: "Best Seller", slug: "best-seller", image: "https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=800&q=80" }
 ];
 
-export const getProductBySlug = (slug: string): Product | undefined => {
-  return products.find(p => p.slug === slug);
+// Collections for navbar dropdown
+export const collections = {
+  clubs: [
+    { name: "Barcelona", slug: "barcelona" },
+    { name: "Real Madrid", slug: "real-madrid" },
+    { name: "Manchester United", slug: "manchester-united" },
+    { name: "AC Milan", slug: "ac-milan" },
+    { name: "Juventus", slug: "juventus" },
+    { name: "Liverpool", slug: "liverpool" },
+    { name: "Chelsea", slug: "chelsea" },
+    { name: "PSG", slug: "psg" }
+  ],
+  national: [
+    { name: "Argentina", slug: "argentina" },
+    { name: "Brazil", slug: "brazil" },
+    { name: "Germany", slug: "germany" },
+    { name: "England", slug: "england" },
+    { name: "Portugal", slug: "portugal" },
+    { name: "Japan", slug: "japan" }
+  ],
+  types: [
+    { name: "Embroidery Edition", slug: "embroidery" },
+    { name: "Full Sleeve", slug: "full-sleeve" },
+    { name: "Retro Collection", slug: "retro" },
+    { name: "New Arrivals", slug: "new-arrival" },
+    { name: "Best Sellers", slug: "best-seller" }
+  ]
 };
 
-export const getProductsByCategory = (category: 'men' | 'women', subcategory?: string): Product[] => {
-  return products.filter(p => {
-    if (p.category !== category) return false;
-    if (subcategory && subcategory !== 'all' && p.subcategory !== subcategory) return false;
-    return true;
-  });
+export const categories = {
+  jersey: [
+    { name: "All Jerseys", slug: "all" },
+    { name: "Embroidery", slug: "embroidery" },
+    { name: "Full Sleeve", slug: "full-sleeve" },
+    { name: "Retro", slug: "retro" }
+  ]
 };
 
-export const getBestSellers = (): Product[] => {
-  return products.filter(p => p.isBestSeller);
-};
-
-export const getMustBuy = (): Product[] => {
-  return products.filter(p => p.isMustBuy);
-};
-
-export const getWomensEssentials = (): Product[] => {
-  return products.filter(p => p.category === 'women');
-};
-
-export const getSummerEssentials = (): Product[] => {
-  return products.filter(p => p.isSummer);
-};
-
-export const getDenims = (): Product[] => {
-  return products.filter(p => p.isDenim);
-};
-
-export const getPants = (): Product[] => {
-  return products.filter(p => p.isPants);
-};
+// Helper functions
+export const getBestSellers = () => products.filter(p => p.isBestSeller);
+export const getMustBuy = () => products.filter(p => p.isMustBuy);
+export const getNewArrivals = () => products.filter(p => p.isNew);
+export const getBySubcategory = (subcategory: string) => products.filter(p => p.subcategory === subcategory);
+export const getProductBySlug = (slug: string) => products.find(p => p.slug === slug);
