@@ -3,16 +3,16 @@ import { Instagram, Facebook, Twitter } from 'lucide-react';
 
 const Footer = () => {
   const brandTexts = [
-    'ZENTIK', 'STREETWEAR', 'URBAN', 'PREMIUM', 'STYLE', 'FASHION',
-    'ZENTIK', 'STREETWEAR', 'URBAN', 'PREMIUM', 'STYLE', 'FASHION'
+    'ZERĆ INDIA', 'JERSEYS', 'FOOTBALL', 'LEGENDS', 'RETRO', 'PREMIUM',
+    'ZERĆ INDIA', 'JERSEYS', 'FOOTBALL', 'LEGENDS', 'RETRO', 'PREMIUM'
   ];
 
   return (
     <footer className="bg-card border-t border-border relative overflow-hidden">
-      {/* Big ZENTIK Background Text - Bottom positioned */}
-      <div className="absolute bottom-4 md:bottom-8 left-0 right-0 flex justify-center pointer-events-none overflow-hidden">
-        <span className="hidden md:block font-heading md:mb-[-28px] text-[16vw] md:text-[16vw] font-black text-foreground/[0.07] tracking-[0.2em] select-none whitespace-nowrap">
-          ZENTIK
+      {/* Big ZERC Background Text - Bottom positioned */}
+      <div className="absolute bottom-4 md:bottom-6 left-0 right-0 flex justify-center pointer-events-none overflow-hidden">
+        <span className="hidden md:block font-heading text-[10vw] font-black text-foreground/[0.04] tracking-[0.2em] select-none whitespace-nowrap">
+          Zerć India
         </span>
       </div>
 
@@ -22,7 +22,7 @@ const Footer = () => {
           {brandTexts.map((text, i) => (
             <span
               key={i}
-              className="font-heading text-4xl md:text-6xl font-bold text-muted-foreground/30 whitespace-nowrap mx-8"
+              className="font-heading text-4xl md:text-6xl font-bold text-muted-foreground/20 whitespace-nowrap mx-8"
             >
               {text}
             </span>
@@ -30,7 +30,7 @@ const Footer = () => {
           {brandTexts.map((text, i) => (
             <span
               key={`dup-${i}`}
-              className="font-heading text-4xl md:text-6xl font-bold text-muted-foreground/30 whitespace-nowrap mx-8"
+              className="font-heading text-4xl md:text-6xl font-bold text-muted-foreground/20 whitespace-nowrap mx-8"
             >
               {text}
             </span>
@@ -42,9 +42,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
-            <h3 className="font-heading text-2xl font-bold tracking-wider mb-4">ZENTIK</h3>
+            <h3 className="font-heading text-2xl font-bold tracking-wider mb-4">Zerć India</h3>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Premium streetwear for the modern individual. Quality craftsmanship meets urban style.
+              Premium football jerseys for the true fans. Authentic retro and modern collections.
             </p>
             <div className="flex gap-4 mt-6">
               <a href="#" className="p-2 border border-border hover:bg-secondary hover:border-foreground/20 transition-all duration-300">
@@ -64,18 +64,18 @@ const Footer = () => {
             <h4 className="font-heading font-semibold tracking-wide mb-4">QUICK LINKS</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/collections/men/all" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Men&#39;s Collection
+                <Link to="/collections/jersey/all" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  All Jerseys
                 </Link>
               </li>
               <li>
-                <Link to="/collections/women/all" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Women&#39;s Collection
+                <Link to="/collections/jersey/retro" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  Retro Collection
                 </Link>
               </li>
               <li>
-                <Link to="/collections/limited" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
-                  Limited Edition
+                <Link to="/collections/jersey/new-arrival" className="text-muted-foreground hover:text-foreground transition-colors text-sm">
+                  New Arrivals
                 </Link>
               </li>
               <li>
@@ -122,7 +122,7 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-semibold tracking-wide mb-4">CONTACT</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>support@zentik.com</li>
+              <li>support@zercindia.com</li>
               <li>+91 98765 43210</li>
               <li>Mon - Sat: 10AM - 7PM</li>
             </ul>
@@ -130,42 +130,29 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center gap-3 mt-5">
-              <span className="md:text-sm text-[13px] mt-2 md:mt-0 text-muted-foreground">We Accept:</span>
-              <div className="flex items-center gap-2">
-
-                {/* VISA */}
-                <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#1A1F71" }}>
-                  VISA
-                </div>
-
-                {/* MasterCard */}
-                <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#EB001B" }}>
-                  MasterCard
-                </div>
-
-                {/* UPI */}
-                <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#4C9A2A" }}>
-                  UPI
-                </div>
-
-                {/* RuPay */}
-                <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#1B4CA1" }}>
-                  RuPay
-                </div>
-
-                
-
-              </div>
+          <span className="md:text-sm text-[13px] mt-2 md:mt-0 text-muted-foreground">We Accept:</span>
+          <div className="flex items-center gap-2">
+            <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#1A1F71" }}>
+              VISA
             </div>
+            <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#EB001B" }}>
+              MasterCard
+            </div>
+            <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#4C9A2A" }}>
+              UPI
+            </div>
+            <div className="px-3 py-1 text-xs font-medium text-white" style={{ backgroundColor: "#1B4CA1" }}>
+              RuPay
+            </div>
+          </div>
+        </div>
 
-        {/* Payment Methods */}
+        {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2025 ZENTIK. All rights reserved.
+              © 2025 Zerć India. All rights reserved.
             </p>
-            
-
           </div>
         </div>
       </div>
