@@ -73,7 +73,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
 
           {/* Navbar below marquee */}
           <div
-            className="container mx-auto px-4 flex items-center justify-between h-16 md:h-20 bg-[#FBFFFF] backdrop-blur-sm border-b border-border"
+            className="fixed container max-w-full mx-auto px-4 flex items-center justify-between h-16 md:h-20 bg-[#FBFFFF] backdrop-blur-sm border-b border-border"
             style={{ paddingTop: '1.25rem' }} // matches marquee height (py-1 = 0.25rem*2 = 0.5rem? adjust if needed)
           >
             <button

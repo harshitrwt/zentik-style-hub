@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Product } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface QuickViewModalProps {
   product: Product;
@@ -14,6 +15,7 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
   const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
@@ -28,6 +30,11 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
   const handleAddToCart = () => {
     addToCart(product, selectedSize, product.colors[0]?.name || 'Default', quantity);
     onClose();
+  };
+  const handleBuyNow = () => {
+    addToCart(product, selectedSize, product.colors[0]?.name || 'Default', quantity);
+    onClose();
+    navigate('/checkout');
   };
 
   return (
@@ -148,7 +155,9 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
               </div>
 
              
-              <button className="w-full py-4 bg-black text-white font-heading text-sm tracking-wide hover:bg-success/90 transition-colors mb-6">
+              <button 
+              onClick={handleBuyNow}
+              className="w-full py-4 bg-black text-white font-heading text-sm tracking-wide hover:bg-success/90 transition-colors mb-6">
                 BUY NOW
               </button>
 

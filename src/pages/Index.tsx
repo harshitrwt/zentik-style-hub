@@ -92,10 +92,10 @@ const Index = () => {
             >
               <Link
                 to="/collections/jersey/all"
-                className="group relative px-8 py-4 bg-white text-black font-heading text-sm tracking-widest overflow-hidden flex items-center justify-center hover:bg-foreground/90 transition-colors mb-10"
+                className="group relative px-8 py-4 bg-white text-black font-heading text-sm tracking-widest overflow-hidden flex items-center justify-center hover:bg-foreground/90 hover:text-white transition-colors mb-10"
               >
                 <span className="relative z-10">SHOP NOW</span>
-                <div className="absolute inset-0 bg-foreground/80 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                <div className="absolute inset-0 bg-foreground/80 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </Link>
             </motion.div>
           </div>

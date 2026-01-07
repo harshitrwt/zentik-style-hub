@@ -90,7 +90,7 @@ const WelcomePopup = () => {
                     transition={{ delay: 0.5 }}
                     className="text-sm text-muted-foreground mb-6"
                   >
-                    Get 10% OFF on your first order with code <span className="text-foreground font-semibold">ZERC10</span>
+                    Get 10% OFF on your first order.
                   </motion.p>
 
                   <motion.button
@@ -109,7 +109,7 @@ const WelcomePopup = () => {
                     transition={{ delay: 0.7 }}
                     className="mt-4 text-xs text-muted-foreground"
                   >
-                    Free shipping on orders above ₹999
+                    Free shipping on orders above ₹1999
                   </motion.p>
                 </div>
 
