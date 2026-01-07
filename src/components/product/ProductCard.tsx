@@ -44,7 +44,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </span>
             )}
             {product.isNew && (
-              <span className="px-2 py-1 bg-success text-success-foreground text-xs font-semibold rounded">
+              <span className="px-2 py-1 bg-white text-black text-xs font-semibold rounded">
                 New
               </span>
             )}
@@ -80,15 +80,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-              }}
-            >
-              <Layers className="w-4 h-4" />
-            </button>
-            <button 
-              className="p-2 bg-background rounded-full shadow-lg hover:bg-secondary transition-colors"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
                 setShowQuickView(true);
               }}
             >
@@ -110,7 +101,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               }}
               className="w-[90%] mx-auto mb-3 block py-3 bg-background/95 backdrop-blur-sm text-foreground font-heading text-sm tracking-wide rounded-full hover:bg-background transition-colors shadow-lg"
             >
-              Select Options
+              View
             </button>
           </div>
         </div>

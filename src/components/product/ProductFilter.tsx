@@ -122,7 +122,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
             className="flex items-center justify-between w-full lg:w-auto font-heading text-sm font-medium tracking-wide mb-3"
           >
             PRICE
-            <ChevronDown className={`lg:hidden w-4 h-4 transition-transform ${expandedSections.includes('price') ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`lg:hidden w-4 h-4 transition-transform ${expandedSections.includes('price') ? 'rotate[180]' : ''}`} />
           </button>
           
           {expandedSections.includes('price') && (

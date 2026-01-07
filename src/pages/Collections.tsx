@@ -12,7 +12,7 @@ const Collections = () => {
   const [localSearch, setLocalSearch] = useState(searchQuery);
   
   const [filters, setFilters] = useState<FilterState>({
-    priceRange: [0, 10000],
+    priceRange: [0, 2000],
     sizes: [],
     availability: 'all',
     sortBy: 'newest'
