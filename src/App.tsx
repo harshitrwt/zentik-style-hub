@@ -7,6 +7,7 @@ import { CartProvider } from "@/context/CartContext";
 import Layout from "@/components/layout/Layout";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
+import Shop from "./pages/Shop";
 import Collections from "./pages/Collections";
 import ProductDetail from "./pages/ProductDetail";
 import Checkout from "./pages/Checkout";
@@ -28,6 +29,7 @@ const App = () => (
           <Layout>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/shop" element={<Shop />} />
               <Route path="/collections/:gender/:category" element={<Collections />} />
               <Route path="/collections/:gender" element={<Collections />} />
               <Route path="/products/:slug" element={<ProductDetail />} />

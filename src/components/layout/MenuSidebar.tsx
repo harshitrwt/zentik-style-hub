@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { X, ChevronDown, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { collections } from '@/data/products';
+import { jerseyCategories, collections } from '@/data/products';
 
 interface MenuSidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  onAuthOpen: () => void;
 }
 
-const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
+const MenuSidebar = ({ isOpen, onClose, onAuthOpen }: MenuSidebarProps) => {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
   const toggleSection = (section: string) => {
@@ -60,84 +61,70 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
               HOME
             </Link>
 
-            {/* Collections */}
+            <Link 
+              to="/shop"
+              onClick={onClose}
+              className="block py-4 font-heading text-lg font-medium tracking-wide border-b border-border"
+            >
+              SHOP
+            </Link>
+
+            {/* Categories */}
             <div className="border-b border-border">
               <button 
-                onClick={() => toggleSection('collections')}
+                onClick={() => toggleSection('categories')}
                 className="flex items-center justify-between w-full py-4 font-heading text-lg font-medium tracking-wide"
               >
-                COLLECTIONS
-                {expandedSection === 'collections' ? (
+                CATEGORIES
+                {expandedSection === 'categories' ? (
                   <ChevronDown className="w-5 h-5" />
                 ) : (
                   <ChevronRight className="w-5 h-5" />
                 )}
               </button>
               
-              {expandedSection === 'collections' && (
-                <div className="pb-4 space-y-4 animate-fade-in">
-                  {/* Clubs */}
-                  <div className="pl-4">
-                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">CLUB JERSEYS</h4>
-                    {collections.clubs.map(col => (
-                      <Link
-                        key={col.slug}
-                        to={`/collections/jersey/${col.slug}`}
-                        onClick={onClose}
-                        className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {col.name}
-                      </Link>
-                    ))}
-                  </div>
-                  
-                  {/* National - Coming Soon */}
-                  <div className="pl-4">
-                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">NATIONAL TEAMS</h4>
-                    {collections.national.map(col => (
-                      <Link
-                        key={col.slug}
-                        to="/coming-soon"
-                        onClick={onClose}
-                        className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {col.name}
-                      </Link>
-                    ))}
-                  </div>
-                  
-                  {/* Types */}
-                  <div className="pl-4">
-                    <h4 className="font-heading text-xs font-bold tracking-wider text-muted-foreground mb-2">JERSEY TYPES</h4>
-                    {collections.types.map(col => (
-                      <Link
-                        key={col.slug}
-                        to={`/collections/jersey/${col.slug}`}
-                        onClick={onClose}
-                        className="block py-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        {col.name}
-                      </Link>
-                    ))}
-                  </div>
-                  
-                  {/* Shop Links */}
-                  <div className="pl-4 pt-4 border-t border-border space-y-2">
+              {expandedSection === 'categories' && (
+                <div className="pb-4 space-y-2 animate-fade-in">
+                  {jerseyCategories.map(cat => (
                     <Link
-                      to="/collections/jersey/all"
+                      key={cat.slug}
+                      to={`/collections/jersey/${cat.slug}`}
                       onClick={onClose}
-                      className="block font-heading text-sm font-bold tracking-wide hover:text-muted-foreground transition-colors"
+                      className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      ALL JERSEYS →
+                      {cat.name}
                     </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Clubs */}
+            <div className="border-b border-border">
+              <button 
+                onClick={() => toggleSection('clubs')}
+                className="flex items-center justify-between w-full py-4 font-heading text-lg font-medium tracking-wide"
+              >
+                CLUBS
+                {expandedSection === 'clubs' ? (
+                  <ChevronDown className="w-5 h-5" />
+                ) : (
+                  <ChevronRight className="w-5 h-5" />
+                )}
+              </button>
+              
+              {expandedSection === 'clubs' && (
+                <div className="pb-4 space-y-2 animate-fade-in">
+                  {collections.clubs.map(col => (
                     <Link
-                      to="/collections/jersey/best-seller"
+                      key={col.slug}
+                      to={`/collections/jersey/${col.slug}`}
                       onClick={onClose}
-                      className="block font-heading text-sm font-bold tracking-wide text-success hover:text-success/80 transition-colors"
+                      className="block py-2 pl-4 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      BEST SELLERS →
+                      {col.name}
                     </Link>
-                  </div>
+                  ))}
                 </div>
               )}
             </div>
@@ -161,13 +148,15 @@ const MenuSidebar = ({ isOpen, onClose }: MenuSidebarProps) => {
 
           {/* Footer */}
           <div className="p-4 border-t border-border space-y-4">
-            <Link 
-              to="/account"
-              onClick={onClose}
-              className="block py-3 text-center border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors"
+            <button 
+              onClick={() => {
+                onClose();
+                onAuthOpen();
+              }}
+              className="block w-full py-3 text-center border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors"
             >
               MY ACCOUNT
-            </Link>
+            </button>
           </div>
         </div>
       </div>
