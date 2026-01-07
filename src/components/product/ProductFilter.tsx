@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, X } from 'lucide-react';
+import { Slider } from '@/components/ui/slider';
 
 interface FilterProps {
   onFilterChange: (filters: FilterState) => void;
@@ -14,11 +15,12 @@ export interface FilterState {
 }
 
 const allSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'];
+const MAX_PRICE = 2000;
 
 const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [filters, setFilters] = useState<FilterState>(initialFilters || {
-    priceRange: [0, 10000],
+    priceRange: [0, MAX_PRICE],
     sizes: [],
     availability: 'all',
     sortBy: 'newest'
@@ -49,7 +51,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
 
   const clearFilters = () => {
     const defaultFilters: FilterState = {
-      priceRange: [0, 10000],
+      priceRange: [0, MAX_PRICE],
       sizes: [],
       availability: 'all',
       sortBy: 'newest'
@@ -58,7 +60,9 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
     onFilterChange(defaultFilters);
   };
 
-  const hasActiveFilters = filters.sizes.length > 0 || filters.availability !== 'all' || filters.priceRange[0] > 0 || filters.priceRange[1] < 10000;
+  const hasActiveFilters = filters.sizes.length > 0 || filters.availability !== 'all' || filters.priceRange[0] > 0 || filters.priceRange[1] < MAX_PRICE;
+
+  const formatPrice = (price: number) => `₹${price}`;
 
   return (
     <div className="mb-8">
@@ -89,7 +93,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
           <select 
             value={filters.sortBy}
             onChange={(e) => updateFilter('sortBy', e.target.value)}
-            className="bg-transparent border border-border px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+            className="bg-background border border-border px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary rounded"
           >
             <option value="newest">Newest</option>
             <option value="priceAsc">Price: Low to High</option>
@@ -111,8 +115,8 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
 
       {/* Filter Panel */}
       <div className={`${isOpen ? 'block' : 'hidden'} lg:flex lg:items-start gap-8 pb-6 border-b border-border`}>
-        {/* Price Range */}
-        <div className="mb-6 lg:mb-0">
+        {/* Price Range with Draggable Slider */}
+        <div className="mb-6 lg:mb-0 lg:min-w-[280px]">
           <button 
             onClick={() => toggleSection('price')}
             className="flex items-center justify-between w-full lg:w-auto font-heading text-sm font-medium tracking-wide mb-3"
@@ -122,22 +126,21 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
           </button>
           
           {expandedSections.includes('price') && (
-            <div className="flex items-center gap-4">
-              <input 
-                type="number"
-                value={filters.priceRange[0]}
-                onChange={(e) => updateFilter('priceRange', [Number(e.target.value), filters.priceRange[1]])}
-                placeholder="Min"
-                className="w-24 px-3 py-2 bg-transparent border border-border text-sm focus:outline-none focus:ring-1 focus:ring-primary"
-              />
-              <span className="text-muted-foreground">—</span>
-              <input 
-                type="number"
-                value={filters.priceRange[1]}
-                onChange={(e) => updateFilter('priceRange', [filters.priceRange[0], Number(e.target.value)])}
-                placeholder="Max"
-                className="w-24 px-3 py-2 bg-transparent border border-border text-sm focus:outline-none focus:ring-1 focus:ring-primary"
-              />
+            <div className="space-y-4">
+              <div className="px-2">
+                <Slider
+                  value={filters.priceRange}
+                  onValueChange={(value) => updateFilter('priceRange', value as [number, number])}
+                  max={MAX_PRICE}
+                  min={0}
+                  step={50}
+                  className="w-full"
+                />
+              </div>
+              <div className="flex items-center justify-between text-sm text-muted-foreground">
+                <span>{formatPrice(filters.priceRange[0])}</span>
+                <span>{formatPrice(filters.priceRange[1])}</span>
+              </div>
             </div>
           )}
         </div>
@@ -158,10 +161,10 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
                 <button
                   key={size}
                   onClick={() => toggleSize(size)}
-                  className={`px-4 py-2 border text-sm transition-colors ${
+                  className={`px-4 py-2 border text-sm transition-colors rounded ${
                     filters.sizes.includes(size)
-                      ? 'border-primary bg-primary text-primary-foreground'
-                      : 'border-border hover:border-primary'
+                      ? 'border-foreground bg-foreground text-background'
+                      : 'border-border hover:border-foreground'
                   }`}
                 >
                   {size}
@@ -194,7 +197,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
                     name="availability"
                     checked={filters.availability === option.value}
                     onChange={() => updateFilter('availability', option.value)}
-                    className="w-4 h-4 accent-primary"
+                    className="w-4 h-4 accent-foreground"
                   />
                   <span className="text-sm">{option.label}</span>
                 </label>
@@ -227,7 +230,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
                     name="sortBy"
                     checked={filters.sortBy === option.value}
                     onChange={() => updateFilter('sortBy', option.value as FilterState['sortBy'])}
-                    className="w-4 h-4 accent-primary"
+                    className="w-4 h-4 accent-foreground"
                   />
                   <span className="text-sm">{option.label}</span>
                 </label>

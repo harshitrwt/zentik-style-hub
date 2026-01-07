@@ -3,6 +3,8 @@ import Header from './Header';
 import Footer from './Footer';
 import CartSidebar from './CartSidebar';
 import MenuSidebar from './MenuSidebar';
+import BottomNav from './BottomNav';
+import AuthModal from '@/components/auth/AuthModal';
 import { useCart } from '@/context/CartContext';
 
 interface LayoutProps {
@@ -11,6 +13,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
   const { isCartOpen, setIsCartOpen } = useCart();
 
   return (
@@ -20,7 +23,7 @@ const Layout = ({ children }: LayoutProps) => {
         onCartOpen={() => setIsCartOpen(true)} 
       />
       
-      <main className="flex-1 pt-16 md:pt-20">
+      <main className="flex-1 pt-16 md:pt-20 pb-20 lg:pb-0">
         {children}
       </main>
       
@@ -33,8 +36,13 @@ const Layout = ({ children }: LayoutProps) => {
       
       <MenuSidebar 
         isOpen={isMenuOpen} 
-        onClose={() => setIsMenuOpen(false)} 
+        onClose={() => setIsMenuOpen(false)}
+        onAuthOpen={() => setIsAuthOpen(true)}
       />
+      
+      <BottomNav onCartOpen={() => setIsCartOpen(true)} />
+      
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </div>
   );
 };
