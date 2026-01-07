@@ -75,28 +75,17 @@ const Checkout = () => {
     }
   };
 
+
+
+
+
   const handlePayment = async () => {
-    if (!validateForm()) {
-      toast({
-        title: "Please fill all required fields",
-        variant: "destructive"
-      });
-      return;
-    }
+  if (!validateForm() || items.length === 0) return;
 
-    if (items.length === 0) {
-      toast({
-        title: "Your cart is empty",
-        variant: "destructive"
-      });
-      return;
-    }
+  setLoading(true);
 
-    setLoading(true);
-
-    if (paymentMethod === 'cod') {
-      // Simulate order placement
-      setTimeout(() => {
+  if (paymentMethod === "cod") {
+    setTimeout(() => {
         clearCart();
         toast({
           title: "Order placed successfully!",
@@ -105,16 +94,57 @@ const Checkout = () => {
         navigate('/');
         setLoading(false);
       }, 1500);
-    } else {
-      // Razorpay integration placeholder
-      // In production, you would initialize Razorpay here
-      toast({
-        title: "Razorpay Integration",
-        description: "Connect your Razorpay account to enable payments."
-      });
-      setLoading(false);
-    }
-  };
+      return;
+  }
+
+  try {
+    const res = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}/api/razorpay/create-order`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: grandTotal })
+      }
+    );
+
+    const order = await res.json();
+
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: order.amount,
+      currency: "INR",
+      name: "Zerc India",
+      description: "Order Payment",
+      order_id: order.id,
+      prefill: {
+        name: formData.firstName + " " + formData.lastName,
+        email: formData.email,
+        contact: formData.phone
+      },
+      handler: async (response: any) => {
+        await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/razorpay/verify`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(response)
+          }
+        );
+
+        clearCart();
+        toast({ title: "Payment successful!" });
+        navigate("/");
+      }
+    };
+
+    const rzp = new (window as any).Razorpay(options);
+    rzp.open();
+  } catch {
+    toast({ title: "Payment failed", variant: "destructive" });
+    setLoading(false);
+  }
+};
+
 
   if (items.length === 0) {
     return (
