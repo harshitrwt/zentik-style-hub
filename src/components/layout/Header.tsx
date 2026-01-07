@@ -15,6 +15,16 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showAuthModal, setShowAuthModal] = useState(false);
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % marqueeMessages.length);
+    }, 5000); // match Tailwind animation duration
+    return () => clearInterval(interval);
+  }, []);
+
+
   const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchQuery.trim()) {
       navigate(
@@ -24,13 +34,37 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
     }
   };
 
+  const marqueeMessages = [
+    "🎉 Free shipping on orders above ₹2000.",
+    "🎁 Get 10% off on your first purchase.",
+    "🚚 Fast delivery across India.",
+  ];
+
+
   return (
     <>
+
+
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+        <div className="w-full bg-black text-white text-xs md:text-sm py-1 px-4 flex justify-center md:justify-between items-center">
+          <div className="overflow-hidden text-center md:text-left flex-1">
+            <span
+              key={currentIndex}
+              className="inline-block animate-fade"
+            >
+              {marqueeMessages[currentIndex]}
+            </span>
+          </div>
+
+          
+          <div className="hidden md:block font-semibold ml-4">
+            India
+          </div>
+        </div>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
 
-            {/* Mobile Menu Button */}
+
             <button
               onClick={onMenuOpen}
               className="lg:hidden p-2 hover:bg-secondary transition-colors"
@@ -79,9 +113,9 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               </div>
 
-              <button 
+              <button
                 onClick={() => setShowAuthModal(true)}
-                className="hidden md:block p-2 hover:bg-secondary transition-colors" 
+                className="hidden md:block p-2 hover:bg-secondary transition-colors"
                 aria-label="Account"
               >
                 <User className="w-5 h-5" />

@@ -62,6 +62,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
+        // existing
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -70,10 +71,27 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+
+        fade: {
+          '0%': { opacity: '0' },
+          '10%': { opacity: '10' },   // fade in quickly
+          '90%': { opacity: '3' },   // stay visible
+          '100%': { opacity: '5' },  // fade out
+        },
+
+        // add marquee keyframes
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
       animation: {
+        // existing
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+
+        // add marquee animation
+        fade: 'fade 5s linear infinite',
       },
     },
   },

@@ -342,73 +342,75 @@ const Checkout = () => {
             </button>
           </div>
 
-          {/* Right - Order Summary */}
-          <div className="lg:pl-8 lg:border-l border-border">
-            {/* Mobile Toggle */}
-            <button 
-              onClick={() => setShowOrderSummary(!showOrderSummary)}
-              className="lg:hidden flex items-center justify-between w-full py-4 border-b border-border mb-4"
-            >
-              <span className="font-heading font-semibold">Order Summary ({items.length})</span>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold">{formatPrice(grandTotal)}</span>
-                <ChevronDown className={`w-5 h-5 transition-transform ${showOrderSummary ? 'rotate-180' : ''}`} />
-              </div>
-            </button>
+          {/* Mobile Toggle */}
+<button 
+  onClick={() => setShowOrderSummary(!showOrderSummary)}
+  className="lg:hidden flex items-center justify-between w-full py-4 border-b border-border mb-4"
+>
+  <span className="font-heading font-semibold">Order Summary ({items.length})</span>
+  <div className="flex items-center gap-2">
+    <span className="font-semibold">{formatPrice(grandTotal)}</span>
+    <ChevronDown className={`w-5 h-5 transition-transform ${showOrderSummary ? 'rotate-180' : ''}`} />
+  </div>
+</button>
 
-            <div className={`${showOrderSummary ? 'block' : 'hidden'} lg:block`}>
-              <h2 className="hidden lg:block font-heading font-semibold mb-6">Order Summary</h2>
-              
-              {/* Items */}
-              <div className="space-y-4 mb-6">
-                {items.map(item => (
-                  <div 
-                    key={`${item.product.id}-${item.size}-${item.color}`}
-                    className="flex gap-4"
-                  >
-                    <div className="relative w-16 h-20 bg-secondary flex-shrink-0">
-                      <img 
-                        src={item.product.images[0]}
-                        alt={item.product.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <span className="absolute -top-2 -right-2 w-5 h-5 bg-muted-foreground text-background text-xs font-bold rounded-full flex items-center justify-center">
-                        {item.quantity}
-                      </span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-sm truncate">{item.product.name}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {item.size} / {item.color}
-                      </p>
-                    </div>
-                    <span className="font-medium">
-                      {formatPrice(item.product.price * item.quantity)}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Totals */}
-              <div className="border-t border-border pt-4 space-y-3">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Subtotal</span>
-                  <span>{formatPrice(totalPrice)}</span>
-                </div>
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Shipping</span>
-                  <span>{shippingCost === 0 ? 'FREE' : formatPrice(shippingCost)}</span>
-                </div>
-                {shippingCost === 0 && (
-                  <p className="text-sm text-gold">Free shipping on orders above ₹2,000</p>
-                )}
-                <div className="flex items-center justify-between text-lg font-heading font-bold pt-3 border-t border-border">
-                  <span>Total</span>
-                  <span>{formatPrice(grandTotal)}</span>
-                </div>
-              </div>
-            </div>
+{/* Mobile Order Summary */}
+<div
+  className={`lg:hidden transition-all duration-300 overflow-hidden ${showOrderSummary ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}
+>
+  <div className="bg-background border border-border p-4 rounded-lg shadow-md">
+    
+    {/* Items */}
+    <div className="space-y-4 mb-4">
+      {items.map(item => (
+        <div 
+          key={`${item.product.id}-${item.size}-${item.color}`}
+          className="flex gap-4"
+        >
+          <div className="relative w-16 h-20 bg-secondary flex-shrink-0">
+            <img 
+              src={item.product.images[0]}
+              alt={item.product.name}
+              className="w-full h-full object-cover"
+            />
+            <span className="absolute -top-2 -right-2 w-5 h-5 bg-muted-foreground text-background text-xs font-bold rounded-full flex items-center justify-center">
+              {item.quantity}
+            </span>
           </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-medium text-sm truncate">{item.product.name}</h3>
+            <p className="text-sm text-muted-foreground">
+              {item.size} / {item.color}
+            </p>
+          </div>
+          <span className="font-medium">
+            {formatPrice(item.product.price * item.quantity)}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    {/* Totals */}
+    <div className="border-t border-border pt-4 space-y-3">
+      <div className="flex items-center justify-between text-sm">
+        <span className="text-muted-foreground">Subtotal</span>
+        <span>{formatPrice(totalPrice)}</span>
+      </div>
+      <div className="flex items-center justify-between text-sm">
+        <span className="text-muted-foreground">Shipping</span>
+        <span>{shippingCost === 0 ? 'FREE' : formatPrice(shippingCost)}</span>
+      </div>
+      {shippingCost === 0 && (
+        <p className="text-sm text-gold">Free shipping on orders above ₹2,000</p>
+      )}
+      <div className="flex items-center justify-between text-lg font-heading font-bold pt-3 border-t border-border">
+        <span>Total</span>
+        <span>{formatPrice(grandTotal)}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </div>

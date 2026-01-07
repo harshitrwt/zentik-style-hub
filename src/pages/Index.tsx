@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight} from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import ProductCard from '@/components/product/ProductCard';
 import { products, jerseyCategories, getBestSellers, getNewArrivals } from '@/data/products';
@@ -10,7 +10,7 @@ const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const featuredProducts = products.filter(p => p.isNew || p.isLimited).slice(0, 8);
   const totalSlides = Math.ceil(featuredProducts.length / 4);
-  
+
   const bestSellers = getBestSellers();
   const newArrivals = getNewArrivals();
 
@@ -20,9 +20,9 @@ const Index = () => {
   const [scrollLeft, setScrollLeft] = useState(0);
 
   const heroImages = [
-    '/images/hero1.png',
-    '/images/hero-2.jpg',
-    '/images/hero-3.jpg'
+    'https://cdn.pixabay.com/photo/2021/10/31/00/18/brazil-6755880_1280.jpg',
+    'https://images.pexels.com/photos/30417185/pexels-photo-30417185.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200',
+    'https://images.pexels.com/photos/3651674/pexels-photo-3651674.jpeg?cs=srgb&dl=pexels-aleksandar069-3651674.jpg&fm=jpg'
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -61,18 +61,16 @@ const Index = () => {
     <div className="overflow-hidden">
       <WelcomePopup />
 
-      {/* Hero Section */}
-      <section className="relative h-[100vh] overflow-hidden">
-        <motion.div 
+      <section className="relative h-[60vh] md:h-[100vh] overflow-hidden">
+        <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
           className="absolute inset-0"
         >
           {heroImages.map((img, idx) => (
             <div
               key={idx}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                idx === currentIndex ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ${idx === currentIndex ? 'opacity-100' : 'opacity-0'
+                }`}
             >
               <img
                 src={img}
@@ -81,45 +79,11 @@ const Index = () => {
               />
             </div>
           ))}
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
         </motion.div>
 
         {/* Text Overlay */}
-        <div className="relative container mx-auto px-4 h-full flex items-center">
-          <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="text-sm tracking-[0.3em] text-muted-foreground mb-4 block">
-                PREMIUM FOOTBALL JERSEYS
-              </span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="font-heading text-5xl md:text-7xl font-black tracking-tight mb-6 text-foreground leading-none"
-            >
-              WEAR
-              <br />
-              <span className="text-muted-foreground">YOUR</span>
-              <br />
-              LEGENDS
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-md leading-relaxed"
-            >
-              Authentic retro football jerseys from legendary clubs and players.
-            </motion.p>
-
+        <div className="relative container mx-auto px-4 h-full">
+          <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -128,21 +92,16 @@ const Index = () => {
             >
               <Link
                 to="/collections/jersey/all"
-                className="group relative px-8 py-4 bg-foreground text-background font-heading text-sm tracking-widest overflow-hidden"
+                className="group relative px-8 py-4 bg-white text-black font-heading text-sm tracking-widest overflow-hidden flex items-center justify-center hover:bg-foreground/90 transition-colors mb-10"
               >
                 <span className="relative z-10">SHOP NOW</span>
                 <div className="absolute inset-0 bg-foreground/80 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-              </Link>
-              <Link
-                to="/collections/jersey/retro"
-                className="group px-8 py-4 border border-foreground/30 font-heading text-sm tracking-widest hover:bg-foreground/10 transition-colors"
-              >
-                RETRO COLLECTION
               </Link>
             </motion.div>
           </div>
         </div>
       </section>
+
 
       {/* Shop by Category */}
       <section className="py-16 md:py-24">
@@ -204,7 +163,7 @@ const Index = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 ">
             {featuredProducts.slice(currentSlide * 4, currentSlide * 4 + 4).map((product) => (
-              <ProductCard key={product.id} product={product}/>
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
@@ -229,7 +188,7 @@ const Index = () => {
             <span className="text-sm text-muted-foreground">← Drag →</span>
           </div>
 
-          <div 
+          <div
             ref={bestSellerRef}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
@@ -306,14 +265,14 @@ const Index = () => {
         <div className="container mx-auto px-4 relative z-10">
           <p className="font-heading text-3xl md:text-5xl font-light tracking-wide leading-tight max-w-4xl mx-auto">
             "Premium quality <span className="font-bold">football jerseys</span>.
-            Celebrating the 
-            
+            Celebrating the
+
             <img
-        src="https://png.pngtree.com/png-vector/20221015/ourmid/pngtree-brazil-soccer-team-home-jersey-png-image_6332687.png"
-        alt="Brazil Jersey"
-        className="w-6 h-6 md:w-8 md:h-8 object-contain inline-block"
-      />
-            
+              src="https://png.pngtree.com/png-vector/20221015/ourmid/pngtree-brazil-soccer-team-home-jersey-png-image_6332687.png"
+              alt="Brazil Jersey"
+              className="w-6 h-6 md:w-8 md:h-8 object-contain inline-block"
+            />
+
             <span className="font-bold">legends</span> of the beautiful game."
           </p>
         </div>
