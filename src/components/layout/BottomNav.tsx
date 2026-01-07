@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, Package, ShoppingBag, Heart, ShoppingCart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
@@ -10,6 +11,30 @@ const BottomNav = ({ onCartOpen }: BottomNavProps) => {
   const location = useLocation();
   const { totalItems } = useCart();
 
+  const [showNav, setShowNav] = useState(true);
+  const lastScrollY = useRef(0);
+
+  // Listen to scroll to hide/show nav
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
+        // scrolling down
+        setShowNav(false);
+      } else {
+        // scrolling up
+        setShowNav(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navItems = [
     { icon: Home, label: 'Home', path: '/' },
     { icon: Package, label: 'Track', path: '/coming-soon' },
@@ -18,7 +43,11 @@ const BottomNav = ({ onCartOpen }: BottomNavProps) => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-background border-t border-border z-50 lg:hidden">
+    <nav
+      className={`fixed bottom-0 left-0 right-0 bg-background border-t border-border z-50 lg:hidden transition-transform duration-300 ${
+        showNav ? 'translate-y-0' : 'translate-y-full'
+      }`}
+    >
       <div className="flex items-center justify-around py-2">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
@@ -37,9 +66,17 @@ const BottomNav = ({ onCartOpen }: BottomNavProps) => {
                   <Icon className="w-6 h-6" />
                 </div>
               ) : (
-                <Icon className={`w-5 h-5 ${isActive ? 'text-foreground' : 'text-muted-foreground'}`} />
+                <Icon
+                  className={`w-5 h-5 ${
+                    isActive ? 'text-foreground' : 'text-muted-foreground'
+                  }`}
+                />
               )}
-              <span className={`text-xs ${isActive ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
+              <span
+                className={`text-xs ${
+                  isActive ? 'text-foreground font-medium' : 'text-muted-foreground'
+                }`}
+              >
                 {item.label}
               </span>
             </Link>
