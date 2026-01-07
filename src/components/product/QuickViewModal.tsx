@@ -147,12 +147,11 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
                 </button>
               </div>
 
-              {/* Buy Now to be added later */}
+             
               <button className="w-full py-4 bg-black text-white font-heading text-sm tracking-wide hover:bg-success/90 transition-colors mb-6">
                 BUY NOW
               </button>
 
-              {/* View Full Details */}
               <Link 
                 to={`/products/${product.slug}`}
                 onClick={onClose}
