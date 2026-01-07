@@ -138,17 +138,17 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
                   Add to Cart
                 </button>
 
-                <button className="p-3 border border-border hover:bg-secondary transition-colors">
+                <button className=" p-3 border border-border hover:bg-secondary transition-colors">
                   <Heart className="w-5 h-5" />
                 </button>
 
-                <button className="p-3 border border-border hover:bg-secondary transition-colors">
+                <button className="hidden p-3 border border-border hover:bg-secondary transition-colors">
                   <Layers className="w-5 h-5" />
                 </button>
               </div>
 
-              {/* Buy Now */}
-              <button className="w-full py-4 bg-success text-success-foreground font-heading text-sm tracking-wide hover:bg-success/90 transition-colors mb-6">
+              {/* Buy Now to be added later */}
+              <button className="w-full py-4 bg-black text-white font-heading text-sm tracking-wide hover:bg-success/90 transition-colors mb-6">
                 BUY NOW
               </button>
 
