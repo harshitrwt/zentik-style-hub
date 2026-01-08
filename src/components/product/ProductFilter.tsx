@@ -14,7 +14,7 @@ export interface FilterState {
   sortBy: 'newest' | 'priceAsc' | 'priceDesc' | 'name';
 }
 
-const allSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL'];
+const allSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 const MAX_PRICE = 2000;
 
 const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
