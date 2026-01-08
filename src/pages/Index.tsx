@@ -2,17 +2,21 @@ import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import ProductCard from '@/components/product/ProductCard';
-import { products, jerseyCategories, getBestSellers, getNewArrivals } from '@/data/products';
+import { jerseyCategories } from '@/data/products';
+import { useProducts, useBestSellers, useNewArrivals } from '@/hooks/useSanityProducts';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import WelcomePopup from '@/components/WelcomePopup';
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const featuredProducts = products.filter(p => p.isNew || p.isLimited).slice(0, 8);
-  const totalSlides = Math.ceil(featuredProducts.length / 4);
+  
+  // Fetch data from Sanity (with fallback)
+  const { data: allProducts = [], isLoading: loadingProducts } = useProducts();
+  const { data: bestSellers = [], isLoading: loadingBestSellers } = useBestSellers();
+  const { data: newArrivals = [], isLoading: loadingNewArrivals } = useNewArrivals();
 
-  const bestSellers = getBestSellers();
-  const newArrivals = getNewArrivals();
+  const featuredProducts = allProducts.filter(p => p.isNew || p.isLimited).slice(0, 8);
+  const totalSlides = Math.ceil(featuredProducts.length / 4) || 1;
 
   const bestSellerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -91,7 +95,7 @@ const Index = () => {
               className="flex gap-4"
             >
               <Link
-                to="/collections/jersey/all"
+                to="/shop"
                 className="group relative px-8 py-4 bg-white text-black font-heading text-sm tracking-widest overflow-hidden flex items-center justify-center hover:bg-foreground/90 hover:text-white transition-colors mb-10"
               >
                 <span className="relative z-10">SHOP NOW</span>
@@ -161,15 +165,27 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 ">
-            {featuredProducts.slice(currentSlide * 4, currentSlide * 4 + 4).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {loadingProducts ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="bg-secondary aspect-[3/4] rounded-lg mb-4" />
+                  <div className="h-4 bg-secondary rounded mb-2" />
+                  <div className="h-4 bg-secondary rounded w-1/2" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {featuredProducts.slice(currentSlide * 4, currentSlide * 4 + 4).map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+            </div>
+          )}
 
-          <div className="flex justify-center mt-10 ">
+          <div className="flex justify-center mt-10">
             <Link
-              to="/collections/jersey/all"
+              to="/shop"
               className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
             >
               View all
@@ -188,24 +204,36 @@ const Index = () => {
             <span className="text-sm text-muted-foreground">← Drag →</span>
           </div>
 
-          <div
-            ref={bestSellerRef}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
-            className={`flex gap-4 overflow-x-auto scrollbar-hide pb-4 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-            style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
-          >
-            {[...bestSellers, ...bestSellers].map((product, i) => (
-              <div
-                key={`${product.id}-${i}`}
-                className="w-[180px] md:w-[280px] flex-shrink-0"
-              >
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
+          {loadingBestSellers ? (
+            <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="w-[180px] md:w-[280px] flex-shrink-0 animate-pulse">
+                  <div className="bg-secondary aspect-[3/4] rounded-lg mb-4" />
+                  <div className="h-4 bg-secondary rounded mb-2" />
+                  <div className="h-4 bg-secondary rounded w-1/2" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div
+              ref={bestSellerRef}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseLeave}
+              className={`flex gap-4 overflow-x-auto scrollbar-hide pb-4 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+              style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
+            >
+              {[...bestSellers, ...bestSellers].map((product, i) => (
+                <div
+                  key={`${product._id}-${i}`}
+                  className="w-[180px] md:w-[280px] flex-shrink-0"
+                >
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
+          )}
 
           <div className="flex justify-center mt-10">
             <Link
@@ -225,11 +253,23 @@ const Index = () => {
             NEW ARRIVALS
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
-            {newArrivals.slice(0, 8).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {loadingNewArrivals ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="bg-secondary aspect-[3/4] rounded-lg mb-4" />
+                  <div className="h-4 bg-secondary rounded mb-2" />
+                  <div className="h-4 bg-secondary rounded w-1/2" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
+              {newArrivals.slice(0, 8).map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -240,15 +280,27 @@ const Index = () => {
             Products
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {products.slice(0, 8).map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {loadingProducts ? (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {[...Array(8)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className="bg-secondary aspect-[3/4] rounded-lg mb-4" />
+                  <div className="h-4 bg-secondary rounded mb-2" />
+                  <div className="h-4 bg-secondary rounded w-1/2" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              {allProducts.slice(0, 8).map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+            </div>
+          )}
 
           <div className="flex justify-center mt-10">
             <Link
-              to="/collections/jersey/all"
+              to="/shop"
               className="px-8 py-4 bg-foreground text-background font-heading text-sm tracking-wide hover:bg-foreground/90 transition-colors inline-flex items-center gap-2"
             >
               Load more
