@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { Minus, Plus, Share2, ChevronDown, ChevronRight } from 'lucide-react';
+import { Minus, Plus, Share2, ChevronDown, ChevronRight, ChevronLeft } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { getProductBySlug, products } from '@/data/products';
 import ProductCard from '@/components/product/ProductCard';
@@ -68,27 +68,50 @@ const ProductDetail = () => {
         </nav>
 
         <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
-          {/* Images */}
           <div className="space-y-4">
-            <div className="aspect-[3/4] bg-secondary overflow-hidden">
-              <img 
+            <div className="relative aspect-[3/4] bg-secondary overflow-hidden">
+              <img
                 src={product.images[selectedImage]}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
+
+              {/* Left Arrow */}
+              {product.images.length > 1 && (
+                <button
+                  onClick={() =>
+                    setSelectedImage(prev => (prev === 0 ? product.images.length - 1 : prev - 1))
+                  }
+                  className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+              )}
+
+              {/* Right Arrow */}
+              {product.images.length > 1 && (
+                <button
+                  onClick={() =>
+                    setSelectedImage(prev => (prev === product.images.length - 1 ? 0 : prev + 1))
+                  }
+                  className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 transition-colors"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              )}
             </div>
-            
+
+            {/* Thumbnail Images (optional, unchanged) */}
             {product.images.length > 1 && (
               <div className="flex gap-3 overflow-x-auto hide-scrollbar">
                 {product.images.map((image, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`flex-shrink-0 w-20 h-24 bg-secondary overflow-hidden border-2 transition-colors ${
-                      selectedImage === index ? 'border-primary' : 'border-transparent'
-                    }`}
+                    className={`flex-shrink-0 w-20 h-24 bg-secondary overflow-hidden border-2 transition-colors ${selectedImage === index ? 'border-primary' : 'border-transparent'
+                      }`}
                   >
-                    <img 
+                    <img
                       src={image}
                       alt={`${product.name} ${index + 1}`}
                       className="w-full h-full object-cover"
@@ -99,12 +122,13 @@ const ProductDetail = () => {
             )}
           </div>
 
+
           {/* Product Info */}
           <div>
             <h1 className="font-heading text-2xl md:text-3xl font-bold tracking-wide uppercase mb-4">
               {product.name}
             </h1>
-            
+
             <p className="text-2xl font-heading font-semibold mb-2">
               {formatPrice(product.price)}
             </p>
@@ -129,11 +153,10 @@ const ProductDetail = () => {
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`min-w-[3rem] px-4 py-3 border text-sm transition-colors ${
-                      selectedSize === size
+                    className={`min-w-[3rem] px-4 py-3 border text-sm transition-colors ${selectedSize === size
                         ? 'border-primary bg-primary text-primary-foreground'
                         : 'border-border hover:border-primary'
-                    }`}
+                      }`}
                   >
                     {size}
                   </button>
@@ -145,14 +168,14 @@ const ProductDetail = () => {
             <div className="mb-6">
               <span className="font-heading text-sm font-medium mb-3 block">Quantity</span>
               <div className="flex items-center border border-border w-fit">
-                <button 
+                <button
                   onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
                   className="p-3 hover:bg-secondary transition-colors"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
                 <span className="px-6 font-medium">{quantity}</span>
-                <button 
+                <button
                   onClick={() => setQuantity(prev => prev + 1)}
                   className="p-3 hover:bg-secondary transition-colors"
                 >
@@ -163,14 +186,14 @@ const ProductDetail = () => {
 
             {/* Actions */}
             <div className="space-y-3">
-              <button 
+              <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
                 className="w-full py-4 border border-primary font-heading text-sm tracking-wide hover:bg-secondary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {product.inStock ? 'Add to cart' : 'Sold Out'}
               </button>
-              <button 
+              <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
                 className="w-full py-4 bg-primary text-primary-foreground font-heading text-sm tracking-wide hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -181,14 +204,14 @@ const ProductDetail = () => {
 
             {/* Description */}
             <div className="mt-8 border-t border-border pt-6">
-              <button 
+              <button
                 onClick={() => setShowDescription(!showDescription)}
                 className="flex items-center justify-between w-full font-heading text-sm font-medium"
               >
                 Description
                 <ChevronDown className={`w-5 h-5 transition-transform ${showDescription ? 'rotate-180' : ''}`} />
               </button>
-              
+
               {showDescription && (
                 <p className="mt-4 text-muted-foreground leading-relaxed">
                   {product.description}

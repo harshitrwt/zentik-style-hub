@@ -1,14 +1,5 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
-import { toast } from '@/hooks/use-toast';
-import { z } from 'zod';
-
-const contactSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters').max(100),
-  email: z.string().email('Invalid email address').max(255),
-  subject: z.string().min(5, 'Subject must be at least 5 characters').max(200),
-  message: z.string().min(10, 'Message must be at least 10 characters').max(1000),
-});
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,46 +8,65 @@ const Contact = () => {
     subject: '',
     message: '',
   });
-  const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
-    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    try {
-      contactSchema.parse(formData);
-      setErrors({});
-      setLoading(true);
+    setLoading(true);
 
-      // Simulate form submission
-      setTimeout(() => {
-        toast({
-          title: "Message sent!",
-          description: "We'll get back to you as soon as possible."
-        });
+    try {
+      const data = new FormData();
+      data.append('access_key', '5e122438-f721-40d0-a3a3-945fd061b4fe');
+      data.append('name', formData.name);
+      data.append('email', formData.email);
+      data.append('subject', formData.subject);
+      data.append('message', formData.message);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
         setFormData({ name: '', email: '', subject: '', message: '' });
-        setLoading(false);
-      }, 1000);
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        const newErrors: Record<string, string> = {};
-        err.errors.forEach(error => {
-          if (error.path[0]) {
-            newErrors[error.path[0] as string] = error.message;
-          }
-        });
-        setErrors(newErrors);
+      } else {
+        alert('Error sending message. Please try again later.');
       }
+    } catch (error) {
+      console.error('Web3Forms Error:', error);
+      alert('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="py-12 md:py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Thank You!</h2>
+          <p className="text-muted-foreground mb-6">
+            Your message has been received. We will get back to you shortly.
+          </p>
+          <button
+            className="py-4 px-8 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+            onClick={() => setIsSubmitted(false)}
+          >
+            Send Another Message
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-12 md:py-20">
@@ -66,7 +76,7 @@ const Contact = () => {
             CONTACT US
           </h1>
           <p className="text-muted-foreground max-w-lg mx-auto">
-            Have a question or need assistance? We&#39;re here to help. Reach out to us and we&#39;ll respond as soon as possible.
+            Have a question or need assistance? We're here to help. Reach out to us and we'll respond as soon as possible.
           </p>
         </div>
 
@@ -74,54 +84,42 @@ const Contact = () => {
           {/* Contact Form */}
           <div>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Your Name"
-                  className={`w-full px-4 py-4 bg-transparent border ${errors.name ? 'border-destructive' : 'border-border'} focus:outline-none focus:ring-1 focus:ring-primary`}
-                />
-                {errors.name && <p className="text-destructive text-sm mt-1">{errors.name}</p>}
-              </div>
-
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="Your Email"
-                  className={`w-full px-4 py-4 bg-transparent border ${errors.email ? 'border-destructive' : 'border-border'} focus:outline-none focus:ring-1 focus:ring-primary`}
-                />
-                {errors.email && <p className="text-destructive text-sm mt-1">{errors.email}</p>}
-              </div>
-
-              <div>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  placeholder="Subject"
-                  className={`w-full px-4 py-4 bg-transparent border ${errors.subject ? 'border-destructive' : 'border-border'} focus:outline-none focus:ring-1 focus:ring-primary`}
-                />
-                {errors.subject && <p className="text-destructive text-sm mt-1">{errors.subject}</p>}
-              </div>
-
-              <div>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  placeholder="Your Message"
-                  rows={6}
-                  className={`w-full px-4 py-4 bg-transparent border ${errors.message ? 'border-destructive' : 'border-border'} focus:outline-none focus:ring-1 focus:ring-primary resize-none`}
-                />
-                {errors.message && <p className="text-destructive text-sm mt-1">{errors.message}</p>}
-              </div>
-
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Your Name"
+                required
+                className="w-full px-4 py-4 bg-transparent border border-border focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                placeholder="Your Email"
+                required
+                className="w-full px-4 py-4 bg-transparent border border-border focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <input
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleInputChange}
+                placeholder="Subject"
+                required
+                className="w-full px-4 py-4 bg-transparent border border-border focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                placeholder="Your Message"
+                rows={6}
+                required
+                className="w-full px-4 py-4 bg-transparent border border-border focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+              />
               <button
                 type="submit"
                 disabled={loading}
