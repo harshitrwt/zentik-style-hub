@@ -75,16 +75,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
             >
               <Heart className="w-4 h-4" />
             </button>
-            <button 
+            <Link
               className="p-2 bg-background rounded-full shadow-lg hover:bg-secondary transition-colors"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setShowQuickView(true);
-              }}
+              to={`/products/${product.slug}`}
             >
-              <Eye className="w-4 h-4" />
-            </button>
+              <Eye 
+              className="w-4 h-4" />
+            </Link>
           </div>
 
           {/* Select Options Button on Hover */}

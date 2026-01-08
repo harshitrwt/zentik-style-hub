@@ -39,7 +39,7 @@ const BottomNav = ({ onCartOpen }: BottomNavProps) => {
     { icon: Home, label: 'Home', path: '/' },
     { icon: Package, label: 'Track', path: '/coming-soon' },
     { icon: ShoppingBag, label: 'Shop', path: '/shop', isCenter: true },
-    { icon: Heart, label: 'Wishlist', path: '/coming-soon' },
+    { icon: Heart, label: 'Wishlist', path: '/wishlist' },
   ];
 
   return (
