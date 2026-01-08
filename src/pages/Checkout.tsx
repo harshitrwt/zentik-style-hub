@@ -445,13 +445,11 @@ const checkoutSchema = z.object({
   phone: z.string().regex(/^\d{10}$/, 'Invalid phone number'),
 });
 
-// --------------------
-// OrderSummary Component
-// --------------------
+
 const OrderSummary = ({ items, totalPrice, shippingCost, grandTotal, formatPrice }) => {
   return (
     <div className="bg-background border border-border p-10 rounded-lg shadow-md">
-      {/* Items */}
+      
       <div className="space-y-4 mb-6">
         {items.map(item => (
           <div 
@@ -852,7 +850,7 @@ const Checkout = () => {
           </div>
         </button>
 
-        {/* Mobile Order Summary */}
+        
         <div
           className={`lg:hidden transition-all duration-300 overflow-hidden ${showOrderSummary ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}
         >

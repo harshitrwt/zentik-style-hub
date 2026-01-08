@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, User, ShoppingBag, Heart, Menu } from 'lucide-react';
+import { Search, User, ShoppingBag, Heart, Menu, ShoppingCart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import AuthModal from '@/components/auth/AuthModal';
 
@@ -59,9 +59,8 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
         <div className="relative">
           {/* Marquee (absolute) */}
           <div
-            className={`absolute top-0 left-0 w-full bg-black text-white text-xs md:text-sm px-4 flex justify-center md:justify-between items-center transition-transform duration-300 z-50 ${
-              showMarquee ? 'translate-y-0' : '-translate-y-full'
-            }`}
+            className={`absolute top-0 left-0 w-full bg-black text-white text-xs md:text-sm px-4 flex justify-center md:justify-between items-center transition-transform duration-300 z-50 ${showMarquee ? 'translate-y-0' : '-translate-y-full'
+              }`}
           >
             <div className="overflow-hidden text-center md:text-left flex-1">
               <span key={currentIndex} className="inline-block animate-fade">
@@ -127,14 +126,25 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
               <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Wishlist">
                 <Heart className="w-5 h-5" />
               </button>
-
-              <button onClick={onCartOpen} className="relative p-2 hover:bg-secondary transition-colors" aria-label="Cart">
+              <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Wishlist">
                 <ShoppingBag className="w-5 h-5" />
+              </button>
+
+              <button onClick={onCartOpen} className="hidden md:block relative p-2 hover:bg-secondary transition-colors" aria-label="Cart">
+                <ShoppingCart className="w-5 h-5" />
                 {totalItems > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-foreground text-background text-xs font-bold rounded-full flex items-center justify-center">
                     {totalItems}
                   </span>
                 )}
+              </button>
+
+              <button
+                onClick={() => setShowAuthModal(true)}
+                className="md:hidden p-2 hover:bg-secondary transition-colors"
+                aria-label="Account"
+              >
+                <User className="w-5 h-5" />
               </button>
             </div>
           </div>
