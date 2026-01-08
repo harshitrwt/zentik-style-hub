@@ -164,12 +164,12 @@ const ProductPage = () => {
 
           {/* Quantity & Cart */}
           <div className="flex items-center gap-4">
-            <div className="flex items-center border border-border">
-              <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="p-3 hover:bg-secondary">
+            <div className="flex items-center border border-border py-2">
+              <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="p-3 ">
                 <Minus className="w-4 h-4" />
               </button>
               <span className="w-14 text-center font-medium text-lg">{quantity}</span>
-              <button onClick={() => setQuantity(q => q + 1)} className="p-3 hover:bg-secondary">
+              <button onClick={() => setQuantity(q => q + 1)} className="p-3">
                 <Plus className="w-4 h-4" />
               </button>
             </div>
