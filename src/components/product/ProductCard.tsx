@@ -1,16 +1,61 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Heart, Layers, Eye } from 'lucide-react';
-import { Product } from '@/data/products';
+import { Heart, Eye } from 'lucide-react';
 import QuickViewModal from './QuickViewModal';
+import { SanityProduct, getProductImageUrl } from '@/hooks/useSanityProducts';
+import { Product } from '@/data/products';
+
+// Union type to accept both Sanity and fallback products
+type ProductType = SanityProduct | Product;
 
 interface ProductCardProps {
-  product: Product;
+  product: ProductType;
 }
+
+// Helper to normalize product data
+const normalizeProduct = (product: ProductType) => {
+  // Check if it's a Sanity product (has _id)
+  if ('_id' in product) {
+    const sanityProduct = product as SanityProduct;
+    return {
+      id: sanityProduct._id,
+      name: sanityProduct.name,
+      slug: sanityProduct.slug,
+      price: sanityProduct.price,
+      originalPrice: sanityProduct.originalPrice,
+      discount: sanityProduct.discount,
+      imageUrl: getProductImageUrl(sanityProduct),
+      isNew: sanityProduct.isNew,
+      isLimited: sanityProduct.isLimited,
+      inStock: sanityProduct.sizes?.some(s => s.inStock) ?? true,
+      sizes: sanityProduct.sizes?.map(s => s.label) ?? [],
+      colors: sanityProduct.colors ?? [],
+    };
+  }
+  
+  // It's a fallback product
+  const fallbackProduct = product as Product;
+  return {
+    id: fallbackProduct.id,
+    name: fallbackProduct.name,
+    slug: fallbackProduct.slug,
+    price: fallbackProduct.price,
+    originalPrice: fallbackProduct.originalPrice,
+    discount: fallbackProduct.discount,
+    imageUrl: fallbackProduct.images[0] || '/placeholder.svg',
+    isNew: fallbackProduct.isNew,
+    isLimited: fallbackProduct.isLimited,
+    inStock: fallbackProduct.inStock,
+    sizes: fallbackProduct.sizes,
+    colors: fallbackProduct.colors,
+  };
+};
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showQuickView, setShowQuickView] = useState(false);
+
+  const normalized = normalizeProduct(product);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-IN', {
@@ -30,30 +75,30 @@ const ProductCard = ({ product }: ProductCardProps) => {
         {/* Image Container */}
         <div className="relative bg-secondary aspect-[3/4] mb-4 overflow-hidden rounded-lg">
           <img 
-            src={product.images[0]} 
-            alt={product.name}
+            src={normalized.imageUrl} 
+            alt={normalized.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"
           />
           
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">
-            {product.discount && (
+            {normalized.discount && (
               <span className="px-2 py-1 bg-destructive text-destructive-foreground text-xs font-semibold rounded">
-                -{product.discount}%
+                -{normalized.discount}%
               </span>
             )}
-            {product.isNew && (
+            {normalized.isNew && (
               <span className="px-2 py-1 bg-white text-black text-xs font-semibold rounded">
                 New
               </span>
             )}
-            {product.isLimited && (
+            {normalized.isLimited && (
               <span className="px-2 py-1 bg-amber-500 text-white text-xs font-semibold rounded">
                 Limited
               </span>
             )}
-            {!product.inStock && (
+            {!normalized.inStock && (
               <span className="px-2 py-1 bg-muted text-muted-foreground text-xs font-semibold rounded">
                 Sold Out
               </span>
@@ -104,18 +149,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         {/* Product Info */}
-        <Link to={`/products/${product.slug}`} className="block">
+        <Link to={`/products/${normalized.slug}`} className="block">
           <h3 className="font-heading text-sm font-medium tracking-wide mb-2 group-hover:text-muted-foreground transition-colors line-clamp-2">
-            {product.name}
+            {normalized.name}
           </h3>
           
           <div className="flex items-center gap-2">
             <span className="font-heading font-semibold">
-              {formatPrice(product.price)}
+              {formatPrice(normalized.price)}
             </span>
-            {product.originalPrice && (
+            {normalized.originalPrice && (
               <span className="text-muted-foreground line-through text-sm">
-                {formatPrice(product.originalPrice)}
+                {formatPrice(normalized.originalPrice)}
               </span>
             )}
           </div>
