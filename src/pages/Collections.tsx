@@ -3,13 +3,16 @@ import { useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
 import ProductCard from '@/components/product/ProductCard';
 import ProductFilter, { FilterState } from '@/components/product/ProductFilter';
-import { products, jerseyCategories } from '@/data/products';
+import { jerseyCategories } from '@/data/products';
+import { useProducts } from '@/hooks/useSanityProducts';
 
 const Collections = () => {
-  const { gender, category } = useParams<{ gender: string; category: string }>();
+  const { category } = useParams<{ gender: string; category: string }>();
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
   const [localSearch, setLocalSearch] = useState(searchQuery);
+  
+  const { data: products = [], isLoading } = useProducts();
   
   const [filters, setFilters] = useState<FilterState>({
     priceRange: [0, 2000],
@@ -30,27 +33,20 @@ const Collections = () => {
       const query = searchQuery.toLowerCase();
       result = result.filter(p => 
         p.name.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query) ||
-        p.subcategory.toLowerCase().includes(query)
+        p.description?.toLowerCase().includes(query) ||
+        p.subcategory?.toLowerCase().includes(query)
       );
     }
 
     // Filter by subcategory
     if (category && category !== 'all') {
-      // Check if it's a jersey type filter
       if (['embroidery', 'full-sleeve', 'retro', 'five-sleeve'].includes(category)) {
         result = result.filter(p => p.subcategory === category);
-      }
-      // Check for new arrivals
-      else if (category === 'new-arrival') {
+      } else if (category === 'new-arrival') {
         result = result.filter(p => p.isNew);
-      }
-      // Check for best sellers
-      else if (category === 'best-seller') {
+      } else if (category === 'best-seller') {
         result = result.filter(p => p.isBestSeller);
-      }
-      // Check for club/team names in product name
-      else {
+      } else {
         const categoryName = category.replace(/-/g, ' ').toLowerCase();
         result = result.filter(p => 
           p.name.toLowerCase().includes(categoryName) ||
@@ -67,15 +63,15 @@ const Collections = () => {
     // Apply size filter
     if (filters.sizes.length > 0) {
       result = result.filter(p => 
-        filters.sizes.some(size => p.sizes.includes(size))
+        filters.sizes.some(size => p.sizes?.some(s => s.label === size))
       );
     }
 
     // Apply availability filter
     if (filters.availability === 'inStock') {
-      result = result.filter(p => p.inStock);
+      result = result.filter(p => p.sizes?.some(s => s.inStock));
     } else if (filters.availability === 'outOfStock') {
-      result = result.filter(p => !p.inStock);
+      result = result.filter(p => !p.sizes?.some(s => s.inStock));
     }
 
     // Apply sorting
@@ -96,25 +92,22 @@ const Collections = () => {
     }
 
     return result;
-  }, [category, filters, searchQuery]);
+  }, [category, filters, searchQuery, products]);
 
   return (
     <div className="py-8 md:py-12">
       <div className="container mx-auto px-4">
-        {/* Breadcrumb */}
         {searchQuery && (
           <p className="text-sm text-muted-foreground mb-2">
             Home › Search: {filteredProducts.length} results found for "<span className="text-success">{searchQuery}</span>"
           </p>
         )}
 
-        {/* Page Header */}
         <div className="mb-8 md:mb-12 text-center">
           <h1 className="font-heading text-3xl md:text-4xl font-bold tracking-wide mb-4">
             {searchQuery ? 'Search Our Site' : pageTitle}
           </h1>
           
-          {/* Search Box */}
           <div className="max-w-xl mx-auto mb-4">
             <div className="relative">
               <input
@@ -133,17 +126,22 @@ const Collections = () => {
           </p>
         </div>
 
-        {/* Filters */}
-        <ProductFilter 
-          onFilterChange={setFilters}
-          initialFilters={filters}
-        />
+        <ProductFilter onFilterChange={setFilters} initialFilters={filters} />
 
-        {/* Products Grid */}
-        {filteredProducts.length > 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-secondary aspect-[3/4] rounded-lg mb-4" />
+                <div className="h-4 bg-secondary rounded mb-2" />
+                <div className="h-4 bg-secondary rounded w-1/2" />
+              </div>
+            ))}
+          </div>
+        ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {filteredProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product._id} product={product} />
             ))}
           </div>
         ) : (

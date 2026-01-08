@@ -25,35 +25,40 @@ export const urlFor = (source: any) => {
   return builder.image(source).url()
 }
 
+// Base product fields for reuse
+const productFields = `
+  _id,
+  name,
+  "slug": slug.current,
+  price,
+  originalPrice,
+  discount,
+  "images": images[] {
+    "url": asset->url,
+    "alt": coalesce(alt, name)
+  },
+  category,
+  subcategory,
+  "sizes": sizes[] {
+    label,
+    price,
+    inStock
+  },
+  "colors": colors[] {
+    name,
+    hex
+  },
+  description,
+  isNew,
+  isBestSeller,
+  isMustBuy,
+  isLimited
+`
+
 // GROQ query to fetch all products
 export const productsQuery = `
   *[_type == "product" && isActive == true] {
-    _id,
-    name,
-    "slug": slug.current,
-    price,
-    originalPrice,
-    discount,
-    "images": images[] {
-      "url": asset->url,
-      alt
-    },
-    category,
-    subcategory,
-    "sizes": sizes[] {
-      label,
-      price,
-      inStock
-    },
-    "colors": colors[] {
-      name,
-      hex
-    },
-    description,
-    isNew,
-    isBestSeller,
-    isMustBuy,
-    isLimited
+    ${productFields}
   } | order(_createdAt desc)
 `
 
