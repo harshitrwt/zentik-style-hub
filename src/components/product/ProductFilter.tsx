@@ -12,9 +12,19 @@ export interface FilterState {
   sizes: string[];
   availability: 'all' | 'inStock' | 'outOfStock';
   sortBy: 'newest' | 'priceAsc' | 'priceDesc' | 'name';
+  category: string; // <-- Added category here
 }
 
 const allSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const allCategories = [
+  { value: '', label: 'All' },
+  { value: 'new-arrival', label: 'New Arrival' },
+  { value: 'best-seller', label: 'Best Seller' },
+  { value: 'retro', label: 'Retro' },
+  { value: 'full-sleeve', label: 'Full Sleeve' },
+  { value: 'fan-edition', label: 'Fan Edition' },
+  { value: 'embroidery', label: 'Embroidery' },
+];
 const MAX_PRICE = 2000;
 
 const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
@@ -23,14 +33,15 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
     priceRange: [0, MAX_PRICE],
     sizes: [],
     availability: 'all',
-    sortBy: 'newest'
+    sortBy: 'newest',
+    category: '',  // <-- initialize category
   });
 
-  const [expandedSections, setExpandedSections] = useState<string[]>(['price', 'size', 'availability']);
+  const [expandedSections, setExpandedSections] = useState<string[]>(['price', 'size', 'availability', 'category']);
 
   const toggleSection = (section: string) => {
-    setExpandedSections(prev => 
-      prev.includes(section) 
+    setExpandedSections(prev =>
+      prev.includes(section)
         ? prev.filter(s => s !== section)
         : [...prev, section]
     );
@@ -54,13 +65,19 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
       priceRange: [0, MAX_PRICE],
       sizes: [],
       availability: 'all',
-      sortBy: 'newest'
+      sortBy: 'newest',
+      category: '',  // reset category too
     };
     setFilters(defaultFilters);
     onFilterChange(defaultFilters);
   };
 
-  const hasActiveFilters = filters.sizes.length > 0 || filters.availability !== 'all' || filters.priceRange[0] > 0 || filters.priceRange[1] < MAX_PRICE;
+  const hasActiveFilters =
+    filters.sizes.length > 0 ||
+    filters.availability !== 'all' ||
+    filters.priceRange[0] > 0 ||
+    filters.priceRange[1] < MAX_PRICE ||
+    filters.category !== '';
 
   const formatPrice = (price: number) => `₹${price}`;
 
@@ -68,16 +85,16 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
     <div className="mb-8">
       {/* Mobile Filter Toggle */}
       <div className="lg:hidden flex items-center justify-between mb-4">
-        <button 
+        <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex items-center gap-2 px-4 py-2 border border-border font-heading text-sm tracking-wide"
         >
           FILTER & SORT
           <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
         </button>
-        
+
         {hasActiveFilters && (
-          <button 
+          <button
             onClick={clearFilters}
             className="text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
@@ -90,7 +107,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
       <div className="hidden lg:flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
           <span className="text-sm text-muted-foreground">Sort by:</span>
-          <select 
+          <select
             value={filters.sortBy}
             onChange={(e) => updateFilter('sortBy', e.target.value)}
             className="bg-background border border-border px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary rounded"
@@ -103,7 +120,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
         </div>
 
         {hasActiveFilters && (
-          <button 
+          <button
             onClick={clearFilters}
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
@@ -117,14 +134,14 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
       <div className={`${isOpen ? 'block' : 'hidden'} lg:flex lg:items-start gap-8 pb-6 border-b border-border`}>
         {/* Price Range with Draggable Slider */}
         <div className="mb-6 lg:mb-0 lg:min-w-[280px]">
-          <button 
+          <button
             onClick={() => toggleSection('price')}
             className="flex items-center justify-between w-full lg:w-auto font-heading text-sm font-medium tracking-wide mb-3"
           >
             PRICE
-            <ChevronDown className={`lg:hidden w-4 h-4 transition-transform ${expandedSections.includes('price') ? 'rotate[180]' : ''}`} />
+            <ChevronDown className={`lg:hidden w-4 h-4 transition-transform ${expandedSections.includes('price') ? 'rotate-180' : ''}`} />
           </button>
-          
+
           {expandedSections.includes('price') && (
             <div className="space-y-4">
               <div className="px-2">
@@ -147,14 +164,14 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
 
         {/* Size */}
         <div className="mb-6 lg:mb-0">
-          <button 
+          <button
             onClick={() => toggleSection('size')}
             className="flex items-center justify-between w-full lg:w-auto font-heading text-sm font-medium tracking-wide mb-3"
           >
             SIZE
             <ChevronDown className={`lg:hidden w-4 h-4 transition-transform ${expandedSections.includes('size') ? 'rotate-180' : ''}`} />
           </button>
-          
+
           {expandedSections.includes('size') && (
             <div className="flex flex-wrap gap-2">
               {allSizes.map(size => (
@@ -176,14 +193,14 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
 
         {/* Availability */}
         <div className="mb-6 lg:mb-0">
-          <button 
+          <button
             onClick={() => toggleSection('availability')}
             className="flex items-center justify-between w-full lg:w-auto font-heading text-sm font-medium tracking-wide mb-3"
           >
             AVAILABILITY
             <ChevronDown className={`lg:hidden w-4 h-4 transition-transform ${expandedSections.includes('availability') ? 'rotate-180' : ''}`} />
           </button>
-          
+
           {expandedSections.includes('availability') && (
             <div className="flex flex-col gap-2">
               {[
@@ -192,7 +209,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
                 { value: 'outOfStock', label: 'Out of Stock' }
               ].map(option => (
                 <label key={option.value} className="flex items-center gap-2 cursor-pointer">
-                  <input 
+                  <input
                     type="radio"
                     name="availability"
                     checked={filters.availability === option.value}
@@ -208,14 +225,14 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
 
         {/* Mobile Sort */}
         <div className="lg:hidden">
-          <button 
+          <button
             onClick={() => toggleSection('sort')}
             className="flex items-center justify-between w-full font-heading text-sm font-medium tracking-wide mb-3"
           >
             SORT BY
             <ChevronDown className={`w-4 h-4 transition-transform ${expandedSections.includes('sort') ? 'rotate-180' : ''}`} />
           </button>
-          
+
           {expandedSections.includes('sort') && (
             <div className="flex flex-col gap-2">
               {[
@@ -225,7 +242,7 @@ const ProductFilter = ({ onFilterChange, initialFilters }: FilterProps) => {
                 { value: 'name', label: 'Name' }
               ].map(option => (
                 <label key={option.value} className="flex items-center gap-2 cursor-pointer">
-                  <input 
+                  <input
                     type="radio"
                     name="sortBy"
                     checked={filters.sortBy === option.value}

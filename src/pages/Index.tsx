@@ -9,7 +9,7 @@ import WelcomePopup from '@/components/WelcomePopup';
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   // Fetch data from Sanity (with fallback)
   const { data: allProducts = [], isLoading: loadingProducts } = useProducts();
   const { data: bestSellers = [], isLoading: loadingBestSellers } = useBestSellers();
@@ -264,14 +264,28 @@ const Index = () => {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
-              {newArrivals.slice(0, 8).map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
+                {newArrivals.slice(0, 8).map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
+              </div>
+
+              {newArrivals.length >= 8 && (
+                <div className="flex justify-center mt-10">
+                  <Link
+                    to="/shop"
+                    className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
+                  >
+                    View All
+                  </Link>
+                </div>
+              )}
+            </>
           )}
         </div>
       </section>
+
 
       {/* Products Section */}
       <section className="py-16 md:py-24 bg-white">
@@ -301,9 +315,9 @@ const Index = () => {
           <div className="flex justify-center mt-10">
             <Link
               to="/shop"
-              className="px-8 py-4 bg-foreground text-background font-heading text-sm tracking-wide hover:bg-foreground/90 transition-colors inline-flex items-center gap-2"
+              className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
             >
-              Load more
+              View All Products
             </Link>
           </div>
         </div>

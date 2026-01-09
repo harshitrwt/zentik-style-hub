@@ -180,7 +180,6 @@ import {
 } from '@/lib/sanity';
 import { products as fallbackProducts } from '@/data/products';
 
-// Unified Product type for both Sanity and fallback data
 export interface SanityProduct {
   _id: string;
   name: string;
@@ -194,11 +193,20 @@ export interface SanityProduct {
   sizes: { label: string; price?: number; inStock: boolean }[];
   colors: { name: string; hex: string }[];
   description: string;
+
+  // Add all toggle booleans here:
   isNew?: boolean;
   isBestSeller?: boolean;
   isMustBuy?: boolean;
   isLimited?: boolean;
+
+  // Add missing ones from your Sanity schema:
+  isRetro?: boolean;
+  isFullSleeves?: boolean;
+  isFanEdition?: boolean;
+  isEmbroidery?: boolean;
 }
+
 
 // Transform fallback product to match Sanity structure
 const transformFallbackProduct = (product: typeof fallbackProducts[0]): SanityProduct => ({

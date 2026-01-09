@@ -1,3 +1,4 @@
+
 import { useMemo, useState } from 'react';
 import ProductCard from '@/components/product/ProductCard';
 import ProductFilter, { FilterState } from '@/components/product/ProductFilter';
@@ -7,37 +8,60 @@ import { Link } from 'react-router-dom';
 
 const Shop = () => {
   const { data: products = [], isLoading } = useProducts();
-  
+
   const [filters, setFilters] = useState<FilterState>({
     priceRange: [0, 2000],
     sizes: [],
     availability: 'all',
+    category: '', 
     sortBy: 'newest'
   });
 
   const filteredProducts = useMemo(() => {
     let result = [...products];
 
-    // Apply price filter
-    result = result.filter(p => 
-      p.price >= filters.priceRange[0] && p.price <= filters.priceRange[1]
+    // Price filter
+    result = result.filter(
+      (p) => p.price >= filters.priceRange[0] && p.price <= filters.priceRange[1]
     );
 
-    // Apply size filter
+    // Size filter
     if (filters.sizes.length > 0) {
-      result = result.filter(p => 
-        filters.sizes.some(size => p.sizes?.some(s => s.label === size))
+      result = result.filter((p) =>
+        filters.sizes.some((size) => p.sizes?.some((s) => s.label === size))
       );
     }
 
-    // Apply availability filter
+    // Availability filter
     if (filters.availability === 'inStock') {
-      result = result.filter(p => p.sizes?.some(s => s.inStock));
+      result = result.filter((p) => p.sizes?.some((s) => s.inStock));
     } else if (filters.availability === 'outOfStock') {
-      result = result.filter(p => !p.sizes?.some(s => s.inStock));
+      result = result.filter((p) => !p.sizes?.some((s) => s.inStock));
     }
 
-    // Apply sorting
+    // Category toggle filter
+    if (filters.category) {
+      result = result.filter((p) => {
+        switch (filters.category) {
+          case 'new-arrival':
+            return p.isNew;
+          case 'best-seller':
+            return p.isBestSeller;
+          case 'retro':
+            return p.isRetro;
+          case 'full-sleeve':
+            return p.isFullSleeves;
+          case 'fan-edition':
+            return p.isFanEdition;
+          case 'embroidery':
+            return p.isEmbroidery;
+          default:
+            return true;
+        }
+      });
+    }
+
+    // Sorting
     switch (filters.sortBy) {
       case 'priceAsc':
         result.sort((a, b) => a.price - b.price);
@@ -94,17 +118,14 @@ const Shop = () => {
             Products
           </h1>
           <p className="text-muted-foreground">
-            {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
+            {filteredProducts.length}{' '}
+            {filteredProducts.length === 1 ? 'product' : 'products'}
           </p>
         </div>
 
-        {/* Filters */}
-        <ProductFilter 
-          onFilterChange={setFilters}
-          initialFilters={filters}
-        />
+        <ProductFilter onFilterChange={setFilters} initialFilters={filters} />
 
-        {/* Products Grid */}
+   
         {isLoading ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {[...Array(8)].map((_, i) => (
@@ -117,13 +138,15 @@ const Shop = () => {
           </div>
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-            {filteredProducts.map(product => (
+            {filteredProducts.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
           </div>
         ) : (
           <div className="py-16 text-center">
-            <p className="text-muted-foreground">No products found matching your criteria.</p>
+            <p className="text-muted-foreground">
+              No products found matching your criteria.
+            </p>
           </div>
         )}
       </div>
