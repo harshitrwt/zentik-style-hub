@@ -18,7 +18,8 @@ const Collections = () => {
     priceRange: [0, 2000],
     sizes: [],
     availability: 'all',
-    sortBy: 'newest'
+    sortBy: 'newest',
+    category: ''
   });
 
   const pageTitle = category === 'all' 
@@ -38,21 +39,26 @@ const Collections = () => {
       );
     }
 
-    // Filter by subcategory
+    // Filter by subcategory using boolean flags
     if (category && category !== 'all') {
-      if (['embroidery', 'full-sleeve', 'retro', 'five-sleeve'].includes(category)) {
-        result = result.filter(p => p.subcategory === category);
-      } else if (category === 'new-arrival') {
-        result = result.filter(p => p.isNew);
-      } else if (category === 'best-seller') {
-        result = result.filter(p => p.isBestSeller);
-      } else {
-        const categoryName = category.replace(/-/g, ' ').toLowerCase();
-        result = result.filter(p => 
-          p.name.toLowerCase().includes(categoryName) ||
-          p.slug.includes(category)
-        );
-      }
+      result = result.filter(p => {
+        switch (category) {
+          case 'new-arrival':
+            return p.isNew;
+          case 'best-seller':
+            return p.isBestSeller;
+          case 'retro':
+            return p.isRetro;
+          case 'full-sleeve':
+            return p.isFullSleeves;
+          case 'fan-edition':
+            return p.isFanEdition;
+          case 'embroidery':
+            return p.isEmbroidery;
+          default:
+            return true;
+        }
+      });
     }
 
     // Apply price filter
