@@ -9,14 +9,14 @@ const Footer = () => {
 
   return (
     <footer className="bg-card border-t border-border relative overflow-hidden">
-      {/* Big ZERC Background Text - Bottom positioned */}
+      
       <div className="absolute bottom-4 md:bottom-6 right-12 flex justify-center pointer-events-none overflow-hidden md:mb-[-13px]">
         <span className="hidden md:block font-heading text-[15vw] font-black text-foreground/[0.04] tracking-[0.01em] select-none whitespace-nowrap ">
           Zerć
         </span>
       </div>
 
-      {/* Infinite Scroll Brand Text */}
+     
       <div className="py-6 overflow-hidden border-b border-border relative z-10">
         <div className="flex animate-scroll-left">
           {brandTexts.map((text, i) => (

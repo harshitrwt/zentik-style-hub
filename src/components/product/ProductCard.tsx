@@ -129,7 +129,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             </Link>
           </div>
 
-          {/* Select Options Button on Hover */}
+          
           <div 
             className={`absolute bottom-0 left-0 right-0 transition-all duration-300 ${
               isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'

@@ -12,7 +12,7 @@ export interface FilterState {
   sizes: string[];
   availability: 'all' | 'inStock' | 'outOfStock';
   sortBy: 'newest' | 'priceAsc' | 'priceDesc' | 'name';
-  category: string; // <-- Added category here
+  category: string; 
 }
 
 const allSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];

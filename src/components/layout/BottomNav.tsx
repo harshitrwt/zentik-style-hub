@@ -83,7 +83,7 @@ const BottomNav = ({ onCartOpen }: BottomNavProps) => {
           );
         })}
 
-        {/* Cart Button */}
+       
         <button
           onClick={onCartOpen}
           className="flex flex-col items-center gap-1 px-4 py-2 transition-colors relative"
