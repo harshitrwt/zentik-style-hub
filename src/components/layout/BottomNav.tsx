@@ -5,9 +5,11 @@ import { useCart } from '@/context/CartContext';
 
 interface BottomNavProps {
   onCartOpen: () => void;
+  isCartOpen?: boolean;
+  isMenuOpen?: boolean;
 }
 
-const BottomNav = ({ onCartOpen }: BottomNavProps) => {
+const BottomNav = ({ onCartOpen, isCartOpen = false, isMenuOpen = false }: BottomNavProps) => {
   const location = useLocation();
   const { totalItems } = useCart();
 
@@ -45,7 +47,7 @@ const BottomNav = ({ onCartOpen }: BottomNavProps) => {
   return (
     <nav
       className={`fixed bottom-0 left-0 right-0 bg-background border-t border-border z-50 lg:hidden transition-transform duration-300 ${
-        showNav ? 'translate-y-0' : 'translate-y-full'
+        showNav && !isCartOpen && !isMenuOpen ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
       <div className="flex items-center justify-around py-2">

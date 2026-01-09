@@ -40,7 +40,11 @@ const Layout = ({ children }: LayoutProps) => {
         onAuthOpen={() => setIsAuthOpen(true)}
       />
       
-      <BottomNav onCartOpen={() => setIsCartOpen(true)} />
+      <BottomNav 
+        onCartOpen={() => setIsCartOpen(true)} 
+        isCartOpen={isCartOpen}
+        isMenuOpen={isMenuOpen}
+      />
       
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
     </div>
