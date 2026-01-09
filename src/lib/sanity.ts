@@ -52,7 +52,11 @@ const productFields = `
   isNew,
   isBestSeller,
   isMustBuy,
-  isLimited
+  isLimited,
+  isRetro,
+  isFullSleeves,
+  isFanEdition,
+  isEmbroidery
 `
 
 // GROQ query to fetch all products
@@ -65,127 +69,27 @@ export const productsQuery = `
 // Query for single product by slug
 export const productBySlugQuery = `
   *[_type == "product" && slug.current == $slug && isActive == true][0] {
-    _id,
-    name,
-    "slug": slug.current,
-    price,
-    originalPrice,
-    discount,
-    "images": images[] {
-      "url": asset->url,
-      alt
-    },
-    category,
-    subcategory,
-    "sizes": sizes[] {
-      label,
-      price,
-      inStock
-    },
-    "colors": colors[] {
-      name,
-      hex
-    },
-    description,
-    isNew,
-    isBestSeller,
-    isMustBuy,
-    isLimited
+    ${productFields}
   }
 `
 
 // Query for best sellers
 export const bestSellersQuery = `
   *[_type == "product" && isBestSeller == true && isActive == true] {
-    _id,
-    name,
-    "slug": slug.current,
-    price,
-    originalPrice,
-    discount,
-    "images": images[] {
-      "url": asset->url,
-      alt
-    },
-    category,
-    subcategory,
-    "sizes": sizes[] {
-      label,
-      price,
-      inStock
-    },
-    "colors": colors[] {
-      name,
-      hex
-    },
-    description,
-    isNew,
-    isBestSeller,
-    isMustBuy,
-    isLimited
+    ${productFields}
   } | order(_createdAt desc)
 `
 
 // Query for new arrivals
 export const newArrivalsQuery = `
   *[_type == "product" && isNew == true && isActive == true] {
-    _id,
-    name,
-    "slug": slug.current,
-    price,
-    originalPrice,
-    discount,
-    "images": images[] {
-      "url": asset->url,
-      alt
-    },
-    category,
-    subcategory,
-    "sizes": sizes[] {
-      label,
-      price,
-      inStock
-    },
-    "colors": colors[] {
-      name,
-      hex
-    },
-    description,
-    isNew,
-    isBestSeller,
-    isMustBuy,
-    isLimited
+    ${productFields}
   } | order(_createdAt desc)
 `
 
 // Query for products by subcategory
 export const productsBySubcategoryQuery = `
   *[_type == "product" && subcategory == $subcategory && isActive == true] {
-    _id,
-    name,
-    "slug": slug.current,
-    price,
-    originalPrice,
-    discount,
-    "images": images[] {
-      "url": asset->url,
-      alt
-    },
-    category,
-    subcategory,
-    "sizes": sizes[] {
-      label,
-      price,
-      inStock
-    },
-    "colors": colors[] {
-      name,
-      hex
-    },
-    description,
-    isNew,
-    isBestSeller,
-    isMustBuy,
-    isLimited
+    ${productFields}
   } | order(_createdAt desc)
 `
