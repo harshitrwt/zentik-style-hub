@@ -78,11 +78,11 @@ const ProductPage = () => {
       <div className="grid md:grid-cols-2 gap-12">
         {/* Images */}
         <div className="relative">
-          <div className="w-full aspect-[4/5] border rounded overflow-hidden">
+          <div className="w-full aspect-[4/5] border-4 p-1 border-black rounded-xl overflow-hidden">
             <img
               src={getProductImageUrl(product, mainImageIndex)}
               alt={product.name}
-              className="w-full h-full object-cover transition-transform duration-300"
+              className="w-full h-full object-cover rounded-xl transition-transform duration-300"
             />
           </div>
 
@@ -91,13 +91,13 @@ const ProductPage = () => {
             <>
               <button
                 onClick={() => setMainImageIndex(idx => (idx - 1 + product.images.length) % product.images.length)}
-                className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white"
+                className="absolute top-1/2 left-3 hover:bg-slate-100  transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow "
               >
                 <ChevronLeft className="w-6 h-6 " />
               </button>
               <button
                 onClick={() => setMainImageIndex(idx => (idx + 1) % product.images.length)}
-                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white"
+                className="absolute top-1/2 right-3 hover:bg-slate-100 transform -translate-y-1/2 bg-white/80 p-2 rounded-full shadow "
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -164,7 +164,7 @@ const ProductPage = () => {
 
           {/* Quantity & Cart */}
           <div className="flex items-center gap-4">
-            <div className="flex items-center border border-border py-2">
+            <div className="flex items-center border border-border py-2 ">
               <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="p-3 ">
                 <Minus className="w-4 h-4" />
               </button>

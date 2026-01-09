@@ -68,12 +68,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <>
       <div 
-        className="group relative"
+        className="group relative md:border-2 p-2 border-black shadow-xl shadow-gray-300"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Image Container */}
-        <div className="relative bg-secondary aspect-[3/4] mb-4 overflow-hidden rounded-lg">
+        <div className="relative bg-secondary border-2 p-[0.8px] border-black aspect-[3/4] mb-4 overflow-hidden rounded-lg">
           <img 
             src={normalized.imageUrl} 
             alt={normalized.name}
@@ -89,7 +89,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               </span>
             )}
             {normalized.isNew && (
-              <span className="px-2 py-1 bg-white text-black text-xs font-semibold rounded">
+              <span className="px-2 py-1 bg-black text-white text-xs font-semibold rounded">
                 New
               </span>
             )}

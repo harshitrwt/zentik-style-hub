@@ -227,7 +227,7 @@ const Index = () => {
               {[...bestSellers, ...bestSellers].map((product, i) => (
                 <div
                   key={`${product._id}-${i}`}
-                  className="w-[180px] md:w-[280px] flex-shrink-0"
+                  className="w-[180px] md:w-[280px] flex-shrink-0 mb-10"
                 >
                   <ProductCard product={product} />
                 </div>
