@@ -1,9 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Eye } from 'lucide-react';
 import QuickViewModal from './QuickViewModal';
 import { SanityProduct, getProductImageUrl } from '@/hooks/useSanityProducts';
 import { Product } from '@/data/products';
+
+// Helper to manage wishlist in localStorage
+const getWishlist = (): string[] => {
+  try {
+    return JSON.parse(localStorage.getItem('wishlist') || '[]');
+  } catch {
+    return [];
+  }
+};
+
+const toggleWishlistItem = (productId: string): boolean => {
+  const wishlist = getWishlist();
+  const index = wishlist.indexOf(productId);
+  if (index > -1) {
+    wishlist.splice(index, 1);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    return false;
+  } else {
+    wishlist.push(productId);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    return true;
+  }
+};
 
 // Union type to accept both Sanity and fallback products
 type ProductType = SanityProduct | Product;
@@ -54,8 +77,21 @@ const normalizeProduct = (product: ProductType) => {
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showQuickView, setShowQuickView] = useState(false);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   const normalized = normalizeProduct(product);
+
+  // Check wishlist status on mount
+  useEffect(() => {
+    setIsWishlisted(getWishlist().includes(normalized.id));
+  }, [normalized.id]);
+
+  const handleWishlistToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const newStatus = toggleWishlistItem(normalized.id);
+    setIsWishlisted(newStatus);
+  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-IN', {
@@ -113,12 +149,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
           >
             <button 
               className="p-2 bg-background rounded-full shadow-lg hover:bg-secondary transition-colors"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-              }}
+              onClick={handleWishlistToggle}
             >
-              <Heart className="w-4 h-4" />
+              <Heart className={`w-4 h-4 transition-colors ${isWishlisted ? 'fill-red-500 text-red-500' : ''}`} />
             </button>
             <Link
               className="p-2 bg-background rounded-full shadow-lg hover:bg-secondary transition-colors"
