@@ -5,11 +5,13 @@ import { useCart } from '@/context/CartContext';
 
 interface BottomNavProps {
   onCartOpen: () => void;
+  onWishlistOpen: () => void;
   isCartOpen?: boolean;
   isMenuOpen?: boolean;
+  isWishlistOpen?: boolean;
 }
 
-const BottomNav = ({ onCartOpen, isCartOpen = false, isMenuOpen = false }: BottomNavProps) => {
+const BottomNav = ({ onCartOpen, onWishlistOpen, isCartOpen = false, isMenuOpen = false, isWishlistOpen = false }: BottomNavProps) => {
   const location = useLocation();
   const { totalItems } = useCart();
 
@@ -41,19 +43,35 @@ const BottomNav = ({ onCartOpen, isCartOpen = false, isMenuOpen = false }: Botto
     { icon: Home, label: 'Home', path: '/' },
     { icon: Package, label: 'Orders', path: '/coming-soon' },
     { icon: ShoppingBag, label: 'Shop', path: '/shop', isCenter: true },
-    { icon: Heart, label: 'Wishlist', path: '/wishlist' },
+    { icon: Heart, label: 'Wishlist', path: '', isWishlist: true },
   ];
 
   return (
     <nav
       className={`fixed bottom-0 left-0 right-0 bg-background border-t border-border z-50 lg:hidden transition-transform duration-300 ${
-        showNav && !isCartOpen && !isMenuOpen ? 'translate-y-0' : 'translate-y-full'
+        showNav && !isCartOpen && !isMenuOpen && !isWishlistOpen ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
       <div className="flex items-center justify-around py-2">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           const Icon = item.icon;
+
+          // Handle wishlist as button instead of link
+          if (item.isWishlist) {
+            return (
+              <button
+                key={item.label}
+                onClick={onWishlistOpen}
+                className="flex flex-col items-center gap-1 px-4 py-2 transition-colors"
+              >
+                <Icon className="w-5 h-5 text-muted-foreground" />
+                <span className="text-xs text-muted-foreground">
+                  {item.label}
+                </span>
+              </button>
+            );
+          }
 
           return (
             <Link

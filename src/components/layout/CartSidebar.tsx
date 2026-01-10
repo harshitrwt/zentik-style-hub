@@ -8,7 +8,7 @@ interface CartSidebarProps {
 }
 
 const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
-  const { items, updateQuantity, removeFromCart, totalPrice, totalItems } = useCart();
+  const { items, updateQuantity, removeFromCart, totalPrice, totalDiscount, finalPrice, totalItems, getItemDiscount } = useCart();
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-IN', {
@@ -62,66 +62,102 @@ const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                 </button>
               </div>
             ) : (
-              items.map((item) => (
-                <div 
-                  key={`${item.product.id}-${item.size}-${item.color}`}
-                  className="flex gap-4 pb-4 border-b border-border"
-                >
-                  <div className="w-24 h-28 bg-secondary overflow-hidden flex-shrink-0">
-                    <img 
-                      src={item.product.images[0]} 
-                      alt={item.product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-heading text-sm font-medium truncate">
-                      {item.product.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Size: {item.size} | Color: {item.color}
-                    </p>
-                    <p className="font-heading font-semibold mt-2">
-                      {formatPrice(item.product.price)}
-                    </p>
+              items.map((item) => {
+                const itemDiscount = getItemDiscount(item);
+                const itemTotal = item.product.price * item.quantity;
+                const discountedTotal = itemTotal - itemDiscount;
+                
+                return (
+                  <div 
+                    key={`${item.product.id}-${item.size}-${item.color}`}
+                    className="flex gap-4 pb-4 border-b border-border"
+                  >
+                    <div className="w-24 h-28 bg-secondary overflow-hidden flex-shrink-0">
+                      <img 
+                        src={item.product.images[0]} 
+                        alt={item.product.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                     
-                    <div className="flex items-center justify-between mt-3">
-                      <div className="flex items-center border border-border">
-                        <button 
-                          onClick={() => updateQuantity(item.product.id, item.size, item.color, item.quantity - 1)}
-                          className="p-2 hover:bg-secondary transition-colors"
-                        >
-                          <Minus className="w-3 h-3" />
-                        </button>
-                        <span className="px-4 text-sm">{item.quantity}</span>
-                        <button 
-                          onClick={() => updateQuantity(item.product.id, item.size, item.color, item.quantity + 1)}
-                          className="p-2 hover:bg-secondary transition-colors"
-                        >
-                          <Plus className="w-3 h-3" />
-                        </button>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-heading text-sm font-medium truncate">
+                        {item.product.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Size: {item.size} | Color: {item.color}
+                      </p>
+                      <div className="mt-2">
+                        {itemDiscount > 0 ? (
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-2">
+                              <span className="font-heading font-semibold text-green-600">
+                                {formatPrice(discountedTotal)}
+                              </span>
+                              <span className="text-muted-foreground line-through text-sm">
+                                {formatPrice(itemTotal)}
+                              </span>
+                            </div>
+                            <span className="inline-block px-2 py-0.5 bg-green-100 text-green-700 text-xs font-medium rounded">
+                              10% off (2+ items)
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="font-heading font-semibold">
+                            {formatPrice(itemTotal)}
+                          </span>
+                        )}
                       </div>
                       
-                      <button 
-                        onClick={() => removeFromCart(item.product.id, item.size, item.color)}
-                        className="p-2 text-muted-foreground hover:text-destructive transition-colors"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
+                      <div className="flex items-center justify-between mt-3">
+                        <div className="flex items-center border border-border">
+                          <button 
+                            onClick={() => updateQuantity(item.product.id, item.size, item.color, item.quantity - 1)}
+                            className="p-2 hover:bg-secondary transition-colors"
+                          >
+                            <Minus className="w-3 h-3" />
+                          </button>
+                          <span className="px-4 text-sm">{item.quantity}</span>
+                          <button 
+                            onClick={() => updateQuantity(item.product.id, item.size, item.color, item.quantity + 1)}
+                            className="p-2 hover:bg-secondary transition-colors"
+                          >
+                            <Plus className="w-3 h-3" />
+                          </button>
+                        </div>
+                        
+                        <button 
+                          onClick={() => removeFromCart(item.product.id, item.size, item.color)}
+                          className="p-2 text-muted-foreground hover:text-destructive transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
 
           {/* Footer */}
           {items.length > 0 && (
             <div className="border-t border-border p-4 space-y-4">
-              <div className="flex items-center justify-between text-lg">
-                <span className="font-heading font-medium">SUBTOTAL</span>
-                <span className="font-heading font-bold">{formatPrice(totalPrice)}</span>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">Subtotal</span>
+                  <span>{formatPrice(totalPrice)}</span>
+                </div>
+                {totalDiscount > 0 && (
+                  <div className="flex items-center justify-between text-sm text-green-600">
+                    <span>Quantity Discount (10%)</span>
+                    <span>-{formatPrice(totalDiscount)}</span>
+                  </div>
+                )}
+                <div className="flex items-center justify-between text-lg pt-2 border-t border-border">
+                  <span className="font-heading font-medium">TOTAL</span>
+                  <span className="font-heading font-bold">{formatPrice(finalPrice)}</span>
+                </div>
               </div>
               <p className="text-sm text-muted-foreground">
                 Taxes and shipping calculated at checkout

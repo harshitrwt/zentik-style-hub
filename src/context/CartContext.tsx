@@ -16,11 +16,23 @@ interface CartContextType {
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  totalDiscount: number;
+  finalPrice: number;
+  getItemDiscount: (item: CartItem) => number;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
+
+// Calculate 10% discount for items with quantity >= 2 of the same product
+const calculateItemDiscount = (item: CartItem): number => {
+  if (item.quantity >= 2) {
+    const itemTotal = item.product.price * item.quantity;
+    return itemTotal * 0.10; // 10% discount
+  }
+  return 0;
+};
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>(() => {
@@ -74,8 +86,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setItems([]);
   };
 
+  const getItemDiscount = (item: CartItem): number => {
+    return calculateItemDiscount(item);
+  };
+
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+  const totalDiscount = items.reduce((sum, item) => sum + calculateItemDiscount(item), 0);
+  const finalPrice = totalPrice - totalDiscount;
 
   return (
     <CartContext.Provider value={{
@@ -86,6 +104,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       clearCart,
       totalItems,
       totalPrice,
+      totalDiscount,
+      finalPrice,
+      getItemDiscount,
       isCartOpen,
       setIsCartOpen
     }}>

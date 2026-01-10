@@ -446,39 +446,63 @@ const checkoutSchema = z.object({
 });
 
 
-const OrderSummary = ({ items, totalPrice, shippingCost, grandTotal, formatPrice }) => {
+const OrderSummary = ({ items, totalPrice, totalDiscount, finalPrice, shippingCost, grandTotal, formatPrice, getItemDiscount }) => {
   return (
     <div className="bg-background border border-border p-10 rounded-lg shadow-md">
       
       <div className="space-y-4 mb-6">
-        {items.map(item => (
-          <div 
-            key={`${item.product.id}-${item.size}-${item.color}`}
-            className="flex gap-4"
-          >
-            <div className="relative w-16 h-20 bg-secondary flex-shrink-0">
-              <img 
-                src={item.product.images[0]}
-                alt={item.product.name}
-                className="w-full h-full object-cover"
-              />
-              <span className="absolute -top-2 -right-2 w-5 h-5 bg-muted-foreground text-background text-xs font-bold rounded-full flex items-center justify-center">
-                {item.quantity}
-              </span>
-            </div>
+        {items.map(item => {
+          const itemDiscount = getItemDiscount(item);
+          const itemTotal = item.product.price * item.quantity;
+          const discountedTotal = itemTotal - itemDiscount;
+          
+          return (
+            <div 
+              key={`${item.product.id}-${item.size}-${item.color}`}
+              className="flex gap-4"
+            >
+              <div className="relative w-16 h-20 bg-secondary flex-shrink-0">
+                <img 
+                  src={item.product.images[0]}
+                  alt={item.product.name}
+                  className="w-full h-full object-cover"
+                />
+                <span className="absolute -top-2 -right-2 w-5 h-5 bg-muted-foreground text-background text-xs font-bold rounded-full flex items-center justify-center">
+                  {item.quantity}
+                </span>
+              </div>
 
-            <div className="flex-1 min-w-0">
-              <h3 className="font-medium text-sm truncate">{item.product.name}</h3>
-              <p className="text-sm text-muted-foreground">
-                {item.size} / {item.color}
-              </p>
-            </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-medium text-sm truncate">{item.product.name}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {item.size} / {item.color}
+                </p>
+                {itemDiscount > 0 && (
+                  <span className="inline-block mt-1 px-2 py-0.5 bg-green-100 text-green-700 text-xs font-medium rounded">
+                    10% off
+                  </span>
+                )}
+              </div>
 
-            <span className="font-medium">
-              {formatPrice(item.product.price * item.quantity)}
-            </span>
-          </div>
-        ))}
+              <div className="text-right">
+                {itemDiscount > 0 ? (
+                  <div>
+                    <span className="font-medium text-green-600">
+                      {formatPrice(discountedTotal)}
+                    </span>
+                    <div className="text-xs text-muted-foreground line-through">
+                      {formatPrice(itemTotal)}
+                    </div>
+                  </div>
+                ) : (
+                  <span className="font-medium">
+                    {formatPrice(itemTotal)}
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* Totals */}
@@ -487,6 +511,13 @@ const OrderSummary = ({ items, totalPrice, shippingCost, grandTotal, formatPrice
           <span className="text-muted-foreground">Subtotal</span>
           <span>{formatPrice(totalPrice)}</span>
         </div>
+
+        {totalDiscount > 0 && (
+          <div className="flex justify-between text-sm text-green-600">
+            <span>Quantity Discount (10%)</span>
+            <span>-{formatPrice(totalDiscount)}</span>
+          </div>
+        )}
 
         <div className="flex justify-between text-sm">
           <span className="text-muted-foreground">Shipping</span>
@@ -507,7 +538,7 @@ const OrderSummary = ({ items, totalPrice, shippingCost, grandTotal, formatPrice
 };
 
 const Checkout = () => {
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, totalPrice, totalDiscount, finalPrice, clearCart, getItemDiscount } = useCart();
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState<'razorpay' | 'cod'>('razorpay');
   const [loading, setLoading] = useState(false);
@@ -534,8 +565,8 @@ const Checkout = () => {
     }).format(price);
   };
 
-  const shippingCost = totalPrice > 2000 ? 0 : 99;
-  const grandTotal = totalPrice + shippingCost;
+  const shippingCost = finalPrice > 2000 ? 0 : 99;
+  const grandTotal = finalPrice + shippingCost;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -831,9 +862,12 @@ const Checkout = () => {
             <OrderSummary
               items={items}
               totalPrice={totalPrice}
+              totalDiscount={totalDiscount}
+              finalPrice={finalPrice}
               shippingCost={shippingCost}
               grandTotal={grandTotal}
               formatPrice={formatPrice}
+              getItemDiscount={getItemDiscount}
             />
           </div>
         </div>
@@ -857,9 +891,12 @@ const Checkout = () => {
           <OrderSummary
             items={items}
             totalPrice={totalPrice}
+            totalDiscount={totalDiscount}
+            finalPrice={finalPrice}
             shippingCost={shippingCost}
             grandTotal={grandTotal}
             formatPrice={formatPrice}
+            getItemDiscount={getItemDiscount}
           />
         </div>
 
