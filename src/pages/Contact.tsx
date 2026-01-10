@@ -138,8 +138,7 @@ const Contact = () => {
               </div>
               <div>
                 <h3 className="font-heading font-semibold mb-1">Email</h3>
-                <p className="text-muted-foreground">support@zentik.com</p>
-                <p className="text-muted-foreground">orders@zentik.com</p>
+                <p className="text-muted-foreground">zercindia@gmail.com</p>
               </div>
             </div>
 
@@ -162,7 +161,7 @@ const Contact = () => {
                 <h3 className="font-heading font-semibold mb-1">Address</h3>
                 <p className="text-muted-foreground">
                   123 Fashion Street<br />
-                  Mumbai, Maharashtra 400001<br />
+                  Faridabad, New Delhi 400001<br />
                   India
                 </p>
               </div>

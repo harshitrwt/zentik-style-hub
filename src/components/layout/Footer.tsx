@@ -122,7 +122,7 @@ const Footer = () => {
           <div>
             <h4 className="font-heading font-semibold tracking-wide mb-4">CONTACT</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>support@zercindia.com</li>
+              <li>zercindia@gmail.com</li>
               <li>+91 98765 43210</li>
               <li>Mon - Sat: 10AM - 7PM</li>
             </ul>

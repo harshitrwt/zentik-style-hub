@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { X, Eye, EyeOff } from 'lucide-react';
+import { useAuth } from "@/context/AuthContext";
+
+
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -17,13 +20,28 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
   });
 
   if (!isOpen) return null;
+  const { refreshUser } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Implement actual authentication
-    console.log('Auth submit:', { mode, formData });
-    alert(`${mode === 'login' ? 'Login' : 'Sign up'} functionality requires backend integration.`);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const endpoint = mode === "login" ? "login" : "signup";
+
+  const res = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}/auth/${endpoint}`,
+    {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    }
+  );
+
+  if (res.ok) {
+    await refreshUser();
+    onClose();
+  }
+};
 
   return (
     <>

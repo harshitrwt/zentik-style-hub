@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { X, ChevronDown, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { jerseyCategories, collections } from '@/data/products';
+import { useAuth } from "@/context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 interface MenuSidebarProps {
   isOpen: boolean;
@@ -11,6 +13,8 @@ interface MenuSidebarProps {
 
 const MenuSidebar = ({ isOpen, onClose, onAuthOpen }: MenuSidebarProps) => {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const toggleSection = (section: string) => {
     setExpandedSection(prev => prev === section ? null : section);
@@ -151,7 +155,7 @@ const MenuSidebar = ({ isOpen, onClose, onAuthOpen }: MenuSidebarProps) => {
             <button 
               onClick={() => {
                 onClose();
-                onAuthOpen();
+                user ? navigate("/orders") : onAuthOpen();
               }}
               className="block w-full py-3 text-center border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors"
             >

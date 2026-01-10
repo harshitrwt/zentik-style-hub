@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, User, ShoppingBag, Heart, Menu, ShoppingCart } from 'lucide-react';
+import { Search, User, UserCheck, CircleUserRound, ShoppingBag, Heart, Menu, ShoppingCart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import AuthModal from '@/components/auth/AuthModal';
+import { useAuth } from "@/context/AuthContext";
 
 interface HeaderProps {
   onMenuOpen: () => void;
@@ -23,6 +24,7 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
     "🎁 Get 10% off on your first purchase.",
     "🚚 Fast delivery across India.",
   ];
+  const { user, logout } = useAuth();
 
   // Rotate marquee messages
   useEffect(() => {
@@ -119,9 +121,15 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               </div>
 
-              <button onClick={() => setShowAuthModal(true)} className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Account">
-                <User className="w-5 h-5" />
-              </button>
+              {user ? (
+                <button onClick={logout} className="p-2 hover:bg-secondary">
+                  <UserCheck className="w-5 h-5" />
+                </button>
+              ) : (
+                <button onClick={() => setShowAuthModal(true)} className="p-2 hover:bg-secondary">
+                  <User className="w-5 h-5" />
+                </button>
+              )}
 
               <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Wishlist">
                 <Heart className="w-5 h-5" />
@@ -139,13 +147,15 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                 )}
               </button>
 
-              <button
-                onClick={() => setShowAuthModal(true)}
-                className="md:hidden p-2 hover:bg-secondary transition-colors"
-                aria-label="Account"
-              >
-                <User className="w-5 h-5" />
-              </button>
+              {user ? (
+                <button onClick={logout} className="p-2 hover:bg-secondary">
+                  <CircleUserRound className="w-5 h-5" />
+                </button>
+              ) : (
+                <button onClick={() => setShowAuthModal(true)} className="p-2 hover:bg-secondary">
+                  <User className="w-5 h-5" />
+                </button>
+              )}
             </div>
           </div>
         </div>
