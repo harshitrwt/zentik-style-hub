@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import CartSidebar from './CartSidebar';
+import WishlistSidebar from './WishlistSidebar';
 import MenuSidebar from './MenuSidebar';
 import BottomNav from './BottomNav';
 import AuthModal from '@/components/auth/AuthModal';
@@ -14,13 +15,15 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const { isCartOpen, setIsCartOpen } = useCart();
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header 
         onMenuOpen={() => setIsMenuOpen(true)} 
-        onCartOpen={() => setIsCartOpen(true)} 
+        onCartOpen={() => setIsCartOpen(true)}
+        onWishlistOpen={() => setIsWishlistOpen(true)}
       />
       
       <main className="flex-1 pt-16 md:pt-20 pb-20 lg:pb-0">
@@ -33,6 +36,11 @@ const Layout = ({ children }: LayoutProps) => {
         isOpen={isCartOpen} 
         onClose={() => setIsCartOpen(false)} 
       />
+
+      <WishlistSidebar 
+        isOpen={isWishlistOpen} 
+        onClose={() => setIsWishlistOpen(false)} 
+      />
       
       <MenuSidebar 
         isOpen={isMenuOpen} 
@@ -41,9 +49,11 @@ const Layout = ({ children }: LayoutProps) => {
       />
       
       <BottomNav 
-        onCartOpen={() => setIsCartOpen(true)} 
+        onCartOpen={() => setIsCartOpen(true)}
+        onWishlistOpen={() => setIsWishlistOpen(true)}
         isCartOpen={isCartOpen}
         isMenuOpen={isMenuOpen}
+        isWishlistOpen={isWishlistOpen}
       />
       
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />

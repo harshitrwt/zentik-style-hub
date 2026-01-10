@@ -8,9 +8,10 @@ import { useAuth } from "@/context/AuthContext";
 interface HeaderProps {
   onMenuOpen: () => void;
   onCartOpen: () => void;
+  onWishlistOpen: () => void;
 }
 
-const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
+const Header = ({ onMenuOpen, onCartOpen, onWishlistOpen }: HeaderProps) => {
   const navigate = useNavigate();
   const { totalItems } = useCart();
   const [searchQuery, setSearchQuery] = useState('');
@@ -131,7 +132,11 @@ const Header = ({ onMenuOpen, onCartOpen }: HeaderProps) => {
                 </button>
               )}
 
-              <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Wishlist">
+              <button 
+                onClick={onWishlistOpen}
+                className="hidden md:block p-2 hover:bg-secondary transition-colors" 
+                aria-label="Wishlist"
+              >
                 <Heart className="w-5 h-5" />
               </button>
               <button className="hidden md:block p-2 hover:bg-secondary transition-colors" aria-label="Wishlist">
