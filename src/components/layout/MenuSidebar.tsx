@@ -155,7 +155,7 @@ const MenuSidebar = ({ isOpen, onClose, onAuthOpen }: MenuSidebarProps) => {
             <button 
               onClick={() => {
                 onClose();
-                user ? navigate("/signin") : onAuthOpen();
+                onAuthOpen();
               }}
               className="block w-full py-3 text-center border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors"
             >
