@@ -1,6 +1,6 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Minus, Plus, ChevronLeft, ChevronRight, Eye } from 'lucide-react';
+import { Minus, Plus, ChevronLeft, ChevronRight, Eye, Heart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import {
   useProductBySlug,
@@ -9,6 +9,29 @@ import {
   getSizePrice,
   isSizeInStock,
 } from '@/hooks/useSanityProducts';
+
+// Helper to manage wishlist in localStorage
+const getWishlist = (): string[] => {
+  try {
+    return JSON.parse(localStorage.getItem('wishlist') || '[]');
+  } catch {
+    return [];
+  }
+};
+
+const toggleWishlistItem = (productId: string): boolean => {
+  const wishlist = getWishlist();
+  const index = wishlist.indexOf(productId);
+  if (index > -1) {
+    wishlist.splice(index, 1);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    return false;
+  } else {
+    wishlist.push(productId);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    return true;
+  }
+};
 
 const ProductPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -24,6 +47,7 @@ const ProductPage = () => {
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [quantity, setQuantity] = useState<number>(1);
   const [mainImageIndex, setMainImageIndex] = useState<number>(0);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     if (product) {
@@ -32,6 +56,24 @@ const ProductPage = () => {
       setMainImageIndex(0);
     }
   }, [product]);
+
+  // Check wishlist status and listen for changes
+  useEffect(() => {
+    if (!product) return;
+    const checkWishlist = () => {
+      setIsWishlisted(getWishlist().includes(product._id));
+    };
+    checkWishlist();
+    window.addEventListener('storage', checkWishlist);
+    return () => window.removeEventListener('storage', checkWishlist);
+  }, [product]);
+
+  const handleWishlistToggle = () => {
+    if (!product) return;
+    const newStatus = toggleWishlistItem(product._id);
+    setIsWishlisted(newStatus);
+    window.dispatchEvent(new Event('storage'));
+  };
 
   if (isLoading) return <p className="text-center py-20">Loading...</p>;
   if (isError || !product) return <p className="text-center py-20">Product not found.</p>;
@@ -180,6 +222,15 @@ const ProductPage = () => {
               className="flex-1 py-4 bg-foreground text-background font-semibold hover:bg-foreground/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-lg"
             >
               Add to Cart
+            </button>
+
+            {/* Wishlist Heart Button */}
+            <button
+              onClick={handleWishlistToggle}
+              className="p-4 border border-border hover:bg-secondary transition-colors"
+              aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+            >
+              <Heart className={`w-6 h-6 transition-colors ${isWishlisted ? 'fill-red-500 text-red-500' : ''}`} />
             </button>
           </div>
 

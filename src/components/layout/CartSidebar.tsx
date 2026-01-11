@@ -15,7 +15,7 @@ const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
       style: 'currency',
       currency: 'INR',
       minimumFractionDigits: 0
-    }).format(price);
+    }).format(Math.floor(price));
   };
 
   return (

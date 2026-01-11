@@ -17,9 +17,10 @@ interface HeaderProps {
   onMenuOpen: () => void;
   onCartOpen: () => void;
   onWishlistOpen: () => void;
+  onOrdersOpen: () => void;
 }
 
-const Header = ({ onMenuOpen, onCartOpen, onWishlistOpen }: HeaderProps) => {
+const Header = ({ onMenuOpen, onCartOpen, onWishlistOpen, onOrdersOpen }: HeaderProps) => {
   const navigate = useNavigate();
   const { totalItems } = useCart();
   const { user, logout } = useAuth();
@@ -141,8 +142,11 @@ const Header = ({ onMenuOpen, onCartOpen, onWishlistOpen }: HeaderProps) => {
                 <Heart className="w-5 h-5" />
               </button>
 
-              {/* Bag */}
-              <button className="hidden md:block p-2 hover:bg-secondary">
+              {/* Bag / Orders */}
+              <button 
+                onClick={onOrdersOpen}
+                className="hidden md:block p-2 hover:bg-secondary"
+              >
                 <ShoppingBag className="w-5 h-5" />
               </button>
 
