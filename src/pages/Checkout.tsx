@@ -562,7 +562,7 @@ const Checkout = () => {
       style: 'currency',
       currency: 'INR',
       minimumFractionDigits: 0
-    }).format(price);
+    }).format(Math.floor(price));
   };
 
   const shippingCost = finalPrice > 2000 ? 0 : 99;

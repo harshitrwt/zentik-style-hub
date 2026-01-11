@@ -6,12 +6,14 @@ import { useCart } from '@/context/CartContext';
 interface BottomNavProps {
   onCartOpen: () => void;
   onWishlistOpen: () => void;
+  onOrdersOpen: () => void;
   isCartOpen?: boolean;
   isMenuOpen?: boolean;
   isWishlistOpen?: boolean;
+  isOrdersOpen?: boolean;
 }
 
-const BottomNav = ({ onCartOpen, onWishlistOpen, isCartOpen = false, isMenuOpen = false, isWishlistOpen = false }: BottomNavProps) => {
+const BottomNav = ({ onCartOpen, onWishlistOpen, onOrdersOpen, isCartOpen = false, isMenuOpen = false, isWishlistOpen = false, isOrdersOpen = false }: BottomNavProps) => {
   const location = useLocation();
   const { totalItems } = useCart();
 
@@ -41,7 +43,7 @@ const BottomNav = ({ onCartOpen, onWishlistOpen, isCartOpen = false, isMenuOpen 
 
   const navItems = [
     { icon: Home, label: 'Home', path: '/' },
-    { icon: Package, label: 'Orders', path: '/coming-soon' },
+    { icon: Package, label: 'Orders', path: '', isOrders: true },
     { icon: ShoppingBag, label: 'Shop', path: '/shop', isCenter: true },
     { icon: Heart, label: 'Wishlist', path: '', isWishlist: true },
   ];
@@ -49,7 +51,7 @@ const BottomNav = ({ onCartOpen, onWishlistOpen, isCartOpen = false, isMenuOpen 
   return (
     <nav
       className={`fixed bottom-0 left-0 right-0 bg-background border-t border-border z-50 lg:hidden transition-transform duration-300 ${
-        showNav && !isCartOpen && !isMenuOpen && !isWishlistOpen ? 'translate-y-0' : 'translate-y-full'
+        showNav && !isCartOpen && !isMenuOpen && !isWishlistOpen && !isOrdersOpen ? 'translate-y-0' : 'translate-y-full'
       }`}
     >
       <div className="flex items-center justify-around py-2">
@@ -63,6 +65,22 @@ const BottomNav = ({ onCartOpen, onWishlistOpen, isCartOpen = false, isMenuOpen 
               <button
                 key={item.label}
                 onClick={onWishlistOpen}
+                className="flex flex-col items-center gap-1 px-4 py-2 transition-colors"
+              >
+                <Icon className="w-5 h-5 text-muted-foreground" />
+                <span className="text-xs text-muted-foreground">
+                  {item.label}
+                </span>
+              </button>
+            );
+          }
+
+          // Handle orders as button instead of link
+          if (item.isOrders) {
+            return (
+              <button
+                key={item.label}
+                onClick={onOrdersOpen}
                 className="flex flex-col items-center gap-1 px-4 py-2 transition-colors"
               >
                 <Icon className="w-5 h-5 text-muted-foreground" />

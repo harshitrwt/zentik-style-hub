@@ -81,9 +81,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   const normalized = normalizeProduct(product);
 
-  // Check wishlist status on mount
+  // Check wishlist status on mount and listen for changes
   useEffect(() => {
-    setIsWishlisted(getWishlist().includes(normalized.id));
+    const checkWishlist = () => {
+      setIsWishlisted(getWishlist().includes(normalized.id));
+    };
+    checkWishlist();
+    
+    // Listen for storage events to sync wishlist state
+    window.addEventListener('storage', checkWishlist);
+    return () => window.removeEventListener('storage', checkWishlist);
   }, [normalized.id]);
 
   const handleWishlistToggle = (e: React.MouseEvent) => {
@@ -91,6 +98,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
     e.stopPropagation();
     const newStatus = toggleWishlistItem(normalized.id);
     setIsWishlisted(newStatus);
+    // Dispatch storage event for other components
+    window.dispatchEvent(new Event('storage'));
   };
 
   const formatPrice = (price: number) => {

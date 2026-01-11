@@ -13,6 +13,29 @@ interface QuickViewModalProps {
   onClose: () => void;
 }
 
+// Helper to manage wishlist in localStorage
+const getWishlist = (): string[] => {
+  try {
+    return JSON.parse(localStorage.getItem('wishlist') || '[]');
+  } catch {
+    return [];
+  }
+};
+
+const toggleWishlistItem = (productId: string): boolean => {
+  const wishlist = getWishlist();
+  const index = wishlist.indexOf(productId);
+  if (index > -1) {
+    wishlist.splice(index, 1);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    return false;
+  } else {
+    wishlist.push(productId);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    return true;
+  }
+};
+
 // Normalize product for display
 const normalizeForDisplay = (product: ProductType) => {
   if ('_id' in product) {
@@ -63,11 +86,28 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
   // Hooks always at top-level
   const [selectedSize, setSelectedSize] = useState<string>(normalized.sizes[0]?.label || '');
   const [quantity, setQuantity] = useState<number>(1);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     setSelectedSize(normalized.sizes[0]?.label || '');
     setQuantity(1);
   }, [normalized]);
+
+  // Check wishlist status and listen for changes
+  useEffect(() => {
+    const checkWishlist = () => {
+      setIsWishlisted(getWishlist().includes(normalized.id));
+    };
+    checkWishlist();
+    window.addEventListener('storage', checkWishlist);
+    return () => window.removeEventListener('storage', checkWishlist);
+  }, [normalized.id]);
+
+  const handleWishlistToggle = () => {
+    const newStatus = toggleWishlistItem(normalized.id);
+    setIsWishlisted(newStatus);
+    window.dispatchEvent(new Event('storage'));
+  };
 
   // Move this hook before any conditional returns
   const currentPrice = useMemo(() => {
@@ -191,8 +231,11 @@ const QuickViewModal = ({ product, isOpen, onClose }: QuickViewModalProps) => {
                   Add to Cart
                 </button>
 
-                <button className="p-3 border border-border hover:bg-secondary transition-colors">
-                  <Heart className="w-5 h-5" />
+                <button 
+                  onClick={handleWishlistToggle}
+                  className="p-3 border border-border hover:bg-secondary transition-colors"
+                >
+                  <Heart className={`w-5 h-5 transition-colors ${isWishlisted ? 'fill-red-500 text-red-500' : ''}`} />
                 </button>
               </div>
 

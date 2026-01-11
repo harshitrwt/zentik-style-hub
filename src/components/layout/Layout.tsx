@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import CartSidebar from './CartSidebar';
 import WishlistSidebar from './WishlistSidebar';
+import OrdersSidebar from './OrdersSidebar';
 import MenuSidebar from './MenuSidebar';
 import BottomNav from './BottomNav';
 import AuthModal from '@/components/auth/AuthModal';
@@ -16,6 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
+  const [isOrdersOpen, setIsOrdersOpen] = useState(false);
   const { isCartOpen, setIsCartOpen } = useCart();
 
   return (
@@ -24,6 +26,7 @@ const Layout = ({ children }: LayoutProps) => {
         onMenuOpen={() => setIsMenuOpen(true)} 
         onCartOpen={() => setIsCartOpen(true)}
         onWishlistOpen={() => setIsWishlistOpen(true)}
+        onOrdersOpen={() => setIsOrdersOpen(true)}
       />
       
       <main className="flex-1 pt-16 md:pt-20 pb-20 lg:pb-0">
@@ -41,6 +44,11 @@ const Layout = ({ children }: LayoutProps) => {
         isOpen={isWishlistOpen} 
         onClose={() => setIsWishlistOpen(false)} 
       />
+
+      <OrdersSidebar 
+        isOpen={isOrdersOpen} 
+        onClose={() => setIsOrdersOpen(false)} 
+      />
       
       <MenuSidebar 
         isOpen={isMenuOpen} 
@@ -51,9 +59,11 @@ const Layout = ({ children }: LayoutProps) => {
       <BottomNav 
         onCartOpen={() => setIsCartOpen(true)}
         onWishlistOpen={() => setIsWishlistOpen(true)}
+        onOrdersOpen={() => setIsOrdersOpen(true)}
         isCartOpen={isCartOpen}
         isMenuOpen={isMenuOpen}
         isWishlistOpen={isWishlistOpen}
+        isOrdersOpen={isOrdersOpen}
       />
       
       <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
