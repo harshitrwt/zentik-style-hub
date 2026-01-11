@@ -2,163 +2,162 @@ import { Link } from 'react-router-dom';
 
 const OurStory = () => {
   return (
-    <div>
+    <div className="bg-background text-foreground">
+      
       {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-[80vh] overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=1920&q=80)',
-          }}
-        >
-          <div className="absolute inset-0 bg-background/70" />
-        </div>
-        
-        <div className="relative container mx-auto px-4 h-full flex items-center justify-center text-center">
-          <div className="max-w-3xl">
-            <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 animate-fade-in">
+      <section className="relative min-h-[70vh] md:min-h-[85vh] overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1563580853176-38535245e8b6?q=80&w=1159&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Football culture"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
+
+        <div className="relative container mx-auto px-4 h-full flex items-center">
+          <div className="max-w-4xl">
+            <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 mt-10 text-white">
               OUR STORY
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              Bringing legendary football moments to life through premium jerseys
+            <p className="text-lg text-gray-200 md:text-xl text-muted-foreground max-w-2xl">
+              Bringing legendary football moments to life through premium, 
+              collectible jerseys made for true fans.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-wide mb-6">
-                THE BEGINNING
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                Zerć India was born from a deep love for the beautiful game. As football enthusiasts, we understood the desire to wear the iconic jerseys of legendary players and historic moments.
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                What started as a passion project has grown into India's premier destination for authentic retro and premium football jerseys. We curate jerseys that celebrate the greatest players, clubs, and moments in football history.
-              </p>
-            </div>
-            <div className="relative h-[400px] md:h-[500px]">
-              <img 
-                src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80"
-                alt="Football Stadium"
-                className="w-full h-full object-cover rounded-lg"
-              />
-            </div>
+      {/* Story Section */}
+      <section className="py-20 md:py-28">
+        <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Text */}
+          <div>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
+              THE BEGINNING
+            </h2>
+            <p className="text-muted-foreground leading-relaxed mb-5">
+              Zerć India was born from an obsession with football — the culture,
+              the history, and the emotion stitched into every legendary jersey.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+              What started as a passion project is now a curated destination for
+              retro and premium football jerseys that celebrate iconic players,
+              unforgettable moments, and timeless designs.
+            </p>
+          </div>
+
+          {/* Image Stack */}
+          <div className="relative h-[420px] md:h-[520px]">
+            <img
+              src="https://images.pexels.com/photos/32540205/pexels-photo-32540205.png"
+              alt="Football stadium"
+              className="absolute top-0 left-0 w-[70%] h-[70%] object-cover rounded-xl shadow-xl"
+            />
+            <img
+              src="https://images.pexels.com/photos/32022220/pexels-photo-32022220.png"
+              alt="Football crowd"
+              className="absolute bottom-0 right-0 w-[65%] h-[65%] object-cover rounded-xl shadow-xl border border-border"
+            />
           </div>
         </div>
       </section>
 
       {/* Values Section */}
-      <section className="py-16 md:py-24 bg-card">
+      <section className="py-20 md:py-28 bg-card">
         <div className="container mx-auto px-4">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-wide text-center mb-16">
-            WHY CHOOSE US
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-16">
+            WHY ZERĆ INDIA
           </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-8">
-              <div className="w-16 h-16 mx-auto mb-6 border border-foreground flex items-center justify-center rounded-full">
-                <span className="font-heading text-2xl font-bold">01</span>
+
+          <div className="grid md:grid-cols-3 gap-10">
+            {[
+              {
+                title: 'PREMIUM QUALITY',
+                desc: 'High-grade fabrics, detailed embroidery, and durable prints built to last season after season.',
+                index: '01',
+              },
+              {
+                title: 'AUTHENTIC DESIGNS',
+                desc: 'Iconic jerseys inspired by football legends and historic moments that shaped the game.',
+                index: '02',
+              },
+              {
+                title: 'BUILT FOR FANS',
+                desc: 'Designed by football lovers, for football lovers — because jerseys are more than merch.',
+                index: '03',
+              },
+            ].map((item) => (
+              <div
+                key={item.index}
+                className="relative p-10 border border-border rounded-2xl bg-background hover:shadow-xl transition-shadow"
+              >
+                <span className="absolute -top-6 left-6 text-5xl font-heading font-bold text-muted-foreground/20">
+                  {item.index}
+                </span>
+                <h3 className="font-heading text-xl font-bold mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
-              <h3 className="font-heading text-xl font-bold mb-4">PREMIUM QUALITY</h3>
-              <p className="text-muted-foreground">
-                Every jersey is crafted with premium materials and authentic embroidery. 
-                We ensure quality that matches the legends they represent.
-              </p>
-            </div>
-            
-            <div className="text-center p-8">
-              <div className="w-16 h-16 mx-auto mb-6 border border-foreground flex items-center justify-center rounded-full">
-                <span className="font-heading text-2xl font-bold">02</span>
-              </div>
-              <h3 className="font-heading text-xl font-bold mb-4">AUTHENTIC DESIGNS</h3>
-              <p className="text-muted-foreground">
-                From Messi to Ronaldo, Kaka to Zidane - we bring you jerseys that 
-                capture the essence of football's greatest moments.
-              </p>
-            </div>
-            
-            <div className="text-center p-8">
-              <div className="w-16 h-16 mx-auto mb-6 border border-foreground flex items-center justify-center rounded-full">
-                <span className="font-heading text-2xl font-bold">03</span>
-              </div>
-              <h3 className="font-heading text-xl font-bold mb-4">FAN COMMUNITY</h3>
-              <p className="text-muted-foreground">
-                Join thousands of football fans across India who trust Zerć India 
-                for their jersey collection.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Image Gallery */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="aspect-square overflow-hidden rounded-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=600&q=80"
-                alt="Football Jerseys"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden rounded-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=600&q=80"
-                alt="Football Match"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden rounded-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1489944440615-453fc2b6a9a9?w=600&q=80"
-                alt="Football Stadium"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            <div className="aspect-square overflow-hidden rounded-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&q=80"
-                alt="Football Fans"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              "https://images.unsplash.com/photo-1563580853176-38535245e8b6?q=80&w=1159&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              "https://images.unsplash.com/photo-1665413813191-3143ec934960?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              "https://images.unsplash.com/photo-1595030044556-acfaa61edc0f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              "https://images.pexels.com/photos/10732400/pexels-photo-10732400.jpeg"
+            ].map((src, i) => (
+              <div
+                key={i}
+                className="aspect-[3/4] overflow-hidden rounded-xl"
+              >
+                <img
+                  src={src}
+                  alt="Football culture"
+                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Quote Section */}
-      <section className="py-24 md:py-32 bg-card">
+      <section className="py-28 bg-card">
         <div className="container mx-auto px-4 text-center">
-          <p className="font-heading text-2xl md:text-4xl font-light tracking-wide leading-relaxed max-w-4xl mx-auto">
-            "Football is not just a game, it's a <span className="font-bold">feeling</span>. 
-            Every jersey tells a story of passion, glory, and unforgettable moments."
+          <p className="font-heading text-2xl md:text-4xl font-light max-w-4xl mx-auto leading-relaxed">
+            “Football isn&apos;t just played — it&apos;s felt.  
+            Every jersey carries a story of passion, pride, and history.”
           </p>
           <p className="mt-8 text-muted-foreground font-heading tracking-wide">
-            — ZERĆ INDIA TEAM
+            — ZERĆ INDIA
           </p>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 md:py-24">
+      {/* CTA */}
+      <section className="py-20 md:py-28">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-wide mb-6">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6">
             WEAR YOUR LEGENDS
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Explore our collection of premium football jerseys and find the perfect piece to celebrate your favorite players and clubs.
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-10">
+            Discover premium football jerseys crafted for fans who live and breathe the game.
           </p>
-          <Link 
+          <Link
             to="/shop"
-            className="inline-block px-8 py-4 bg-foreground text-background font-heading text-sm tracking-wide hover:bg-foreground/90 transition-colors rounded"
+            className="inline-block px-10 py-4 bg-foreground text-background font-heading text-sm tracking-wide hover:bg-foreground/90 transition-colors rounded-full"
           >
-            SHOP NOW
+            SHOP COLLECTION
           </Link>
         </div>
       </section>
