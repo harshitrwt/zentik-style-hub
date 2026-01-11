@@ -595,6 +595,30 @@ const Checkout = () => {
     }
   };
 
+  // Helper to save order to localStorage
+  const saveOrderToLocalStorage = () => {
+    const order = {
+      id: crypto.randomUUID(),
+      items: items.map(item => ({
+        id: item.product.id,
+        name: item.product.name,
+        price: item.product.price,
+        quantity: item.quantity,
+        size: item.size,
+        color: item.color,
+        image: item.product.images[0],
+        orderedAt: new Date().toISOString()
+      })),
+      total: grandTotal,
+      orderedAt: new Date().toISOString()
+    };
+
+    const existingOrders = JSON.parse(localStorage.getItem('user-orders') || '[]');
+    existingOrders.unshift(order);
+    localStorage.setItem('user-orders', JSON.stringify(existingOrders));
+    window.dispatchEvent(new Event('storage'));
+  };
+
   const handlePayment = async () => {
     if (!validateForm() || items.length === 0) return;
 
@@ -602,6 +626,7 @@ const Checkout = () => {
 
     if (paymentMethod === "cod") {
       setTimeout(() => {
+        saveOrderToLocalStorage();
         clearCart();
         toast({
           title: "Order placed successfully!",
@@ -647,6 +672,7 @@ const Checkout = () => {
             }
           );
 
+          saveOrderToLocalStorage();
           clearCart();
           toast({ title: "Payment successful!" });
           navigate("/");
