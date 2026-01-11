@@ -9,6 +9,8 @@ import WelcomePopup from '@/components/WelcomePopup';
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [bestSellerSlide, setBestSellerSlide] = useState(0);
+  const [newArrivalSlide, setNewArrivalSlide] = useState(0);
 
   // Fetch data from Sanity (with fallback)
   const { data: allProducts = [], isLoading: loadingProducts } = useProducts();
@@ -17,6 +19,8 @@ const Index = () => {
 
   const featuredProducts = allProducts.filter(p => p.isNew || p.isLimited).slice(0, 8);
   const totalSlides = Math.ceil(featuredProducts.length / 4) || 1;
+   const bestSellerSlides = Math.ceil(bestSellers.length / 4) || 1;
+  const newArrivalSlides = Math.ceil(newArrivals.length / 4) || 1;
 
   const bestSellerRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -186,7 +190,7 @@ const Index = () => {
           <div className="flex justify-center mt-10">
             <Link
               to="/shop"
-              className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
+              className="px-8 py-4 border border-border font-semibold text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
             >
               View all
             </Link>
@@ -194,54 +198,44 @@ const Index = () => {
         </div>
       </section>
 
-      {/* BEST SELLERS – DRAGGABLE SCROLL */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
+      
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-wide">
+            <h2 className="font-heading text-2xl md:text-3xl font-bold">
               BEST SELLERS
             </h2>
-            <span className="text-sm text-muted-foreground">← Drag →</span>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-muted-foreground">
+                {bestSellerSlide + 1}/{bestSellerSlides}
+              </span>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setBestSellerSlide(p => Math.max(0, p - 1))}
+                  disabled={bestSellerSlide === 0}
+                  className="p-2 border border-border disabled:opacity-50"
+                >
+                  <ChevronLeft />
+                </button>
+                <button
+                  onClick={() =>
+                    setBestSellerSlide(p => Math.min(bestSellerSlides - 1, p + 1))
+                  }
+                  disabled={bestSellerSlide === bestSellerSlides - 1}
+                  className="p-2 border border-border disabled:opacity-50"
+                >
+                  <ChevronRight />
+                </button>
+              </div>
+            </div>
           </div>
 
-          {loadingBestSellers ? (
-            <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="w-[180px] md:w-[280px] flex-shrink-0 animate-pulse">
-                  <div className="bg-secondary aspect-[3/4] rounded-lg mb-4" />
-                  <div className="h-4 bg-secondary rounded mb-2" />
-                  <div className="h-4 bg-secondary rounded w-1/2" />
-                </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {bestSellers
+              .slice(bestSellerSlide * 4, bestSellerSlide * 4 + 4)
+              .map(product => (
+                <ProductCard key={product._id} product={product} />
               ))}
-            </div>
-          ) : (
-            <div
-              ref={bestSellerRef}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseLeave}
-              className={`flex gap-4 overflow-x-auto scrollbar-hide pb-4 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-              style={{ scrollBehavior: isDragging ? 'auto' : 'smooth' }}
-            >
-              {[...bestSellers, ...bestSellers].map((product, i) => (
-                <div
-                  key={`${product._id}-${i}`}
-                  className="w-[180px] md:w-[280px] flex-shrink-0 mb-10"
-                >
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
-          )}
-
-          <div className="flex justify-center mt-10">
-            <Link
-              to="/collections/jersey/best-seller"
-              className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
-            >
-              View all Best Sellers
-            </Link>
           </div>
         </div>
       </section>
@@ -266,16 +260,16 @@ const Index = () => {
           ) : (
             <>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mt-12">
-                {newArrivals.slice(0, 8).map((product) => (
+                {newArrivals.slice(0, 4).map((product) => (
                   <ProductCard key={product._id} product={product} />
                 ))}
               </div>
 
-              {newArrivals.length >= 8 && (
+              {newArrivals.length >= 4 && (
                 <div className="flex justify-center mt-10">
                   <Link
                     to="/shop"
-                    className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
+                    className="px-8 py-4 border border-border font-semibold text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
                   >
                     View All
                   </Link>
@@ -315,7 +309,7 @@ const Index = () => {
           <div className="flex justify-center mt-10">
             <Link
               to="/shop"
-              className="px-8 py-4 border border-border font-heading text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
+              className="px-8 py-4 border border-border font-semibold text-sm tracking-wide hover:bg-secondary transition-colors inline-flex items-center gap-2"
             >
               View All Products
             </Link>
